@@ -2,6 +2,7 @@ const Course = require("../models/course");
 const User = require("../models/user");
 const httpStatus = require("http-status-codes");
 
+
 module.exports = {
   index: (req, res, next) => {
     Course.find({})

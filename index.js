@@ -3,16 +3,16 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const express = require("express");
 const methodOverride = require("method-override");
-const layouts = require("express-ejs-layouts");
+
 const connectFlash = require("connect-flash");
 const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
-const expressValidator = require("express-validator");
+
 const passport = require("passport");
 const User = require("./models/user");
 const router = require("./routes/index");
-const socketio = require("socket.io");
-const chatController = require("./controllers/chatController");
+
+
 const morgan = require("morgan");
 
 const app = express();
@@ -28,9 +28,8 @@ app.use(morgan(":method :url :status * :response-time ms"));
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded());
-app.set("view engine", "ejs");
-app.use(layouts);
-app.use(expressValidator());
+
+
 app.use(
   methodOverride("_method", {
     methods: ["POST", "GET"],
@@ -67,5 +66,4 @@ app.use("/", router);
 const server = app.listen(PORT, () => {
   console.log("application is running");
 });
-const io = socketio(server);
-chatController(io);
+
