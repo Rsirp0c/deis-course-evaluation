@@ -5,27 +5,31 @@ import mongoose from "mongoose";
 import express from "express";
 import morgan from "morgan";
 
+dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 /**
  * Middlewares
  */
-dotenv.config();
 app.use(morgan('dev'));
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 /**
- * Set up mongodb connection
+ * Set up mongodb connection and start the server
  */
-connect(process.env.MONGODB_URI);
-const db = connection;
-db.once("open", () => {
-  console.log("Successfully connected to mongodb!");
-});
+mongoose.
+  connect(process.env.MONGODB_URI || "mongodb://localhost:27017/course-eval", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log(`mongodb is connected on location: ${mongoose.connection.host}:${mongoose.connection.port}`);
+    app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));
+  })
+  .catch((err) => {
+    console.log(`mongodb connection failed ${err}`);
+  });
 
 
-const server = app.listen(PORT, () => {
-  console.log("application is running");
-});
 
