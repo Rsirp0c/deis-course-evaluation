@@ -1,14 +1,13 @@
-const router = require("express").Router();
-const userRoutes = require("./userRoutes"),
-  courseRoutes = require("./courseRoutes"),
-  errorRoutes = require("./errorRoutes");
-const apiRoutes = require("./apiRoutes");
+
+import router from "express";
+import userRoutes from "./userRoutes";
+import courseRoutes from "./courseRoutes";
+import errorRoutes from "./errorRoutes";
+import apiRoutes from "./apiRoutes";
 
 router.use("/users", userRoutes);
-
 router.use("/courses", courseRoutes);
-
 router.use("/api", apiRoutes);
 router.use("/", errorRoutes);
 
-module.exports = router;
+export default router;
