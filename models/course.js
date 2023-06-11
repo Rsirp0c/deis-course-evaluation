@@ -1,21 +1,36 @@
-const mongoose = require("mongoose");
-const courseSchema = mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  description: {
+import { Schema, model } from "mongoose";
+
+const courseSchema = Schema({
+  course: {
     type: String,
     required: true,
   },
-  items: [],
-  zipCode: {
+  courseTitle: {
+    type: String,
+    required: true,
+  },
+  professors: {
+    type: Array,
+    required: true,
+  },
+  comments: {
+    type: Array,
+  },
+  gradeAverage: {
     type: Number,
-    min: [10000, "zip code is too short!"],
-    max: 99999,
   },
+  ratingAverage: {
+    type: Number,
+  },
+  courseDescription: {
+    type: String,
+    required: true,
+  },
+  prerequisites: {
+    type: Array,
+    required: true,
+  }
 });
 
-module.exports = mongoose.model("Course", courseSchema);
-//module.exports = Course;
+export default model("Course", courseSchema);
+
