@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "doc": "jsdoc -c jsdoc.json"
   },
   "author": "",
   "license": "ISC",
@@ -15,5 +16,8 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.22"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "jsdoc": "^4.0.2"
+  }
 }

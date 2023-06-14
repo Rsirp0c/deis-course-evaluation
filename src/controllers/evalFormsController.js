@@ -33,6 +33,4 @@ function create (req, res, next) {
 
 export { create };
 
-
-// difference between await and .then() syntax
 // jsdoc implement 
