@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import express from "express";
 import morgan from "morgan";
+import router from "./routes/index.js";
 
 dotenv.config();
 const app = express();
@@ -31,4 +32,4 @@ mongoose.
   });
 
 
-
+app.use("/", router);
