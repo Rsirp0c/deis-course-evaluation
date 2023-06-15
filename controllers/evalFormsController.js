@@ -1,4 +1,4 @@
-import EvalForm from "../models/evalForm";
+import EvalForm from "../models/evalForm.js";
 
 /**
  * Gets the parameters from the request body and returns them in an JSON object
@@ -22,23 +22,37 @@ const getEvalFormParams = (body) => {
 };
 
 /**
- * Controller: Creates a new EvalForm object and saves it to the database
+ * @summary POST api/v1/evalForm
+ * @description Creates a new EvalForm
+ * 
+ * Example request body:
+ * 
+ * {
+ *    "course": "COSI-103",
+ *    "semester": "SPRING",
+ *    "professor": "Timothy Hickey",
+ *    "difficulty": "easy", 
+ *    "rate": 5,
+ *    "attendance": true,
+ *    "grade-received": "A",
+ *    "delivery": "In-Person", 
+ *    "comment": "good"
+ * }
+ * @MingCWang 
  * @async
- * @MingCWang
  * @param {Object} req - request object
- * @param {Object} res - response object\
- * @returns {Object} - JSON object with the saved EvalForm or error message
+ * @param {Object} res - response object
+ * @returns {Object} 201 - JSON object with the created EvalForm
+ * @returns {Object} 500 - JSON object with the error message
  */
 async function create (req, res) {
   try{
     const newEvalForm = new EvalForm(getEvalFormParams(req.body));
     const savedEvalForm = await newEvalForm.save();
     res.status(201).json(savedEvalForm);
-  }catch(error){
+  }catch(err){
     res.status(500).json({ error: err.message });
   }
 }
 
-export { create };
-
-// jsdoc implement 
+export default create;
