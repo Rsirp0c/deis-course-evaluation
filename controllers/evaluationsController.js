@@ -1,3 +1,6 @@
+/**
+ * @module EvaluationsController
+ */
 import EvalForm from "../models/evalForm.js";
 
 /**
@@ -22,7 +25,7 @@ const getEvalFormParams = (body) => {
 };
 
 /**
- * @summary POST api/v1/evalForm
+ * @summary POST api/v1/evaluation/forms
  * @description Creates a new EvalForm
  * 
  * Example request body:
@@ -55,4 +58,22 @@ async function create (req, res) {
   }
 }
 
-export default create;
+/**
+ * @todo Figure out how to populate the EvalForm with the course, semester, and professor
+ * @summary GET api/v1/evaluation/forms
+ * @description Gets all EvalForms filtered with the given parameters
+ * @MingCWang
+ * @async
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+async function read(req, res) {
+  
+  try{
+
+  }catch(err){
+    res.status(500).json({ error: err.message });
+  }
+}
+
+export { create, read };
