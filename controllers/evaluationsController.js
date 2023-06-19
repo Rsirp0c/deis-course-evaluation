@@ -1,6 +1,7 @@
 /**
  * @module EvaluationsController
  */
+import e from "express";
 import EvalForm from "../models/evalForm.js";
 
 /**
@@ -59,9 +60,9 @@ async function create (req, res) {
 }
 
 /**
- * @todo Figure out how to populate the EvalForm with the course, semester, and professor
- * @summary GET api/v1/evaluation/forms
- * @description Gets all EvalForms filtered with the given parameters
+ * @todo Implement error handling for edge cases
+ * @summary GET api/v1/evaluation/forms?course=course&semester=semester&professor=professor
+ * @description Gets all EvalForms filtered with the given parameters    
  * @MingCWang
  * @async
  * @param {Object} req - request object
@@ -69,8 +70,17 @@ async function create (req, res) {
  */
 async function read(req, res) {
   
+  const { course, semester, professor } = req.query; 
+  let evalForms = [];
   try{
-
+    if(semester){
+      evalForms = await EvalForm.find({course: course, semester: semester});
+    }else if(professor){
+      evalForms = await EvalForm.find({course: course, professor: professor});
+    }else{
+      evalForms = await EvalForm.find({course: course});
+    }
+    res.status(200).json(evalForms);
   }catch(err){
     res.status(500).json({ error: err.message });
   }
