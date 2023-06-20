@@ -26,7 +26,7 @@ const getEvalFormParams = (body) => {
 };
 
 /**
- * @summary POST api/v1/evaluation/forms
+ * @summary POST api/v1/evaluations/forms
  * @description Creates a new EvalForm
  * 
  * Example request body:
@@ -61,7 +61,7 @@ async function create (req, res) {
 
 /**
  * @todo Implement error handling for edge cases
- * @summary GET api/v1/evaluation/forms?course=course&semester=semester&professor=professor
+ * @summary GET api/v1/evaluations?course=course&semester=semester&professor=professor
  * @description Gets all EvalForms filtered with the given parameters    
  * @MingCWang
  * @async

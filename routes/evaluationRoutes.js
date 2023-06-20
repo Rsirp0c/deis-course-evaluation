@@ -3,6 +3,6 @@ import express from "express";
 const router = express.Router();
 
 router.post("/forms", create);
-router.get("/forms", read);
+router.get("/", read);
 
 export default router;

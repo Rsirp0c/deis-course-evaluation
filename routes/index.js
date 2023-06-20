@@ -5,9 +5,9 @@ const router = express.Router();
 // import courseRoutes from "./courseRoutes";
 // import errorRoutes from "./errorRoutes";
 // import apiRoutes from "./apiRoutes";
-import evalFormRoutes from "./evalFormRoutes.js";
+import evaluationRoutes from "./evaluationRoutes.js";
 
-router.use("/evaluation", evalFormRoutes);
+router.use("/evaluations", evaluationRoutes);
 // router.use("/users", userRoutes);
 // router.use("/courses", courseRoutes);
 // router.use("/api", apiRoutes);
