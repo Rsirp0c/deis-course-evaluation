@@ -1,26 +1,26 @@
 {
-  "name": "deis-course-evaluation",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon ./index.js",
-    "doc": "jsdoc -c jsdoc.json",
-    "lint": "eslint . --ext .js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^16.1.4",
-    "express": "^4.18.2",
-    "mongoose": "^7.2.3",
-    "morgan": "^1.10.0",
-    "nodemon": "^2.0.22"
-  },
-  "type": "module",
-  "devDependencies": {
-    "eslint": "^8.43.0",
-    "eslint-plugin-react": "^7.32.2",
-    "jsdoc": "^4.0.2"
-  }
+	"name": "deis-course-evaluation",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon ./index.js",
+		"doc": "jsdoc -c jsdoc.json",
+		"lint": "eslint . --ext .js"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"dotenv": "^16.1.4",
+		"express": "^4.18.2",
+		"mongoose": "^7.2.3"
+	},
+	"type": "module",
+	"devDependencies": {
+		"eslint": "^8.43.0",
+		"eslint-plugin-react": "^7.32.2",
+		"jsdoc": "^4.0.2",
+		"morgan": "^1.10.0",
+		"nodemon": "^2.0.22"
+	}
 }
