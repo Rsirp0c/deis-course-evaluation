@@ -25,39 +25,39 @@
  *   "__v": 0
  * }
  */
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
 const courseSchema = Schema({
-  course: {
-    type: String,
-    required: true,
-  },
-  courseTitle: {
-    type: String,
-    required: true,
-  },
-  professors: {
-    type: Array,
-    required: true,
-  },
-  comments: {
-    type: [{ type: Schema.Types.ObjectId, ref: 'EvalForm' }]  // Link to EvalForm model to populate data
-  },
-  gradeAverage: {
-    type: Number,
-  },
-  ratingAverage: {
-    type: Number,
-  },
-  courseDescription: {
-    type: String,
-    required: true,
-  },
-  prerequisites: {
-    type: Array,
-    required: true,
-  }
+	course: {
+		type: String,
+		required: true,
+	},
+	courseTitle: {
+		type: String,
+		required: true,
+	},
+	professors: {
+		type: Array,
+		required: true,
+	},
+	comments: {
+		type: [{ type: Schema.Types.ObjectId, ref: 'EvalForm' }]  // Link to EvalForm model to populate data
+	},
+	gradeAverage: {
+		type: Number,
+	},
+	ratingAverage: {
+		type: Number,
+	},
+	courseDescription: {
+		type: String,
+		required: true,
+	},
+	prerequisites: {
+		type: Array,
+		required: true,
+	}
 });
 
-export default model("Course", courseSchema);
+export default model('Course', courseSchema);
 
