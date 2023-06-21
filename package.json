@@ -4,9 +4,11 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "nodemon ./index.js",
+		"backend": "cd backend; nodemon ./index.js;",
+		"frontend": "",
 		"doc": "jsdoc -c jsdoc.json",
-		"lint": "eslint . --ext .js"
+		"lint": "eslint . --ext .js",
+		"start": "npm run backend && npm run frontend"
 	},
 	"author": "",
 	"license": "ISC",
