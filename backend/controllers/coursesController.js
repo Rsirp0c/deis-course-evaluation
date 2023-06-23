@@ -5,7 +5,7 @@ import Course from '../models/course';
 
 /**
  * @todo Implement error handling for edge cases
- * @summary GET api/v1/courses
+ * @summary GET api/courses
  * @description Get all course 
  * @sorai910
  * @async
@@ -25,7 +25,7 @@ async function index(req, res, next) {
 
   /**
  * @todo optimization for error handling; add more filter for the sorting functionality on the main page? or create another function
- * @summary GET api/v1/courses/courseId
+ * @summary GET api/courses/courseId
  * @description Get a specific course by courseid    
  * @sorai910
  * @async
