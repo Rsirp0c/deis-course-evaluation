@@ -5,6 +5,7 @@ import express from 'express';
 const router = express.Router();
 
 import { create, read } from '../controllers/evaluationsController.js';
+import { index, display } from '../controllers/coursesController.js';
 
 /**
  * Evaluations API routes
@@ -20,6 +21,10 @@ router.get('/evaluations', read);
 
 /**
  * Courses API routes
+ * GET /api/v1/courses
+ * GET api/v1/courses/courseID
  */
+router.get('/courses', index);
+router.get('/courses/:id', display);
 
 export default router;

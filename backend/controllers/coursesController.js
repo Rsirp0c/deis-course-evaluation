@@ -1,56 +1,53 @@
-import { find } from '../models/course';
-import { findByIdAndUpdate } from '../models/user';
-import { OK, INTERNAL_SERVER_ERROR } from 'http-status-codes';
+/**
+ * @module EvaluationsController
+ */
+import Course from '../models/course';
 
-
-function index(req, res, next) {
-	find({})
-		.then((courses) => {
-			res.locals.courses = courses;
-			next();
-		})
-		.catch((error) => {
-			console.log(`Error fetching courses: ${error.message}`);
-			next(error);
-		});
-}
-function respondJSON(req, res) {
-	res.json({
-		status: OK,
-		data: res.locals,
-	});
-}
-function errorJSON(error, req, res) {
-	let errorObject;
-	if (error) {
-		errorObject = {
-			status: INTERNAL_SERVER_ERROR,
-			message: error.message,
-		};
-	} else {
-		errorObject = {
-			status: INTERNAL_SERVER_ERROR,
-			message: 'Unknown Error.',
-		};
+/**
+ * @todo Implement error handling for edge cases
+ * @summary GET api/v1/courses
+ * @description Get all course 
+ * @sorai910
+ * @async
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+async function index(req, res, next) {
+	try {
+	  const courses = await Course.find({});
+	  res.locals.courses = courses;
+	  res.status(200).json(courses);
+	  next();
+	} catch (err) {
+	  res.status(500).json({ error: err.message });
 	}
-	res.json(errorObject);
-}
-function join(req, res, next) {
-	let courseId = req.params.id, currentUser = req.user;
-	if (currentUser) {
-		findByIdAndUpdate(currentUser, {
-			$addToSet: { courses: courseId },
-		})
-			.then(() => {
-				res.locals.success = true;
-				next();
-			})
-			.catch((error) => {
-				next(error);
-			});
-	} else {
-		next(new Error('User must log in.'));
-	}
-}
+  }
 
-export { index, respondJSON, errorJSON, join };
+  /**
+ * @todo optimization for error handling; add more filter for the sorting functionality on the main page? or create another function
+ * @summary GET api/v1/courses/courseId
+ * @description Get a specific course by courseid    
+ * @sorai910
+ * @async
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+  async function display(req, res, next) {
+	try {
+	  const course = await Course.findById(req.param._id);
+  
+	  if (!course) {
+		res.status(404).json({ error: "Course not found" });
+		return;
+	  }
+  
+	  res.locals.course = course;
+	  res.status(200).json(course);
+	  next();
+	} catch (err) {
+	  console.error(err);
+	  res.status(500).json({ error: err.message });
+	}
+  }  
+  
+export { index, display};
