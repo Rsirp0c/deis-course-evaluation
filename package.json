@@ -1,5 +1,6 @@
 {
 	"name": "deis-course-evaluation",
+	"private": true,
 	"workspaces": [
 		"backend",
 		"frontend"
