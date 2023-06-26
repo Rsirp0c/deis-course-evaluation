@@ -14,7 +14,6 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v3
@@ -24,6 +23,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: Install dependencies
-      run: npm install & npm i eslint eslint-plugin-react@latest 
+      run: npm install
     - name: Check for bugs and stylistic issues. 
       run: npm run lint
