@@ -11,5 +11,8 @@
 		"doc": "jsdoc -c jsdoc.json",
 		"lint": "eslint . --fix --ext .js,.jsx",
 		"start": "npm run backend && npm run frontend"
+	},
+	"dependencies": {
+		"eslint": "^8.43.0"
 	}
 }
