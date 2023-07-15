@@ -11,4 +11,4 @@ import { index, display } from '../controllers/coursesController.js';
 router.get('/', index);
 router.get('/:id', display);
 
-module.exports = router;
+export default router;

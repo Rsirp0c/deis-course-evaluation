@@ -1,7 +1,7 @@
 /**
  * @module EvaluationsController
  */
-import Course from '../models/course';
+import Course from '../models/course.js';
 
 /**
  * @todo Implement error handling for edge cases
