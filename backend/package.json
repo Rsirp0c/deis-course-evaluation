@@ -1,9 +1,13 @@
 {
-	"name": "@deis-course-evaluation/backend",
+	"name": "deis-course-evaluation-backend",
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
-	"scripts": {},
+	"scripts": {
+		"doc": "jsdoc -c jsdoc.json",
+		"lint": "eslint . --fix --ext .js,.jsx",
+		"start": "nodemon index.js"
+	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
