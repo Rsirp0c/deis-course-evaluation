@@ -23,6 +23,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: Install dependencies
-      run: npm install
+      run: cd backend npm install && cd ../frontend npm install
     - name: Check for bugs and stylistic issues. 
       run: npm run lint
