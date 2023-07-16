@@ -1,3 +1,7 @@
 node_modules
 .env
 /docs
+
+
+# msc
+.DS_Store
