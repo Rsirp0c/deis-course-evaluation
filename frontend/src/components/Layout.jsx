@@ -1,14 +1,12 @@
 
-import NavBar from "./NavBar"
+import NavBar from "./NavBar.jsx"
 // eslint-disable-next-line react/prop-types
 export default function Layout({ children }) {
 	return (
 		<>
-			<header>
-				<h1>My App</h1>
-			</header>
+			<NavBar />
 			<main>
-				<NavBar />
+
 				{children}
 			</main>
 			<footer>
