@@ -51,7 +51,7 @@ const evalFormSchema = Schema({
 		type: String,
 		required: true
 	},
-	rate: {
+	quality: {
 		type: Number,
 		required: true
 	},
