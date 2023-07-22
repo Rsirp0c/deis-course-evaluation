@@ -22,25 +22,32 @@ function MainSearchBar() {
 		<>
 			<div className={styles.mainSearchBarContainer}>
 				<form action="" method="GET" className={styles.mainSearchBar}>
-					<label>Deparment</label>
-					<select name="" >
-						<option value="">Select department</option>
-						<option value="">Option 1</option>
-						<option value="">Option 2</option>
-					</select>
-					<label>Course</label>
-					<select name="" >
-						<option value="">Select course</option>
-						<option value="">Option 1</option>
-						<option value="">Option 2</option>
-					</select>
-					<label>Semester</label>
-					<select name="" >
-						<option value="">Select semester</option>
-						<option value="">Option 1</option>
-						<option value="">Option 2</option>
-					</select>
-					<button type="submit">Go</button>
+					<div className={styles.wrapper}>
+						<label>Deparment</label>
+						<select name="" className={styles.select} >
+							<option value="">Select department</option>
+							<option value="">Option 1</option>
+							<option value="">Option 2</option>
+						</select>
+					</div>
+					<div className={styles.wrapper}>
+						<label>Course</label>
+						<select name="" className={styles.select} >
+							<option value="">Select course</option>
+							<option value="">Option 1</option>
+							<option value="">Option 2</option>
+						</select>
+					</div>
+					<div className={styles.wrapper}>
+						<label>Semester</label>
+						<select name="" className={styles.select} >
+							<option value="">Select semester</option>
+							<option value="">Option 1</option>
+							<option value="">Option 2</option>
+						</select>
+					</div>
+
+					<button type="submit" className={styles.goButton}>GO</button>
 				</form>
 			</div>
 
