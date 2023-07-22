@@ -1,6 +1,22 @@
 # deis-course-evaluation
 
 ## Description 
+## Built With
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- React.js
+<details>
+<summary>Roadmap
+
+- [ ] Implement user auth with oauth2.0 
+	- [x] Generate google oauth url 
+	- [ ] Handle google oauth callback
+	- [ ] Store user model in database
+- [ ] Implement Navbar UI  
+	- [ ] Hide search bar in main page navbar, transform into advanced search bar 
+</details>
 
 ## Dev Setup 
 ### To generate the jsdoc documentation website
