@@ -1,18 +1,74 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import getGoogleUrl from '../utils/getGoogleUrl';
 import styles from './NavBar.module.css';
 
+// icon imports
 import { HiLanguage } from 'react-icons/hi2';
 import { GoSearch } from 'react-icons/go';
-export default function NavBar() {
+
+
+
+function SearchBar() {
 	return (
+		<form action="" method="GET" className={styles.searchBar}>
+			<input type="text" className={styles.searchInput} placeholder="Search" />
+			<button type="submit" className={styles.searchButton}><GoSearch className={styles.searchIcon} /></button>
+		</form>
+	)
+}
+
+function MainSearchBar() {
+	return (
+		<>
+			<div className={styles.mainSearchBarContainer}>
+				<form action="" method="GET" className={styles.mainSearchBar}>
+					<label>Deparment</label>
+					<select name="" >
+						<option value="">Select department</option>
+						<option value="">Option 1</option>
+						<option value="">Option 2</option>
+					</select>
+					<label>Course</label>
+					<select name="" >
+						<option value="">Select course</option>
+						<option value="">Option 1</option>
+						<option value="">Option 2</option>
+					</select>
+					<label>Semester</label>
+					<select name="" >
+						<option value="">Select semester</option>
+						<option value="">Option 1</option>
+						<option value="">Option 2</option>
+					</select>
+					<button type="submit">Go</button>
+				</form>
+			</div>
+
+		</>
+	)
+}
+
+export default function NavBar() {
+
+	const location = useLocation();
+	const excludeNavbarPaths = ["/register"]; // Add paths here where you don't want to show navbar
+
+	if (excludeNavbarPaths.includes(location.pathname)) {
+		return null;
+	}
+
+
+
+	const searchBar = location.pathname === "/" ? <MainSearchBar /> : <SearchBar />;
+
+
+	return (
+
+
 		<>
 
 			<nav className={styles.navBar}>
-				<form action="" method="GET" className={styles.searchBar}>
-					<input type="text" className={styles.searchInput} placeholder="Search" />
-					<button type="submit" className={styles.searchButton}><GoSearch className={styles.searchIcon} /></button>
-				</form>
+				{searchBar}
 				<Link to="/" className={styles.linkLogo}>Logo</Link>
 				<Link to={getGoogleUrl()} className={styles.link}>Login</Link>
 				<Link to="/register" className={styles.linkRegister}>Register</Link>

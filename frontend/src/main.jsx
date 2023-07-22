@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom'
 
 import ErrorPage from './error-page.jsx'
+import Register from './pages/Register.jsx'
 
 
 const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
 		element: <App />,
 		errorElement: <ErrorPage />,
 		children: [
+			{
+				path: '/register',
+				element: <Register />,
+			}
 		],
 	}
 ])
