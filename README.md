@@ -8,7 +8,7 @@
 - Mongoose
 - React.js
 <details>
-<summary><font size='5'>Roadmap</font></summary>
+<summary>Roadmap</summary>
 
 - [ ] Implement user auth with oauth2.0 
 	- [x] Generate google oauth url 
@@ -16,6 +16,7 @@
 	- [ ] Store user model in database
 - [ ] Implement Navbar UI  
 	- [ ] Hide search bar in main page navbar, transform into advanced search bar 
+	- [x] Implement css modules for better styling
 </details>
 
 ## Dev Setup 
