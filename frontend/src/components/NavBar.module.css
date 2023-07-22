@@ -19,7 +19,7 @@
 .linkLogo {
 	composes: link;
 	position: absolute;
-	left: 0;
+	left: 10px;
 }
 
 .linkRegister {
@@ -27,4 +27,45 @@
 	padding: 5px 26px;
 	border: 3px solid #FFFFFF;
 	border-radius: 12px;
+}
+
+.languageIcon {
+	vertical-align: middle;
+	padding-right: 10px;
+}
+
+/* Search Bar */
+
+.searchBar {
+	position: absolute;
+	left: 100px;
+
+}
+
+.searchInput {
+	width: 300px;
+	height: 20px;
+	border-radius: 10px;
+	padding: 8px 8px 8px 32px;
+	border: none;
+	background-color: #e7e7e7;
+	font-family: Montserrat;
+}
+
+.searchInput:focus {
+	outline-color: #3A7BD5;
+}
+
+.searchButton {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+.searchIcon {
+	vertical-align: middle;
+	padding-left: 5px;
+	font-size: 20px;
+	color: #3A7BD5;
+	transform: translate(-38px, -1px);
 }
