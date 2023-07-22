@@ -6,8 +6,10 @@ export default function NavBar() {
 	return (
 		<>
 			<nav className={styles.navBar}>
-				<Link to="/" className={styles.link}>Logo</Link>
+				<Link to="/" className={styles.linkLogo}>Logo</Link>
 				<Link to={getGoogleUrl()} className={styles.link}>Login</Link>
+				<Link to="/register" className={styles.linkRegister}>Register</Link>
+
 			</nav>
 		</>
 	)
