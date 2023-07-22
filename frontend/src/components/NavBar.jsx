@@ -59,21 +59,14 @@ export default function NavBar() {
 
 	const location = useLocation();
 	const excludeNavbarPaths = ["/register"]; // Add paths here where you don't want to show navbar
-
 	if (excludeNavbarPaths.includes(location.pathname)) {
 		return null;
 	}
 
-
-
 	const searchBar = location.pathname === "/" ? <MainSearchBar /> : <SearchBar />;
 
-
 	return (
-
-
 		<>
-
 			<nav className={styles.navBar}>
 				{searchBar}
 				<Link to="/" className={styles.linkLogo}>Logo</Link>
