@@ -15,8 +15,10 @@
 	- [ ] Handle google oauth callback
 	- [ ] Store user model in database
 - [ ] Implement Navbar UI  
+	- [x] Implement search bar
 	- [ ] Hide search bar in main page navbar, transform into advanced search bar 
 	- [x] Implement css modules for better styling
+	- [x] Imported react-icons packages for navbar icons
 </details>
 
 ## Dev Setup 
