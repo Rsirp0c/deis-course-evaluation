@@ -8,8 +8,7 @@
 - Mongoose
 - React.js
 <details>
-## Roadmap
-<summary size='8'>Roadmap</summary>
+<summary><font size='5'>Roadmap</font></summary>
 
 - [ ] Implement user auth with oauth2.0 
 	- [x] Generate google oauth url 
