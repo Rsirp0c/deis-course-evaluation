@@ -19,7 +19,7 @@ Frontend/Backend
 Frontend
 
 <details>
-<summary>:heavy_check_mark: Implement Navbar UI</summary>
+<summary> Implement Navbar UI :heavy_check_mark:</summary>
 
 - [x] Implement search bar
 - [x] Hide search bar in main page navbar, transform into advanced search bar 
