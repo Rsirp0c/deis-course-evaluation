@@ -15,6 +15,7 @@ Frontend/Backend
 	- [x] Generate google oauth url 
 	- [ ] Handle google oauth callback
 	- [ ] Store user model in database
+
 Frontend
 - [x] Implement Navbar UI  
 	- [x] Implement search bar
@@ -26,6 +27,7 @@ Frontend
 		- [ ] Request course data from backend
 		- [ ] Extract important data
 		- [ ] Display data in a card
+
 Backend
 - [ ] Create moc data for testing in JSON
 - [ ] Test API endpoints
