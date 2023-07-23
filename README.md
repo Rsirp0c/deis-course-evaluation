@@ -18,7 +18,7 @@
 	- [x] Implement search bar
 	- [x] Hide search bar in main page navbar, transform into advanced search bar 
 	- [x] Implement css modules for better styling
-	- [x] Imported react-icons packages for navbar icons
+	- [x] Import react-icons packages for navbar icons
 	- [ ] Implement main page search bar dropdown custom UI
 </details>
 

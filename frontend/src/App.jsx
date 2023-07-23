@@ -7,7 +7,10 @@ function App() {
 		<>
 
 			<Layout>
+				<div className="homeImage">
+					<p className="homeTitle">Course Evaluation: By you, and for you</p>
 
+				</div>
 			</Layout>
 
 		</>
