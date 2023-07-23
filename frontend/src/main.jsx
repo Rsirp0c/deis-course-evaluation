@@ -9,14 +9,14 @@ import {
 } from 'react-router-dom'
 
 import ErrorPage from './error-page.jsx'
-import App from './Layout.jsx';
+import Layout from './components/Layout.jsx';
 import Home from './pages/Home.jsx'
 import Register from './pages/Register.jsx'
 
 
 const router = createBrowserRouter([
 	{
-		element: <App />,
+		element: <Layout />,
 		errorElement: <ErrorPage />,
 		children: [
 			{
