@@ -17,16 +17,26 @@ Frontend/Backend
 	- [ ] Store user model in database
 
 Frontend
-- [x] Implement Navbar UI  
-	- [x] Implement search bar
-	- [x] Hide search bar in main page navbar, transform into advanced search bar 
-	- [x] Implement css modules for better styling
-	- [x] Import react-icons packages for navbar icons
-- Main Page
-	- [ ] Create components that display course data 
-		- [ ] Request course data from backend
-		- [ ] Extract important data
-		- [ ] Display data in a card
+
+<details>
+<summary>Implement Navbar UI  </summary>
+
+- [x] Implement search bar
+- [x] Hide search bar in main page navbar, transform into advanced search bar 
+- [x] Implement css modules for better styling
+- [x] Import react-icons packages for navbar icons
+
+</details>
+
+<details>
+<summary>Main Page</summary>
+
+- [ ] Create components that display course data 
+	- [ ] Request course data from backend
+	- [ ] Extract important data
+	- [ ] Display data in a card
+
+</details>
 
 Backend
 - [ ] Create moc data for testing in JSON
