@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Link, useLocation } from 'react-router-dom';
 import getGoogleUrl from '../utils/getGoogleUrl';
 import styles from './NavBar.module.css';
@@ -17,34 +18,36 @@ function SearchBar() {
 	)
 }
 
+function Select({ title }) {
+	const options = [
+		{ id: 1, name: `Select ${title}` },
+		{ id: 2, name: "option 1" },
+		{ id: 3, name: "option 2" },
+		{ id: 4, name: "option 3" },
+	]
+	return (
+		<select name="" className={styles.select} >
+			{options.map(option => <option key={option.id} value="">{option.name}</option>)}
+		</select>
+	)
+}
 function MainSearchBar() {
+
 	return (
 		<>
 			<div className={styles.mainSearchBarContainer}>
 				<form action="" method="GET" className={styles.mainSearchBar}>
 					<div className={styles.wrapper}>
 						<label>Deparment</label>
-						<select name="" className={styles.select} >
-							<option value="">Select department</option>
-							<option value="">Option 1</option>
-							<option value="">Option 2</option>
-						</select>
+						<Select title="department" />
 					</div>
 					<div className={styles.wrapper}>
 						<label>Course</label>
-						<select name="" className={styles.select} >
-							<option value="">Select course</option>
-							<option value="">Option 1</option>
-							<option value="">Option 2</option>
-						</select>
+						<Select title="course" />
 					</div>
 					<div className={styles.wrapper}>
 						<label>Semester</label>
-						<select name="" className={styles.select} >
-							<option value="">Select semester</option>
-							<option value="">Option 1</option>
-							<option value="">Option 2</option>
-						</select>
+						<Select title="semester" />
 					</div>
 
 					<button type="submit" className={styles.goButton}>GO</button>
@@ -58,10 +61,10 @@ function MainSearchBar() {
 export default function NavBar() {
 
 	const location = useLocation();
-	const excludeNavbarPaths = ["/register"]; // Add paths here where you don't want to show navbar
-	if (excludeNavbarPaths.includes(location.pathname)) {
-		return null;
-	}
+	// const excludeNavbarPaths = ["/register"]; // Add paths here where you don't want to show navbar
+	// if (excludeNavbarPaths.includes(location.pathname)) {
+	// 	return null;
+	// }
 
 	const searchBar = location.pathname === "/" ? <MainSearchBar /> : <SearchBar />;
 

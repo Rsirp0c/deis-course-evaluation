@@ -14,12 +14,12 @@
 	- [x] Generate google oauth url 
 	- [ ] Handle google oauth callback
 	- [ ] Store user model in database
-- [ ] Implement Navbar UI  
+- [x] Implement Navbar UI  
 	- [x] Implement search bar
 	- [x] Hide search bar in main page navbar, transform into advanced search bar 
 	- [x] Implement css modules for better styling
 	- [x] Import react-icons packages for navbar icons
-	- [ ] Implement main page search bar dropdown custom UI
+- [ ] Implement main page search bar dropdown custom UI?
 </details>
 
 ## Dev Setup 
