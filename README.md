@@ -18,6 +18,7 @@ Frontend/Backend
 
 Frontend
 
+- [x] Implement routing for each page with react-router-dom
 <details>
 <summary> Implement Navbar UI :heavy_check_mark:</summary>
 
@@ -34,6 +35,15 @@ Frontend
 - [ ] Create components that display course data 
 	- [ ] Request course data from backend
 	- [ ] Extract important data
+	- [ ] Display data in a card
+
+</details>
+
+<details>
+<summary>Search Page</summary>
+
+- [ ] generate search page UI by fetching data from our backend with the mock data
+	- [x] Fetch data from backend on page render 
 	- [ ] Display data in a card
 
 </details>

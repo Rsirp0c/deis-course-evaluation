@@ -12,7 +12,10 @@ import ErrorPage from './error-page.jsx'
 import Layout from './components/Layout.jsx';
 import Home from './pages/Home.jsx'
 import Register from './pages/Register.jsx'
-
+import Course from './pages/course'
+import RatingForm from './pages/rating-form.jsx'
+import Search from './pages/search.jsx'
+// import Search, { Loader as searchLoader } from './pages/search.jsx'
 
 const router = createBrowserRouter([
 	{
@@ -26,6 +29,19 @@ const router = createBrowserRouter([
 			{
 				path: '/register',
 				element: <Register />,
+			},
+			{
+				path: '/course',
+				element: <Course />,
+			},
+			{
+				path: 'rating-form',
+				element: <RatingForm />,
+			},
+			{
+				path: 'search',
+				element: <Search />,
+				// loader: searchLoader
 			}
 		],
 	}

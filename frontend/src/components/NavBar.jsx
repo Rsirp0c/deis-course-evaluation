@@ -6,12 +6,12 @@ import styles from './NavBar.module.css';
 // icon imports
 import { HiLanguage } from 'react-icons/hi2';
 import { GoSearch } from 'react-icons/go';
-
+import { useNavigate } from 'react-router-dom';
 
 
 function SearchBar() {
 	return (
-		<form action="" method="GET" className={styles.searchBar}>
+		<form action="" className={styles.searchBar}>
 			<input type="text" className={styles.searchInput} placeholder="Search" />
 			<button type="submit" className={styles.searchButton}><GoSearch className={styles.searchIcon} /></button>
 		</form>
@@ -31,12 +31,19 @@ function Select({ title }) {
 		</select>
 	)
 }
+
 function MainSearchBar() {
 
+	const navigate = useNavigate();
+
+	const handleSubmit = (event) => {
+		event.preventDefault()
+		navigate("/search")
+	}
 	return (
 		<>
 			<div className={styles.mainSearchBarContainer}>
-				<form action="" method="GET" className={styles.mainSearchBar}>
+				<form action="" onSubmit={handleSubmit} className={styles.mainSearchBar}>
 					<div className={styles.wrapper}>
 						<label>Deparment</label>
 						<Select title="department" />
@@ -73,6 +80,7 @@ export default function NavBar() {
 			<nav className={styles.navBar}>
 				{searchBar}
 				<Link to="/" className={styles.linkLogo}>Logo</Link>
+				<Link to="/rating-form" className={styles.link}>Rate a course</Link>
 				<Link to={getGoogleUrl()} className={styles.link}>Login</Link>
 				<Link to="/register" className={styles.linkRegister}>Register</Link>
 				<Link to="" className={styles.link}><HiLanguage className={styles.languageIcon} /></Link>

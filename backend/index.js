@@ -3,14 +3,15 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import express from 'express';
 import morgan from 'morgan';
+import cors from 'cors';
 import router from './routes/index.js';
-
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 /**
  * Middlewares
  */
+app.use(cors());
 app.use(morgan('dev'));
 // app.use(express.static('public'));
 app.use(express.json());
@@ -30,6 +31,8 @@ mongoose.
 	.catch((err) => {
 		console.log(`mongodb connection failed ${err}`);
 	});
+
+
 
 
 app.use('/', router);
