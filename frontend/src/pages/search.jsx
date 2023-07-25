@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import styles from './search.module.css'
+import CourseCard from "../components/CourseCard.jsx"
+
 
 function Error() {
 	return (
@@ -11,6 +13,7 @@ function Error() {
 	)
 }
 
+/** For implementing the react-router-dom loader method */
 // export async function Loader() {
 // 	const res = await fetch('http://localhost:3000/api/courses')
 // 	if (res.status === 404) {
@@ -19,6 +22,8 @@ function Error() {
 // 	const data = await res.json()
 // 	return data
 // }
+
+
 export default function Search() {
 
 	const [data, setData] = useState([])
@@ -46,6 +51,10 @@ export default function Search() {
 
 			<div>
 				<h1>Search</h1>
+				{/* {data.map(course => (
+					<CourseCard key={course.id} course={course} />
+				))} */}
+				<CourseCard />
 			</div>
 		</>
 	)
