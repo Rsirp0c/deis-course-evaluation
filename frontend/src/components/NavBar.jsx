@@ -42,6 +42,7 @@ function MainSearchBar() {
 	}
 	return (
 		<>
+
 			<div className={styles.mainSearchBarContainer}>
 				<form action="" onSubmit={handleSubmit} className={styles.mainSearchBar}>
 					<div className={styles.wrapper}>

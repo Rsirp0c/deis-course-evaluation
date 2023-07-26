@@ -1,0 +1,120 @@
+.card {
+	background-color: #EDEDED;
+	width: 1035px;
+	height: 200px;
+	margin: 30px auto;
+}
+
+/* ratings section */
+.rating {
+	width: 110px;
+	height: 200px;
+	background-color: #C1E9A9;
+	display: flex;
+	justify-content: center;
+	position: absolute;
+}
+
+.ratingScoreContainer {
+	position: absolute;
+	top: 70px;
+}
+
+.ratingScore {
+	font-size: 30px;
+	font-weight: 700;
+	color: black;
+	margin-right: 1px;
+}
+
+.ratingCount {
+	position: absolute;
+	bottom: 25px;
+	font-size: 15px;
+	font-weight: 400;
+}
+
+/* body section */
+.body {
+	padding-left: 110px;
+	width: calc(100% - 110px);
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.contents {
+	margin-left: 45px;
+	position: relative;
+	height: 100%;
+}
+
+.course {
+	color: #000;
+	font-size: 25px;
+	font-weight: 700;
+	top: 28px;
+	margin-bottom: 10px;
+	position: absolute;
+}
+
+.courseTitle {
+	margin-top: 78px;
+}
+
+.courseTitle,
+.prerequisite {
+	color: #000;
+	font-size: 17px;
+	font-weight: 400;
+	margin-bottom: 15px;
+}
+
+
+/* button section */
+.button {
+	width: auto;
+	margin-right: 30px;
+	display: flex;
+	flex-direction: column;
+}
+
+.rateButton {
+	width: 210px;
+	height: 50px;
+	background-color: #3A7BD5;
+	color: #fff;
+	font-size: 20px;
+	font-weight: 700;
+	border-radius: 20px;
+	cursor: pointer;
+	border: none;
+}
+
+.rateButton:hover {
+	opacity: 0.95;
+}
+
+.listButton {
+	width: 145px;
+	height: 50px;
+	background-color: #fff;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #3A7BD5;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	align-self: flex-end;
+	margin-bottom: 50px;
+}
+
+.ratingHeart {
+	margin-right: 10px;
+}

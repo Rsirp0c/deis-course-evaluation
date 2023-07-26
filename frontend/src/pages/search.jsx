@@ -32,8 +32,10 @@ export default function Search() {
 
 	useEffect(() => {
 		fetch('http://localhost:3000/api/courses')
+			.then(res => res.json())
 			.then(res => {
-				console.log(res)
+				console.log(`retrieved data ${res}`)
+
 				setData(res)
 			})
 			.catch(err => {
@@ -42,7 +44,7 @@ export default function Search() {
 			})
 	}, [])
 
-	console.log(data)
+	// console.log(data)
 
 	if (error) return <Error />
 
@@ -50,11 +52,10 @@ export default function Search() {
 		<>
 
 			<div>
-				<h1>Search</h1>
-				{/* {data.map(course => (
-					<CourseCard key={course.id} course={course} />
-				))} */}
-				<CourseCard />
+				{data ? data.map(course => (
+					<CourseCard key={course._id} course={course} />
+				)) : <p>Loading...</p>}
+				{/* <CourseCard /> */}
 			</div>
 		</>
 	)
