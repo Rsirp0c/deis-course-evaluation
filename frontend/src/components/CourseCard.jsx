@@ -15,7 +15,8 @@ export default function CourseCard() {
 			}
 		],
 		"courseDescription": "Introduces computer programming and related computer science principles. Through programming, students will develop fundamental skills such as abstract reasoning and problem solving. Students will master programming techniques using the Python programming language and will develop good program design methodology resulting in correct, robust, and maintainable programs. Usually offered every semester.",
-		"prerequisites": "No previous programming experience required"
+		"prerequisites": "No previous programming experience required",
+		"requirements": "Does not satisfy any requirements"
 	}
 
 	return (

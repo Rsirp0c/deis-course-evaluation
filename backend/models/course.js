@@ -56,6 +56,10 @@ const courseSchema = Schema({
 	prerequisites: {
 		type: Array,
 		required: true,
+	},
+	requirements: {
+		type: Array,
+		required: true,
 	}
 });
 
