@@ -7,7 +7,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
 
-
+// These are for custom rating hearts from MUI
 const StyledRating = styled(Rating)({
 	'& .MuiRating-iconFilled': {
 		color: '#3A7BD5',

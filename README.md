@@ -26,6 +26,7 @@ Frontend
 - [x] Hide search bar in main page navbar, transform into advanced search bar 
 - [x] Implement css modules for better styling
 - [x] Import react-icons packages for navbar icons
+- [ ] Reposition mainsearchbar to main page instead of inside the navbar 
 
 </details>
 
@@ -33,9 +34,11 @@ Frontend
 <summary>Main Page</summary>
 
 - [ ] Create components that display course data 
-	- [ ] Request course data from backend
-	- [ ] Extract important data
-	- [ ] Display data in a card
+	- [x] Request course data from backend
+	- [x] Extract important data
+	- [x] Display data in a card
+	- [ ] implement color change with respect to the rating values
+	- [ ] use add to list function
 
 </details>
 

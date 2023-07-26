@@ -29,7 +29,7 @@ export default function Search() {
 	const [data, setData] = useState([])
 	const [error, setError] = useState(false)
 
-
+	// fetch data from backend when page is loaded
 	useEffect(() => {
 		fetch('http://localhost:3000/api/courses')
 			.then(res => res.json())
@@ -50,12 +50,10 @@ export default function Search() {
 
 	return (
 		<>
-
 			<div>
 				{data ? data.map(course => (
 					<CourseCard key={course._id} course={course} />
 				)) : <p>Loading...</p>}
-				{/* <CourseCard /> */}
 			</div>
 		</>
 	)

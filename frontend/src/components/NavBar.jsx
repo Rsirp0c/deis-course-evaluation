@@ -32,6 +32,8 @@ function Select({ title }) {
 	)
 }
 
+
+// This is the main search page in the main page
 function MainSearchBar() {
 
 	const navigate = useNavigate();
