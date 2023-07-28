@@ -45,16 +45,16 @@ Frontend
 <details>
 <summary>Search Page</summary>
 
-- [ ] generate search page UI by fetching data from our backend with the mock data
+- [x] generate search page UI by fetching data from our backend with the mock data
 	- [x] Fetch data from backend on page render 
-	- [ ] Display data in a card
+	- [x] Display data in a card
 
 </details>
 
 Backend
-- [ ] Create moc data for testing in JSON
+- [x] Create moc data for testing in JSON
 - [ ] Test API endpoints
-
+- [ ] Input calculations for rating and grade whenever a new form is added 
 
 Nice to haves
 - [ ] Implement main page search bar dropdown custom UI?
