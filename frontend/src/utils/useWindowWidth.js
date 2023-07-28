@@ -1,4 +1,4 @@
-
+// Desc: custom hook to get the window width
 import { useState, useEffect } from "react"
 
 export default function useWindowWidth() {
