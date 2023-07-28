@@ -1,4 +1,46 @@
 .footer {
 	margin-top: auto;
-	padding: 0 0 10px 10px;
+	height: 60px;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-top: 1px solid rgba(0, 0, 0, 0.198);
+}
+
+.footerLinks {
+	padding-right: 30px;
+}
+
+.footerLink {
+	padding: 0 10px;
+	align-items: center;
+	text-decoration: none;
+	color: black;
+}
+
+
+.icon {
+	vertical-align: middle;
+	font-size: 30px;
+}
+
+.copyright {
+	padding: 0 10px 0 40px;
+	font-size: 15px;
+
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+}
+
+.logoText {
+	vertical-align: middle;
+	font-weight: 200;
+}
+
+.logoTextBold {
+	font-weight: 700;
 }

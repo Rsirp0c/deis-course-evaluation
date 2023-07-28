@@ -2,17 +2,113 @@
 .homeImage {
 	background-color: rgb(153, 203, 246);
 	width: 100%;
-	height: 310px;
+	height: 250px;
 }
 
 .homeTitle {
-	font-size: 35px;
+	font-size: 40px;
 	font-weight: 700;
 	color: #FFF;
 	text-align: center;
-	margin-top: 165px;
-	transform: translateX(-70.5%);
-	width: 1200px;
+	margin-top: 60px;
+	transform: translateX(-60%);
+	width: 900px;
+	text-align: left;
 	position: absolute;
 	left: 50%;
+}
+
+@media screen and (max-width: 1200px) {
+	.homeTitle {
+		width: auto;
+	}
+}
+
+
+/**********
+main search bar  
+**********/
+
+
+.mainSearchBarContainer {
+	position: absolute;
+	top: 260px;
+	height: 95px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	transform: translateX(-50%);
+	left: 50%;
+	width: 1100px;
+	background-color: #FFF;
+}
+
+.mainSearchBar {
+	display: flex;
+	justify-content: space-around;
+
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding-top: 15px;
+
+}
+
+.select {
+	width: 280px;
+	height: 60px;
+	border-radius: 10px;
+	border: none;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+	font-family: Montserrat;
+	padding-left: 10px;
+}
+
+.search {
+	composes: select;
+}
+
+.searchWrapper {
+	height: 100%;
+	padding-top: 15px;
+}
+
+.searchButton {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+.searchIcon {
+	vertical-align: middle;
+	padding-left: 5px;
+	font-size: 20px;
+	color: #3A7BD5;
+	transform: translate(-38px, -1px);
+}
+
+.goButton {
+	width: 80px;
+	height: 60px;
+	border-radius: 8px;
+	background: #3A7BD5;
+	border: none;
+	font-weight: 700;
+	font-size: 18px;
+	color: #FFF;
+	cursor: pointer;
+	margin-top: 15px;
+	margin-left: -50px;
+}
+
+
+/**********
+popular courses
+**********/
+.popularCourses {
+	width: 100%;
+	height: 600px;
+	/* background-color: rgb(40, 115, 145); */
 }

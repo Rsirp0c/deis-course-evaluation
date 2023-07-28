@@ -1,0 +1,15 @@
+.logoIcon {
+	vertical-align: middle;
+	padding-right: 10px;
+	font-size: 30px;
+	font-weight: 100;
+}
+
+.logoText {
+	vertical-align: middle;
+	font-weight: 200;
+}
+
+.logoTextBold {
+	font-weight: 700;
+}

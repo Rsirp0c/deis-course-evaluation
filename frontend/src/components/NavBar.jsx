@@ -6,8 +6,7 @@ import styles from './NavBar.module.css';
 // icon imports
 import { HiLanguage } from 'react-icons/hi2';
 import { GoSearch } from 'react-icons/go';
-import { useNavigate } from 'react-router-dom';
-
+import Logo from './Logo';
 
 function SearchBar() {
 	return (
@@ -18,55 +17,6 @@ function SearchBar() {
 	)
 }
 
-function Select({ title }) {
-	const options = [
-		{ id: 1, name: `Select ${title}` },
-		{ id: 2, name: "option 1" },
-		{ id: 3, name: "option 2" },
-		{ id: 4, name: "option 3" },
-	]
-	return (
-		<select name="" className={styles.select} >
-			{options.map(option => <option key={option.id} value="">{option.name}</option>)}
-		</select>
-	)
-}
-
-
-// This is the main search page in the main page
-function MainSearchBar() {
-
-	const navigate = useNavigate();
-
-	const handleSubmit = (event) => {
-		event.preventDefault()
-		navigate("/search")
-	}
-	return (
-		<>
-
-			<div className={styles.mainSearchBarContainer}>
-				<form action="" onSubmit={handleSubmit} className={styles.mainSearchBar}>
-					<div className={styles.wrapper}>
-						<label>Deparment</label>
-						<Select title="department" />
-					</div>
-					<div className={styles.wrapper}>
-						<label>Course</label>
-						<Select title="course" />
-					</div>
-					<div className={styles.wrapper}>
-						<label>Semester</label>
-						<Select title="semester" />
-					</div>
-
-					<button type="submit" className={styles.goButton}>GO</button>
-				</form>
-			</div>
-
-		</>
-	)
-}
 
 export default function NavBar() {
 
@@ -76,13 +26,15 @@ export default function NavBar() {
 	// 	return null;
 	// }
 
-	const searchBar = location.pathname === "/" ? <MainSearchBar /> : <SearchBar />;
+	const pathIsHome = location.pathname === "/";
 
 	return (
 		<>
 			<nav className={styles.navBar}>
-				{searchBar}
-				<Link to="/" className={styles.linkLogo}>Logo</Link>
+				{!pathIsHome && <SearchBar />}
+				<Link to="/" className={styles.linkLogo}>
+					<Logo />
+				</Link>
 				<Link to="/rating-form" className={styles.link}>Rate a course</Link>
 				<Link to={getGoogleUrl()} className={styles.link}>Login</Link>
 				<Link to="/register" className={styles.linkRegister}>Register</Link>
