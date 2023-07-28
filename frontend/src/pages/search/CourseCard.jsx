@@ -17,6 +17,32 @@ const StyledRating = styled(Rating)({
 	},
 });
 
+// CSS styles changing rating box color based on rating
+function RatingBox({ ratingAverage }) {
+
+	let color
+
+	if (ratingAverage === 5) {
+		color = styles.green
+	} else if (ratingAverage >= 4) {
+		color = styles.lightGreen
+	} else if (ratingAverage >= 3) {
+		color = styles.yellow
+	} else if (ratingAverage >= 2) {
+		color = styles.orange
+	} else if (ratingAverage >= 1) {
+		color = styles.red
+	}
+
+	return (
+		<div className={`${styles.rating} ${color}`}>
+			<p className={styles.ratingScoreContainer}>
+				<span className={styles.ratingScore}>{ratingAverage === -1 ? '-' : ratingAverage}</span>/ 5
+			</p>
+			<p className={styles.ratingCount}>31 ratings</p>
+		</div>
+	)
+}
 
 export default function CourseCard({ course }) {
 
@@ -28,10 +54,7 @@ export default function CourseCard({ course }) {
 	}
 	return (
 		<div className={styles.card}>
-			<div className={styles.rating}>
-				<p className={styles.ratingScoreContainer}><span className={styles.ratingScore}>4.0</span>/ 5</p>
-				<p className={styles.ratingCount}>31 ratings</p>
-			</div>
+			<RatingBox ratingAverage={course.ratingAverage} />
 			<div className={styles.body}>
 				<div className={styles.contents}>
 					<p className={styles.course}>{course.course}</p>

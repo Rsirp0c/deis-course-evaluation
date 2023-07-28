@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import styles from './search.module.css'
-import CourseCard from "../components/CourseCard.jsx"
+import CourseCard from "./CourseCard.jsx"
 
 
 function Error() {

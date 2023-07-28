@@ -9,7 +9,7 @@
 .rating {
 	width: 110px;
 	height: 200px;
-	background-color: #C1E9A9;
+	background-color: rgba(164, 164, 164, 0.797);
 	display: flex;
 	justify-content: center;
 	position: absolute;
@@ -33,6 +33,28 @@
 	font-size: 15px;
 	font-weight: 400;
 }
+
+.red {
+	background-color: #ee2f2f9f;
+}
+
+.orange {
+	background-color: #f99e009f;
+}
+
+.yellow {
+	background-color: #ffff009f;
+}
+
+.lightGreen {
+	background-color: #eeffbb;
+}
+
+.green {
+	background-color: #b9e79f;
+}
+
+
 
 /* body section */
 .body {

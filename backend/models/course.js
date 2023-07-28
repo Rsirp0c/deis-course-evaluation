@@ -48,6 +48,7 @@ const courseSchema = Schema({
 	},
 	ratingAverage: {
 		type: Number,
+		default: -1,
 	},
 	courseDescription: {
 		type: String,
