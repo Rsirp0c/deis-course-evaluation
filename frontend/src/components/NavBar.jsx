@@ -46,8 +46,8 @@ export default function NavBar() {
 					<Logo />
 				</Link>
 				<Link to="/rating-form" className={styles.link}>Rate a course</Link>
-				<Link to="" className={styles.linkLogin} onClick={handleLogin}>Login</Link>
-				<Link to="" className={styles.linkRegister} onClick={handleRegister}>Register</Link>
+				<button className={styles.loginButton} onClick={handleLogin}>Login</button>
+				<button className={styles.registerButton} onClick={handleRegister}>Register</button>
 				<Link to="" className={styles.link}><HiLanguage className={styles.languageIcon} /></Link>
 			</nav>
 		</>

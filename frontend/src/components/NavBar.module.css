@@ -17,16 +17,7 @@
 	margin: 10px;
 }
 
-.linkLogin {
-	composes: link;
-	padding: 5px 26px;
-	background-color: #FFFFFF;
-	color: #3A7BD5;
-	border: 3px solid #FFFFFF;
-	border-radius: 12px;
-	text-align: center;
-	width: 80px;
-}
+
 
 .linkLogo {
 	composes: link;
@@ -34,13 +25,26 @@
 	left: 10px;
 }
 
-.linkRegister {
+.loginButton {
 	composes: link;
 	padding: 5px 26px;
-	border: 3px solid #FFFFFF;
+	background-color: #FFFFFF;
+	color: #3A7BD5;
 	border-radius: 12px;
+	border: none;
 	text-align: center;
-	width: 80px;
+	width: 130px;
+	cursor: pointer;
+	height: 40px;
+}
+
+.registerButton {
+	composes: loginButton;
+	background-color: #3A7BD5;
+	border: 3px solid #FFFFFF;
+	color: #FFFFFF;
+	width: 130px;
+
 }
 
 .languageIcon {
