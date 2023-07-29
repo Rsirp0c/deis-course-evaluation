@@ -38,6 +38,9 @@ const userSchema = mongoose.Schema(
 		apiToken: {
 			type: String,
 		},
+		provider: {
+			type: String,
+		}
 	},
 	{
 		timestamps: true,
@@ -88,6 +91,22 @@ userSchema.pre('save', function (next) {
 //   let user = this;
 //   return bcrypt.compare(inputPassword, user.password);
 // };
+
+// user.model.js
+
+
+const User = mongoose.model('User', userSchema);
+
+// Add a custom static method to the schema to save google account data
+userSchema.statics.createAndUpdateUser = async function (data) {
+	const filter = { email: data.email };
+	if (User.exist(filter)) {
+		await User.findOneAndUpdate(filter,{ name: { first: data.given_name, last: data.family_name }});
+	} else {
+		await User.create(date);
+	}
+  };
+module.exports = User;
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
 

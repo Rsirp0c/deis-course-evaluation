@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { googleOauthHandler } = require('../controllers/authController');
 const usersController = require('../controllers/usersController');
 
 router.get('/', usersController.index, usersController.indexView);
@@ -20,5 +21,6 @@ router.delete(
 	usersController.delete,
 	usersController.redirectView
 );
+router.get('/oauth/google', googleOauthHandler);
 
 module.exports = router;
