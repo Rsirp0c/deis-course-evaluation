@@ -4,6 +4,8 @@ import { Outlet } from 'react-router-dom'
 import styles from './Layout.module.css'
 import { useEffect, useState } from 'react';
 import { getJWT } from '../utils/auth.js';
+
+
 export default function Layout() {
 
 	const [error, setError] = useState(false);
@@ -23,10 +25,6 @@ export default function Layout() {
 					}
 				})
 		}
-		// const name = isLogin();
-		// if (name) {
-		// 	setUser(name);
-		// }
 	}, []);
 
 	if (error) {
