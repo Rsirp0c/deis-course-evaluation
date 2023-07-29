@@ -4,7 +4,7 @@ const router = express.Router();
 import { index, display } from '../controllers/coursesController.js';
 
 /**
- * Evaluations API routes
+ * Courses API routes
  * GET api/courses
  * GET api/courses/courseId
  */
