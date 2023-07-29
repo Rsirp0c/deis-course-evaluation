@@ -21,8 +21,8 @@ const userSchema = Schema(
 			unique: true,
 			match: [/\S+@\S+\.\S+/, 'is invalid']
 		},
-		evals: [{ type: mongoose.Schema.Types.ObjectId, ref: 'EvalForm' }],
-		likedCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
+		evals: [{ type: Schema.Types.ObjectId, ref: 'EvalForm' }],
+		likedCourses: [{ type: Schema.Types.ObjectId, ref: 'Course' }],
 		provider: String,
 		hash: String,
 		salt: String,
@@ -31,7 +31,9 @@ const userSchema = Schema(
 		timestamps: true,
 	}
 );
-
+/**************************
+ * Normal user methods 
+ **************************/
 userSchema.methods.setPassword = function (password) {
 	this.salt = crypto.randomBytes(16).toString('hex');
 	this.hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex');
@@ -63,6 +65,9 @@ userSchema.methods.toAuthJSON = function () {
 	};
 };
 
+/**************************
+ * Google OAuth2.0 methods 
+ **************************/
 
 // Add a custom static method to the schema to save google account data
 userSchema.statics.createAndUpdateUser = async function (data) {

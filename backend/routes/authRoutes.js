@@ -9,6 +9,10 @@ import { googleOauthHandler } from '../controllers/oauthController.js';
  * GET auth/oauth/google
  *
  */
-router.get('/oauth/google', googleOauthHandler);	// api for frontend to send a request and obtain a JWT after successful Google OAuth
+
+// Convention to use post to send data to the server and in this case also to retrieve a JWT
+// Post: changes the state of the server, can retrieve data
+// Get: does not change the state of the server, only retrieves data
+router.post('/oauth/google', googleOauthHandler);
 
 export default router;
