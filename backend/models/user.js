@@ -32,17 +32,17 @@ const userSchema = Schema(
 	}
 );
 
-UserSchema.methods.setPassword = function (password) {
+userSchema.methods.setPassword = function (password) {
 	this.salt = crypto.randomBytes(16).toString('hex');
 	this.hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex');
 };
 
-UserSchema.methods.validatePassword = function (password) {
+userSchema.methods.validatePassword = function (password) {
 	var hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex');
 	return this.hash === hash;
 };
 
-UserSchema.methods.generateJWT = function () {
+userSchema.methods.generateJWT = function () {
 	const today = new Date();
 	const secret = process.env.JWT_SECRET; // Create a secret for the JWT in your env file
 	const options = {
@@ -55,7 +55,7 @@ UserSchema.methods.generateJWT = function () {
 };
 
 // Return JSON representation of user to pass to frontend
-UserSchema.methods.toAuthJSON = function () {
+userSchema.methods.toAuthJSON = function () {
 	return {
 		username: this.username,
 		email: this.email,
