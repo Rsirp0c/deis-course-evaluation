@@ -23,6 +23,7 @@ const userSchema = Schema(
 		},
 		evals: [{ type: mongoose.Schema.Types.ObjectId, ref: 'EvalForm' }],
 		likedCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
+		provider: String,
 		hash: String,
 		salt: String,
 	},
@@ -66,7 +67,7 @@ UserSchema.methods.toAuthJSON = function () {
 // Add a custom static method to the schema to save google account data
 userSchema.statics.createAndUpdateUser = async function (data) {
 	const filter = { email: data.email };
-	if (User.exist(filter)) {
+	if (User.exists(filter)) {
 		await User.findOneAndUpdate(filter, { name: { first: data.given_name, last: data.family_name } });
 	} else {
 		await User.create(date);
