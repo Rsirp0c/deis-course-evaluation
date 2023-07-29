@@ -17,6 +17,17 @@
 	margin: 10px;
 }
 
+.linkLogin {
+	composes: link;
+	padding: 5px 26px;
+	background-color: #FFFFFF;
+	color: #3A7BD5;
+	border: 3px solid #FFFFFF;
+	border-radius: 12px;
+	text-align: center;
+	width: 80px;
+}
+
 .linkLogo {
 	composes: link;
 	position: absolute;
@@ -28,6 +39,8 @@
 	padding: 5px 26px;
 	border: 3px solid #FFFFFF;
 	border-radius: 12px;
+	text-align: center;
+	width: 80px;
 }
 
 .languageIcon {
@@ -69,168 +82,4 @@
 	font-size: 20px;
 	color: #3A7BD5;
 	transform: translate(-38px, -1px);
-}
-
-/* Login */
-.background {
-	background-color: rgba(0, 0, 0, 0.5);
-	position: fixed;
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 2;
-}
-
-.loginContainer {
-	position: absolute;
-	background-color: #F5F5F5;
-	width: 400px;
-	height: 425px;
-	display: flex;
-	justify-content: center;
-	border-radius: 10px;
-	box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
-	z-index: 3;
-}
-
-.registerContainer {
-	composes: loginContainer;
-	height: 450px;
-}
-
-
-.loginContent {
-	padding: 30px 40px 20px;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-}
-
-.loginTitle {
-	font-size: 18px;
-	font-weight: 700;
-	margin-bottom: 20px;
-}
-
-.description {
-	margin-top: -10px;
-	font-size: 14px;
-	font-weight: 300;
-}
-
-.closeIcon {
-	position: absolute;
-	right: 10px;
-	top: 10px;
-	font-size: 25px;
-	cursor: pointer;
-	vertical-align: middle;
-}
-
-.closeIcon:hover {
-	transform: scale(1.1)
-}
-
-.form {
-	width: auto;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.inputContainer {
-	width: 310px;
-	height: 60px;
-	margin: 10px 0;
-}
-
-
-
-.loginInput {
-	width: inherit;
-	height: 35px;
-	border-radius: 3px;
-	border: 1px solid rgba(0, 0, 0, 0.2);
-	padding-left: 10px;
-	margin-left: -5px;
-	margin-top: 5px;
-	font-family: inherit
-}
-
-.loginButton {
-	width: 310px;
-	height: 40px;
-	background-color: #BAE79F;
-	border-radius: 20px;
-	border: 0.5px solid rgba(0, 0, 0, 0.2);
-	cursor: pointer;
-	margin-top: 10px;
-	font-size: 15px;
-	font-family: inherit;
-}
-
-.loginButton:hover {
-	opacity: 0.85;
-}
-
-.divider {
-	width: 320px;
-	margin: 10px 0;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-}
-
-.dividerLine {
-	height: 1px;
-	background-color: rgba(0, 0, 0, 0.4);
-	width: 170px;
-	margin: 0 10px;
-}
-
-.googleButton {
-	text-decoration: none;
-	color: inherit;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	height: 40px;
-	background-color: #FFFFFF;
-	border-radius: 20px;
-	border: 0.5px solid rgba(0, 0, 0, 0.2);
-	width: 310px;
-	margin: 0 auto;
-	font-size: 15px;
-}
-
-.googleButton:hover {
-	opacity: 0.85;
-}
-
-.googleIcon {
-	font-size: 20px;
-	margin-right: 10px;
-}
-
-.loginText {
-	font-size: 13px;
-	font-weight: 400;
-	margin-top: 15px;
-	margin-left: 5px;
-}
-
-.switchButton {
-	background-color: transparent;
-	border: none;
-	color: #3A7BD5;
-	font-family: inherit;
-	font-weight: 700;
-	cursor: pointer;
-}
-
-.switchButton:hover {
-	opacity: 0.85;
 }
