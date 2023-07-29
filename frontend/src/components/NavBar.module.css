@@ -33,9 +33,10 @@
 	border-radius: 12px;
 	border: none;
 	text-align: center;
-	width: 130px;
+	width: 140px;
 	cursor: pointer;
 	height: 40px;
+	font-weight: 600;
 }
 
 .registerButton {
@@ -43,8 +44,6 @@
 	background-color: #3A7BD5;
 	border: 3px solid #FFFFFF;
 	color: #FFFFFF;
-	width: 130px;
-
 }
 
 .languageIcon {
