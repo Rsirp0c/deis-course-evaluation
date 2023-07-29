@@ -11,7 +11,6 @@ import {
 import ErrorPage from './error-page.jsx'
 import Layout from './components/Layout.jsx';
 import Home from './pages/home/Home.jsx'
-import Register from './pages/register/register.jsx'
 import Course from './pages/course/course.jsx'
 import RatingForm from './pages/rating-form/rating-form.jsx'
 import Search from './pages/search/search.jsx'
@@ -25,10 +24,6 @@ const router = createBrowserRouter([
 			{
 				path: '/',
 				element: <Home />,
-			},
-			{
-				path: '/register',
-				element: <Register />,
 			},
 			{
 				path: '/course',
