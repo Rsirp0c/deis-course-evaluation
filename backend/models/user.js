@@ -28,7 +28,7 @@ const userSchema = Schema(
 		salt: String,
 	},
 	{
-		timestamps: true,
+		timestamps: true, //Dates might be wrong, check this!!!!!
 	}
 );
 /**************************

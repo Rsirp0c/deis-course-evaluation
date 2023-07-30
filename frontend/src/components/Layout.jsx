@@ -3,7 +3,7 @@ import Footer from "./Footer.jsx"
 import { Outlet } from 'react-router-dom'
 import styles from './Layout.module.css'
 import { useEffect, useState } from 'react';
-import { getJWT } from '../utils/auth.js';
+import { setJWT, checkLogin } from '../utils/auth.js';
 
 
 export default function Layout() {
@@ -11,20 +11,8 @@ export default function Layout() {
 	const [error, setError] = useState(false);
 
 	useEffect(() => {
-		const urlParams = new URLSearchParams(window.location.search);
-		const code = urlParams.get('code');
-		if (code) {
-			// setLoading(true);
-			getJWT(code)
-				.then((result) => {
-					console.log(result);
-					if (result) {
-						// setLoading(false);
-					} else {
-						setError(true);
-					}
-				})
-		}
+		setJWT(setError)
+		checkLogin()
 	}, []);
 
 	if (error) {

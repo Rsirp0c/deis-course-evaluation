@@ -5,6 +5,8 @@ import getGoogleUrl from '../utils/getGoogleUrl';
 import { FcGoogle } from 'react-icons/fc';
 import { HiOutlineXMark } from 'react-icons/hi2';
 
+import AuthForm from './AuthForm.jsx';
+
 // This is the login and register popup, which shows login or user depending on which button is clicked
 export default function LoginRegister({ logginIn, setLogginIn, registering, setRegistering }) {
 
@@ -59,17 +61,7 @@ export default function LoginRegister({ logginIn, setLogginIn, registering, setR
 					<div className={styles.loginContent}>
 						<HiOutlineXMark className={styles.closeIcon} onClick={() => handleClosePopup(setComponent)} />
 						<Title />
-						<form action="" className={styles.form}>
-							<div className={styles.inputContainer}>
-								<label>Email</label>
-								<input type="text" className={styles.loginInput} placeholder="Email" />
-							</div>
-							<div className={styles.inputContainer}>
-								<label>Password</label>
-								<input type="password" className={styles.loginInput} placeholder="Password" />
-							</div>
-							<button type="submit" className={styles.loginButton}>Continue</button>
-						</form>
+						<AuthForm logginIn={logginIn} handleClosePopup={() => handleClosePopup(setComponent)} />
 						<div className={styles.divider}>
 							<div className={styles.dividerLine}></div>
 							<p className={styles.dividerText}>or</p>
