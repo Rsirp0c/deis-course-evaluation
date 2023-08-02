@@ -34,7 +34,7 @@ export default function AuthForm({ logginIn, handleClosePopup }) {
 				const { jwt } = data;
 				if (jwt) {
 					localStorage.setItem('jwt', jwt);
-					console.log("jwt stored", data);
+					// console.log("jwt stored", data);
 					handleClosePopup();
 				} else {
 					console.log("error", data);

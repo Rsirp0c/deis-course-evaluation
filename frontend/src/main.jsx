@@ -8,6 +8,8 @@ import {
 	RouterProvider,
 } from 'react-router-dom'
 
+import UserProvider from './contexts/userContext';
+// Pages import
 import ErrorPage from './error-page.jsx'
 import Layout from './components/Layout.jsx';
 import Home from './pages/home/Home.jsx'
@@ -43,8 +45,11 @@ const router = createBrowserRouter([
 ])
 
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<UserProvider>
+			<RouterProvider router={router} />
+		</UserProvider>
 	</React.StrictMode>,
 );

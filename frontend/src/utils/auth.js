@@ -1,8 +1,10 @@
+import jwtDecode from 'jwt-decode';
+
 
 /**
  * this function will get the JWT from the backend and store it in local storage
  */
-export async function setJWT(setError) {
+export async function setJWT() {
 
 	const urlParams = new URLSearchParams(window.location.search);
 	const code = urlParams.get('code');
@@ -28,7 +30,7 @@ export async function setJWT(setError) {
 				localStorage.setItem('jwt', token);
 			})
 			.catch(() => {
-				setError(true)
+				return false
 			});
 	}
 
@@ -38,7 +40,12 @@ export async function setJWT(setError) {
 export function checkLogin() {
 	const jwt = localStorage.getItem('jwt');
 	if (jwt) {
-		return true
+		const [username, id] = jwtDecode(jwt)
+		return {
+			authenticated: true,
+			username: username,
+			id: id
+		}
 	}
 	return false
 }
