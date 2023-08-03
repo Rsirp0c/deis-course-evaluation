@@ -55,6 +55,11 @@ Backend
 - [x] Create moc data for testing in JSON
 - [ ] Test API endpoints
 - [ ] Input calculations for rating and grade whenever a new form is added 
+JWT validation flow 
+- the user logs in either with oauth2.0 or with a username and password, server responds with jwt
+- jwt stores in local storage, and stores user data within userContext 
+- the user sends the jwt with auth header with every request, server validates the jwt and responds with the requested data
+
 
 Nice to haves
 - [ ] Implement main page search bar dropdown custom UI?

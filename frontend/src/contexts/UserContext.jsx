@@ -3,7 +3,7 @@ import { createContext, } from "react";
 import { setJWT, checkLogin } from '../utils/auth.js';
 import { useEffect, useState } from "react";
 
-const UserContext = createContext(null);
+export const UserContext = createContext(null);
 
 export default function UserProvider({ children }) {
 
@@ -19,14 +19,16 @@ export default function UserProvider({ children }) {
 					setError(true)
 				}
 			})
-
-		const response = checkLogin()
-		if (response) {
-			setAuthenticated(true)
-			setName("")
-			console.log({ response })
+		if (!authenticated) {
+			const response = checkLogin()
+			if (response) {
+				setAuthenticated(true)
+				setName("")
+				console.log({ response })
+			}
 		}
-	}, []);
+
+	}, [authenticated]);
 
 
 	if (error) {

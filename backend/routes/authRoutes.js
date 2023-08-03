@@ -3,7 +3,7 @@ const router = express.Router();
 
 
 import { googleOauthHandler } from '../controllers/oauthController.js';
-import { login, register, remove, getUser } from '../controllers/authController.js';
+import { login, register, remove, validateToken } from '../controllers/authController.js';
 
 /**
  * Auth API routes
@@ -20,7 +20,8 @@ import { login, register, remove, getUser } from '../controllers/authController.
 router.post('/oauth/google', googleOauthHandler);
 router.post('/login', login);
 router.post('/register', register);
-router.get('/:id', getUser)
+router.get('/validate', validateToken)
 router.delete('/:id', remove);
+
 
 export default router;

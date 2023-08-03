@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { UserContext } from '../contexts/userContext';
 import styles from './NavBar.module.css';
 
 // icon imports
@@ -20,7 +21,7 @@ function SearchBar() {
 }
 
 export default function NavBar() {
-
+	const user = useContext(UserContext);
 	const location = useLocation();
 	const [logginIn, setLogginIn] = useState(false);
 	const [registering, setRegistering] = useState(false);

@@ -1,6 +1,3 @@
-import jwtDecode from 'jwt-decode';
-
-
 /**
  * this function will get the JWT from the backend and store it in local storage
  */
@@ -37,15 +34,37 @@ export async function setJWT() {
 
 }
 
-export function checkLogin() {
+export function validateJWT() {
 	const jwt = localStorage.getItem('jwt');
 	if (jwt) {
-		const [username, id] = jwtDecode(jwt)
-		return {
-			authenticated: true,
-			username: username,
-			id: id
-		}
+		fetch('http://localhost:3000/auth/validate', {
+			method: 'GET',
+			headers: {
+				'Authorization': `Bearer ${jwt}`,
+			},
+		})
+			.then((response) => {
+				if (response.ok) {
+					return response.json()
+				} else {
+					throw new Error(`Unable to authentciate user status: ${response.status}`)
+				}
+			})
+			.then((data) => {
+				const { username, id } = data
+				return {
+					authenticated: true,
+					username: username,
+					id: id
+				}
+			})
+			.catch(() => {
+				return {
+					authenticated: false,
+					username: null,
+					id: null
+				}
+			});
 	}
 	return false
 }

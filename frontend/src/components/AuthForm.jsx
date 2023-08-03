@@ -28,6 +28,8 @@ export default function AuthForm({ logginIn, handleClosePopup }) {
 
 		logginIn ? URL += "login" : URL += "register";
 
+
+		// use userContext to store usename and id and email 
 		fetch(URL, options)
 			.then(response => response.json())
 			.then(data => {
