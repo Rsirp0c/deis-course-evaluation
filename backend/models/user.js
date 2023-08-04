@@ -59,8 +59,8 @@ userSchema.methods.generateJWT = function () {
 // Return JSON representation of user to pass to frontend
 userSchema.methods.toAuthJSON = function () {
 	return {
+
 		username: this.username,
-		email: this.email,
 		id: this._id,
 		token: this.generateJWT(),
 	};

@@ -25,6 +25,7 @@ export async function setJWT() {
 				const { token } = data
 				window.location.href = window.location.pathname;
 				localStorage.setItem('jwt', token);
+				// TO DO: use useContext to set the user state
 			})
 			.catch(() => {
 				return false
@@ -34,37 +35,24 @@ export async function setJWT() {
 
 }
 
-export function validateJWT() {
+export async function validateJWT() {
 	const jwt = localStorage.getItem('jwt');
 	if (jwt) {
-		fetch('http://localhost:3000/auth/validate', {
+		//using await here instead of .then() because we want to pause the execution of the function until we get a response from the server
+		// To Do: add a try catch block here
+		const response = await fetch('http://localhost:3000/auth/validate', {
 			method: 'GET',
 			headers: {
 				'Authorization': `Bearer ${jwt}`,
 			},
 		})
-			.then((response) => {
-				if (response.ok) {
-					return response.json()
-				} else {
-					throw new Error(`Unable to authentciate user status: ${response.status}`)
-				}
-			})
-			.then((data) => {
-				const { username, id } = data
-				return {
-					authenticated: true,
-					username: username,
-					id: id
-				}
-			})
-			.catch(() => {
-				return {
-					authenticated: false,
-					username: null,
-					id: null
-				}
-			});
+		if (response.ok) {
+			return true
+		} else {
+			throw new Error(`Unable to authentciate user status: ${response.status}`)
+		}
+
+
 	}
 	return false
 }

@@ -4,39 +4,40 @@ import styles from './LoginRegisterPopup.module.css';
 import getGoogleUrl from '../utils/getGoogleUrl';
 import { FcGoogle } from 'react-icons/fc';
 import { HiOutlineXMark } from 'react-icons/hi2';
-
+import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm.jsx';
 
 // This is the login and register popup, which shows login or user depending on which button is clicked
-export default function LoginRegister({ loggingIn, setLoggingIn, registering, setRegistering }) {
+export default function Test({ authType }) {
+
+	const navigate = useNavigate();
+
+
 
 	let containerStyle;
 	let title;
 	let bottomText;
-	let setComponent;
 
 	function handleSwitch() {
-		if (loggingIn) {
-			setLoggingIn(false);
-			setRegistering(true);
+		if (authType === "login") {
+			navigate('/register');
 		} else {
-			setLoggingIn(true);
-			setRegistering(false);
+			navigate('/login');
 		}
 	}
 
-	function handleClosePopup(setComponent) {
-		setComponent(false);
+	function handleClosePopup() {
+		navigate(-1) || navigate('/');
 	}
 
 	// modifies the popup component depending on whether it is login or register
-	if (loggingIn) {
-		setComponent = setLoggingIn;
+	if (authType === "login") {
+		// setComponent = setLogginIn;
 		containerStyle = styles.loginContainer;
 		title = <p className={styles.loginTitle}>Login to Deis Evaluation</p>
 		bottomText = <p className={styles.loginText}>{"Don't have an account?"} <button className={styles.switchButton} onClick={handleSwitch}>Sign up</button></p>
-	} else if (registering) {
-		setComponent = setRegistering;
+	} else {
+		// setComponent = setRegistering;
 		containerStyle = styles.registerContainer;
 		title =
 			<>
@@ -56,12 +57,12 @@ export default function LoginRegister({ loggingIn, setLoggingIn, registering, se
 
 	return (
 		<>
-			<div className={styles.background} onClick={() => handleClosePopup(setComponent)}>
+			<div className={styles.background} onClick={() => handleClosePopup()}>
 				<div className={containerStyle} onClick={(event) => event.stopPropagation()} >	{/*event stopPropagation prevents clicking on the root div from closing the popup*/}
 					<div className={styles.loginContent}>
-						<HiOutlineXMark className={styles.closeIcon} onClick={() => handleClosePopup(setComponent)} />
+						<HiOutlineXMark className={styles.closeIcon} onClick={() => handleClosePopup()} />
 						<Title />
-						<AuthForm loggingIn={loggingIn} handleClosePopup={() => handleClosePopup(setComponent)} />
+						<AuthForm authType={authType} handleClosePopup={() => handleClosePopup()} />
 						<div className={styles.divider}>
 							<div className={styles.dividerLine}></div>
 							<p className={styles.dividerText}>or</p>

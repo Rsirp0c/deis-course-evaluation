@@ -1,15 +1,16 @@
 /* eslint-disable react/prop-types */
 import { createContext, } from "react";
-import { setJWT, checkLogin } from '../utils/auth.js';
+import { setJWT, validateJWT } from '../utils/auth.js';
 import { useEffect, useState } from "react";
-
 export const UserContext = createContext(null);
 
 export default function UserProvider({ children }) {
 
 	const [error, setError] = useState(false);
 	const [authenticated, setAuthenticated] = useState(false);
-	const [name, setName] = useState("")
+	const [id, setId] = useState(null)
+	const [name, setName] = useState(null)
+	const [loggingIn, setLoggingIn] = useState(false);
 
 	useEffect(() => {
 
@@ -19,16 +20,23 @@ export default function UserProvider({ children }) {
 					setError(true)
 				}
 			})
-		if (!authenticated) {
-			const response = checkLogin()
-			if (response) {
-				setAuthenticated(true)
-				setName("")
-				console.log({ response })
-			}
+		const validated = validateJWT()
+		console.log("validated", validated)
+		// retrieve info from localstorage is user is already authenticated to persist login accross page refreshes
+		if (validated) {
+			console.log("validated")
+			const { username, id } = localStorage.getItem('userInfo');
+			setName(username);
+			setId(id);
+			setAuthenticated(true);
+		} else {
+			console.log("not validated")
+			setAuthenticated(false);
 		}
 
-	}, [authenticated]);
+
+
+	}, []);
 
 
 	if (error) {
@@ -43,7 +51,13 @@ export default function UserProvider({ children }) {
 
 
 	return (
-		<UserContext.Provider value={[name, authenticated]}>
+		<UserContext.Provider value={
+			{
+				nameState: [name, setName],
+				authState: [authenticated, setAuthenticated],
+				idState: [id, setId],
+				loggingInState: [loggingIn, setLoggingIn]
+			}}>
 			{children}
 		</UserContext.Provider>
 	)

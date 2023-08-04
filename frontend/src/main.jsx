@@ -8,6 +8,7 @@ import {
 	RouterProvider,
 } from 'react-router-dom'
 
+// import { useState } from 'react';
 import UserProvider from './contexts/userContext';
 // Pages import
 import ErrorPage from './error-page.jsx'
@@ -17,6 +18,7 @@ import Course from './pages/course/course.jsx'
 import RatingForm from './pages/rating-form/rating-form.jsx'
 import Search from './pages/search/search.jsx'
 // import Search, { Loader as searchLoader } from './pages/search.jsx'
+
 
 const router = createBrowserRouter([
 	{
@@ -39,7 +41,8 @@ const router = createBrowserRouter([
 				path: 'search',
 				element: <Search />,
 				// loader: searchLoader
-			}
+			},
+
 		],
 	}
 ])

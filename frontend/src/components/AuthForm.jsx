@@ -1,15 +1,22 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
 
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../contexts/userContext";
 import styles from './AuthForm.module.css'
 
 
 
-export default function AuthForm({ logginIn, handleClosePopup }) {
+export default function AuthForm({ loggingIn, handleClosePopup }) {
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const { nameState, idState, authState } = useContext(UserContext);
+	const [name, setName] = nameState;
+	const [id, setId] = idState;
+	const [authenticated, setAuthenticated] = authState;
+
 	// const [error, setError] = useState(false);
 
 	// form handlers
@@ -26,16 +33,26 @@ export default function AuthForm({ logginIn, handleClosePopup }) {
 			body: JSON.stringify({ email: email, password: password })
 		}
 
-		logginIn ? URL += "login" : URL += "register";
+		loggingIn ? URL += "login" : URL += "register";
 
 
 		// use userContext to store usename and id and email 
 		fetch(URL, options)
-			.then(response => response.json())
+			.then(res => res.json())
 			.then(data => {
-				const { jwt } = data;
-				if (jwt) {
-					localStorage.setItem('jwt', jwt);
+				const { username, id, token } = data.userJSON;
+				console.log({ username, id, token })
+
+				if (username) setName(username);
+				if (token) {
+					setId(id);
+					setAuthenticated(true);
+					const userInfo = {
+						username: username,
+						id: id,
+					}
+					localStorage.setItem('userInfo', userInfo)
+					localStorage.setItem('jwt', token);
 					// console.log("jwt stored", data);
 					handleClosePopup();
 				} else {

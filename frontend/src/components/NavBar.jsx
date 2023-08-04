@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
 import { Link, useLocation } from 'react-router-dom';
-import { useState, useContext } from 'react';
-import { UserContext } from '../contexts/userContext';
 import styles from './NavBar.module.css';
-
+import { useState, useContext } from "react";
+import { UserContext } from "../contexts/userContext";
 // icon imports
 import { HiLanguage } from 'react-icons/hi2';
 import { GoSearch } from 'react-icons/go';
@@ -11,6 +10,7 @@ import { GoSearch } from 'react-icons/go';
 import Logo from './Logo';
 import LoginRegisterPopup from './LoginRegisterPopup';
 
+// NavBar sub components 
 function SearchBar() {
 	return (
 		<form action="" className={styles.searchBar}>
@@ -19,36 +19,65 @@ function SearchBar() {
 		</form>
 	)
 }
+// set the state of the login popup to true, which shows the popup
+function LoggedOutLinks({ handleLogin, handleRegister }) {
 
+	return (
+		<>
+			<button className={styles.loginButton} onClick={handleLogin}>Login</button>
+			<button className={styles.registerButton} onClick={handleRegister}>Register</button>
+		</>
+	)
+}
+
+function LoggedInLinks({ handleLogout }) {
+
+
+	return (
+		<>
+			<Link to="" className={styles.link}>Profile</Link>
+			<Link to="/" className={styles.link} onClick={handleLogout}>Logout</Link>
+		</>
+	)
+}
+
+// NavBar component 
 export default function NavBar() {
-	const user = useContext(UserContext);
 	const location = useLocation();
-	const [logginIn, setLogginIn] = useState(false);
+	// const [loggingIn, setLoggingIn] = useState(false);
 	const [registering, setRegistering] = useState(false);
+	const { authState, loggingInState } = useContext(UserContext);
+	const [authenticated, setAuthenticated] = authState;
+	const [loggingIn, setLoggingIn] = loggingInState;
 
-	// set the state of the login popup to true, which shows the popup
+	const renderLoginRegister = loggingIn || registering;
+	const pathIsHome = location.pathname === "/";
+
+
 	function handleLogin() {
-		setLogginIn(true);
+		setLoggingIn(true);
+	}
+
+	function handleLogout() {
+		localStorage.removeItem('userInfo');
+		localStorage.removeItem('token');
+		setAuthenticated(false);
 	}
 
 	function handleRegister() {
 		setRegistering(true);
 	}
 
-	const renderLoginRegister = logginIn || registering;
-	const pathIsHome = location.pathname === "/";
-
 	return (
 		<>
-			{renderLoginRegister && <LoginRegisterPopup setLogginIn={setLogginIn} logginIn={logginIn} setRegistering={setRegistering} registering={registering} />}
+			{renderLoginRegister && <LoginRegisterPopup setLoggingIn={setLoggingIn} loggingIn={loggingIn} setRegistering={setRegistering} registering={registering} />}
 			<nav className={styles.navBar}>
 				{!pathIsHome && <SearchBar />}
 				<Link to="/" className={styles.linkLogo}>
 					<Logo />
 				</Link>
 				<Link to="/rating-form" className={styles.link}>Rate a course</Link>
-				<button className={styles.loginButton} onClick={handleLogin}>Login</button>
-				<button className={styles.registerButton} onClick={handleRegister}>Register</button>
+				{authenticated ? <LoggedInLinks handleLogout={handleLogout} /> : <LoggedOutLinks handleLogin={handleLogin} handelRegister={handleRegister} />}
 				<Link to="" className={styles.link}><HiLanguage className={styles.languageIcon} /></Link>
 			</nav>
 		</>
