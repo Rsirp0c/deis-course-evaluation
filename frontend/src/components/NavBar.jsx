@@ -8,9 +8,11 @@ import { HiLanguage } from 'react-icons/hi2';
 import { GoSearch } from 'react-icons/go';
 
 import Logo from './Logo';
-import LoginRegisterPopup from './LoginRegisterPopup';
+import AuthPopup from './AuthPopup';
 
-// NavBar sub components 
+/**
+ * NavBar sub components 
+ * */
 function SearchBar() {
 	return (
 		<form action="" className={styles.searchBar}>
@@ -21,7 +23,6 @@ function SearchBar() {
 }
 // set the state of the login popup to true, which shows the popup
 function LoggedOutLinks({ handleLogin, handleRegister }) {
-
 	return (
 		<>
 			<button className={styles.loginButton} onClick={handleLogin}>Login</button>
@@ -31,8 +32,6 @@ function LoggedOutLinks({ handleLogin, handleRegister }) {
 }
 
 function LoggedInLinks({ handleLogout }) {
-
-
 	return (
 		<>
 			<Link to="" className={styles.link}>Profile</Link>
@@ -41,7 +40,9 @@ function LoggedInLinks({ handleLogout }) {
 	)
 }
 
-// NavBar component 
+/**
+ * NavBar component
+ * */
 export default function NavBar() {
 	const location = useLocation();
 	// const [loggingIn, setLoggingIn] = useState(false);
@@ -51,6 +52,7 @@ export default function NavBar() {
 	const [loggingIn, setLoggingIn] = loggingInState;
 
 	const renderLoginRegister = loggingIn || registering;
+	// pathIsHome is true if the current path is the home page, this is for conditionally rendering the main search bar 
 	const pathIsHome = location.pathname === "/";
 
 
@@ -70,7 +72,7 @@ export default function NavBar() {
 
 	return (
 		<>
-			{renderLoginRegister && <LoginRegisterPopup setLoggingIn={setLoggingIn} loggingIn={loggingIn} setRegistering={setRegistering} registering={registering} />}
+			{renderLoginRegister && <AuthPopup setLoggingIn={setLoggingIn} loggingIn={loggingIn} setRegistering={setRegistering} registering={registering} />}
 			<nav className={styles.navBar}>
 				{!pathIsHome && <SearchBar />}
 				<Link to="/" className={styles.linkLogo}>
