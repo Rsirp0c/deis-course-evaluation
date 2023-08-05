@@ -48,10 +48,12 @@
 }
 
 .text {
+
 	border-bottom: 1px solid transparent;
 }
 
 .text:hover {
+	transition: ease-in-out 0.2s;
 	border-bottom: 1px solid black;
 }
 

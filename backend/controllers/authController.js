@@ -30,14 +30,21 @@ export const register = async (req, res) => {
 	}
 };
 
+// TO DO: A thorough jwt validation is important, make sure jwt is well validified 
 export const validateToken = async (req, res) => {
-	// const token = req.get('Authorization')
-	console.log(req.get('Authorization'))
-	// jwt.verify(req.body.token, process.env.JWT_SECRET, function (err, decoded) {
-	// });
-	res.status(200).json({ message: 'Valid token' });
+	const token = req.get('Authorization')
+	jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
+		if (err) {
+			res.status(400).json({ message: 'Invalid token' })
+		}
+
+		res.status(200).json({ message: 'Valid token' });
+	});
+
 }
 /**
+ * Quick recap on URL params vs Query params
+ * 
  * Generally, URL parameters are used to identify a specific resource, 
  * while query parameters are used to sort/filter those resources or change the server's behavior in handling the request.
  **/
