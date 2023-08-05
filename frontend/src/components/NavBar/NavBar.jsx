@@ -33,18 +33,11 @@ function LoggedOutLinks({ handleLogin, handleRegister }) {
 	)
 }
 
-function LoggedInLinks({ handleLogout }) {
-
-	const [clicked, setClicked] = useState(false);
-	function handleOnClick() {
-		setClicked(!clicked)
-	}
+function LoggedInLinks({ handleOnClick }) {
 	return (
 		<>
 			<button className={styles.navButton} onClick={handleOnClick}><AiOutlineUser className={styles.profileIcon} /></button>
-			{clicked && <ProfileDropdown handleLogout={handleLogout} />}
 			<div className={styles.divider}></div>
-			{/* <Link to="/" className={styles.link} onClick={handleLogout}>Logout</Link> */}
 		</>
 	)
 }
@@ -54,8 +47,9 @@ function LoggedInLinks({ handleLogout }) {
  * */
 export default function NavBar() {
 	const location = useLocation();
-	// const [loggingIn, setLoggingIn] = useState(false);
 	const [registering, setRegistering] = useState(false);
+	const [clicked, setClicked] = useState(false);
+
 	const { authState, loggingInState } = useContext(UserContext);
 	const [authenticated, setAuthenticated] = authState;
 	const [loggingIn, setLoggingIn] = loggingInState;
@@ -64,6 +58,10 @@ export default function NavBar() {
 	// pathIsHome is true if the current path is the home page, this is for conditionally rendering the main search bar 
 	const pathIsHome = location.pathname === "/";
 
+
+	function handleOnClick() {
+		setClicked(!clicked)
+	}
 
 	function handleLogin() {
 		setLoggingIn(true);
@@ -81,14 +79,16 @@ export default function NavBar() {
 
 	return (
 		<>
+			{/* conditionally render popup components login/register and profile dropdown */}
 			{renderLoginRegister && <AuthPopup setLoggingIn={setLoggingIn} loggingIn={loggingIn} setRegistering={setRegistering} registering={registering} />}
+			{clicked && <ProfileDropdown handleLogout={handleLogout} handleOnClick={handleOnClick} />}
+
 			<nav className={styles.navBar}>
 				{!pathIsHome && <SearchBar />}
 				<Link to="/" className={styles.linkLogo}>
 					<Logo />
 				</Link>
-				{/* <Link to="/rating-form" className={styles.link}>Rate a course</Link> */}
-				{authenticated ? <LoggedInLinks handleLogout={handleLogout} /> : <LoggedOutLinks handleLogin={handleLogin} handelRegister={handleRegister} />}
+				{authenticated ? <LoggedInLinks handleOnClick={handleOnClick} /> : <LoggedOutLinks handleLogin={handleLogin} handelRegister={handleRegister} />}
 				<Link to="" className={styles.link}><HiLanguage className={styles.languageIcon} /></Link>
 			</nav>
 		</>

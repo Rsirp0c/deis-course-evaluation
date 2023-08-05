@@ -48,9 +48,10 @@ export async function validateJWT() {
 		})
 		if (response.ok) {
 			return true
-		} else {
-			throw new Error(`Unable to authentciate user status: ${response.status}`)
 		}
+		// else {
+		// 	throw new Error(`Unable to authentciate user status: ${response.status}`)
+		// }
 
 
 	}

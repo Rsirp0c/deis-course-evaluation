@@ -43,6 +43,11 @@ export default function UserProvider({ children }) {
 				}
 				setLoading(false);
 			})
+			.catch((err) => {
+				console.log(err);
+				setError(true);
+				setLoading(false);
+			})
 
 	}, []);
 

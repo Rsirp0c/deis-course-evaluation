@@ -8,4 +8,11 @@
 
 html {
 	font-family: Montserrat;
+	/* Firefox */
+	scrollbar-width: none;
+
+}
+
+::-webkit-scrollbar {
+	display: none;
 }
