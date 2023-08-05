@@ -28,8 +28,9 @@ export default function UserProvider({ children }) {
 				// retrieve info from localstorage is user is already authenticated to persist login accross page refreshes
 				if (validated) {
 
+					// TO DO: parse localstorage data correctly 
 					const userInfo = localStorage.getItem('userInfo');
-					console.log(userInfo)
+
 					const username = userInfo.username;
 					const id = userInfo.id;
 					const email = userInfo.email;

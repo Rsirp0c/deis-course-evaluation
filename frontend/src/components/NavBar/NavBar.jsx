@@ -7,8 +7,10 @@ import { UserContext } from "../../contexts/userContext";
 import { HiLanguage } from 'react-icons/hi2';
 import { GoSearch } from 'react-icons/go';
 import { AiOutlineUser } from 'react-icons/ai';
+// component imports
 import Logo from '../Logo';
 import AuthPopup from './AuthPopup';
+import ProfileDropdown from './ProfileDropdown';
 
 /**
  * NavBar sub components 
@@ -32,10 +34,17 @@ function LoggedOutLinks({ handleLogin, handleRegister }) {
 }
 
 function LoggedInLinks({ handleLogout }) {
+
+	const [clicked, setClicked] = useState(false);
+	function handleOnClick() {
+		setClicked(!clicked)
+	}
 	return (
 		<>
-			<Link to="" className={styles.link}><AiOutlineUser className={styles.profileIcon} /></Link>
-			<Link to="/" className={styles.link} onClick={handleLogout}>Logout</Link>
+			<button className={styles.navButton} onClick={handleOnClick}><AiOutlineUser className={styles.profileIcon} /></button>
+			{clicked && <ProfileDropdown handleLogout={handleLogout} />}
+			<div className={styles.divider}></div>
+			{/* <Link to="/" className={styles.link} onClick={handleLogout}>Logout</Link> */}
 		</>
 	)
 }
@@ -78,7 +87,7 @@ export default function NavBar() {
 				<Link to="/" className={styles.linkLogo}>
 					<Logo />
 				</Link>
-				<Link to="/rating-form" className={styles.link}>Rate a course</Link>
+				{/* <Link to="/rating-form" className={styles.link}>Rate a course</Link> */}
 				{authenticated ? <LoggedInLinks handleLogout={handleLogout} /> : <LoggedOutLinks handleLogin={handleLogin} handelRegister={handleRegister} />}
 				<Link to="" className={styles.link}><HiLanguage className={styles.languageIcon} /></Link>
 			</nav>

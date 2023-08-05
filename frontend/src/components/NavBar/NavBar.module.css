@@ -46,13 +46,34 @@
 	color: #FFFFFF;
 }
 
-.languageIcon {
+.registerButton:hover,
+.loginButton:hover {
+	opacity: 0.8;
+}
+
+/* Nav icon styles */
+
+.navButton {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	composes: link;
+}
+
+.icon {
+	margin-top: -4px;
 	vertical-align: middle;
-	padding-right: 10px;
+	font-size: 25px;
+}
+
+.languageIcon {
+	composes: icon;
+	padding-right: 40px;
 }
 
 .profileIcon {
-	vertical-align: middle;
+	composes: icon;
+	padding-right: 5px;
 }
 
 /* Search Bar */
@@ -89,4 +110,10 @@
 	font-size: 20px;
 	color: #3A7BD5;
 	transform: translate(-38px, -1px);
+}
+
+.divider {
+	width: 2px;
+	height: 25px;
+	background-color: #FFFFFF;
 }

@@ -1,0 +1,68 @@
+.container {
+	width: 210px;
+	height: 160px;
+	border-radius: 8px;
+	position: absolute;
+	top: 50px;
+	right: 90px;
+	background-color: #FFFFFF;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	border: 1px solid rgba(255, 255, 255, 0.366);
+}
+
+.content {
+	margin: 14px 10px;
+}
+
+.title {
+	font-weight: 600;
+	font-size: 16px;
+	color: black;
+}
+
+.email {
+	color: rgba(0, 0, 0, 0.50);
+	font-family: Montserrat;
+	font-size: 10px;
+	font-weight: 400;
+	margin: 5px 0 15px 0;
+}
+
+.font {
+	color: #000;
+	font-family: Montserrat;
+	font-size: 12px;
+	font-weight: 400;
+}
+
+.links {
+	display: flex;
+	flex-direction: column;
+
+}
+
+
+.link {
+	composes: font;
+	margin-bottom: 10px;
+}
+
+.text {
+	border-bottom: 1px solid transparent;
+}
+
+.text:hover {
+	border-bottom: 1px solid black;
+}
+
+
+.signout {
+	composes: font;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	border-top: 1px solid rgba(216, 212, 212, 0.677);
+	text-align: left;
+	padding-top: 5px;
+}
