@@ -11,33 +11,43 @@ export default function UserProvider({ children }) {
 	const [id, setId] = useState(null)
 	const [name, setName] = useState(null)
 	const [loggingIn, setLoggingIn] = useState(false);
+	const [loading, setLoading] = useState(true);
+
 
 	useEffect(() => {
-
 		setJWT()
 			.then((success) => {
 				if (success === false) {
 					setError(true)
 				}
 			})
-		const validated = validateJWT()
-		console.log("validated", validated)
-		// retrieve info from localstorage is user is already authenticated to persist login accross page refreshes
-		if (validated) {
-			console.log("validated")
-			const { username, id } = localStorage.getItem('userInfo');
-			setName(username);
-			setId(id);
-			setAuthenticated(true);
-		} else {
-			console.log("not validated")
-			setAuthenticated(false);
-		}
-
-
+		validateJWT()
+			.then((validated) => {
+				console.log("validated", validated)
+				// retrieve info from localstorage is user is already authenticated to persist login accross page refreshes
+				if (validated) {
+					console.log("validated")
+					const userInfo = localStorage.getItem('userInfo');
+					const username = userInfo.username;
+					const id = userInfo.id;
+					setName(username);
+					setId(id);
+					setAuthenticated(true);
+				} else {
+					console.log("not validated")
+					setAuthenticated(false);
+				}
+				setLoading(false);
+			})
 
 	}, []);
 
+
+	if (loading) {
+		return (
+			<></>
+		)
+	}
 
 	if (error) {
 		return (

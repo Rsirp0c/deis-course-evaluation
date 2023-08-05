@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import styles from './LoginRegisterPopup.module.css';
+import styles from './AuthPopup.module.css';
 
 import getGoogleUrl from '../utils/getGoogleUrl';
 import { FcGoogle } from 'react-icons/fc';

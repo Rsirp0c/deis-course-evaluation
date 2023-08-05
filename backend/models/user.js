@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 const userSchema = Schema(
 	{
 		name: {
+			type: Object,
 			first: {
 				type: String,
 				trim: true,
@@ -14,6 +15,7 @@ const userSchema = Schema(
 				type: String,
 				trim: true,
 			},
+			default: {}
 		},
 		email: {
 			type: String,
