@@ -20,10 +20,6 @@ export default function AuthForm(props) {
 		setFormPassword,
 		handleClosePopup } = props
 
-	// handling email and password error messages
-	const [emailError, setEmailError] = useState(null)
-	const [passwordError, setPasswordError] = useState(null)
-
 	const { nameState, idState, authState, emailState } = useContext(UserContext);
 	const [name, setName] = nameState;
 	const [id, setId] = idState;
@@ -73,7 +69,6 @@ export default function AuthForm(props) {
 				handleClosePopup();
 			})
 			.catch(er => {
-
 				const error = er.error
 				setError(error)
 

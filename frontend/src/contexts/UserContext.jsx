@@ -24,10 +24,8 @@ export default function UserProvider({ children }) {
 			})
 		validateJWT()
 			.then((validated) => {
-				console.log("validated", validated)
 				// retrieve info from localstorage is user is already authenticated to persist login accross page refreshes
 				if (validated) {
-
 					// TO DO: parse localstorage data correctly 
 					const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 					const username = userInfo.username;
