@@ -10,7 +10,8 @@ export default function UserProvider({ children }) {
 	const [authenticated, setAuthenticated] = useState(false);
 	const [id, setId] = useState(null)
 	const [name, setName] = useState(null)
-	const [loggingIn, setLoggingIn] = useState(false);
+	const [email, setEmail] = useState(null)
+	const [loggingIn, setLoggingIn] = useState(false); // state for login popup, use this when user clicks on login button or functionalities that require login
 	const [loading, setLoading] = useState(true);
 
 
@@ -26,15 +27,17 @@ export default function UserProvider({ children }) {
 				console.log("validated", validated)
 				// retrieve info from localstorage is user is already authenticated to persist login accross page refreshes
 				if (validated) {
-					console.log("validated")
+
 					const userInfo = localStorage.getItem('userInfo');
+					console.log(userInfo)
 					const username = userInfo.username;
 					const id = userInfo.id;
+					const email = userInfo.email;
 					setName(username);
 					setId(id);
+					setEmail(email);
 					setAuthenticated(true);
 				} else {
-					console.log("not validated")
 					setAuthenticated(false);
 				}
 				setLoading(false);
@@ -66,6 +69,7 @@ export default function UserProvider({ children }) {
 				nameState: [name, setName],
 				authState: [authenticated, setAuthenticated],
 				idState: [id, setId],
+				emailState: [email, setEmail],
 				loggingInState: [loggingIn, setLoggingIn]
 			}}>
 			{children}

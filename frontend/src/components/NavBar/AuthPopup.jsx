@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import styles from './AuthPopup.module.css';
 
-import getGoogleUrl from '../utils/getGoogleUrl';
+import getGoogleUrl from '../../utils/getGoogleUrl';
 import { FcGoogle } from 'react-icons/fc';
 import { HiOutlineXMark } from 'react-icons/hi2';
 

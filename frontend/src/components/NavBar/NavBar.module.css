@@ -51,6 +51,10 @@
 	padding-right: 10px;
 }
 
+.profileIcon {
+	vertical-align: middle;
+}
+
 /* Search Bar */
 
 .searchBar {

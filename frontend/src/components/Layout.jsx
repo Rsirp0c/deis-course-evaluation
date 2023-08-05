@@ -1,4 +1,4 @@
-import NavBar from "./NavBar.jsx"
+import NavBar from "./NavBar/NavBar.jsx"
 import Footer from "./Footer.jsx"
 import { Outlet } from 'react-router-dom'
 import styles from './Layout.module.css'

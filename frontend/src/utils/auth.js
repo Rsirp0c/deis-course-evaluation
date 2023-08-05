@@ -37,7 +37,6 @@ export async function setJWT() {
 
 export async function validateJWT() {
 	const jwt = localStorage.getItem('jwt');
-	console.log(jwt)
 	if (jwt) {
 		//using await here instead of .then() because we want to pause the execution of the function until we get a response from the server
 		// To Do: add a try catch block here

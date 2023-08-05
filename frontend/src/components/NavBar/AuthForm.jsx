@@ -3,7 +3,7 @@
 
 
 import { useState, useContext } from "react";
-import { UserContext } from "../contexts/userContext";
+import { UserContext } from "../../contexts/userContext.jsx";
 import styles from './AuthForm.module.css'
 
 
@@ -50,6 +50,7 @@ export default function AuthForm({ loggingIn, handleClosePopup }) {
 					const userInfo = {
 						username: username,
 						id: id,
+						email: email
 					}
 					localStorage.setItem('userInfo', userInfo)
 					localStorage.setItem('jwt', token);

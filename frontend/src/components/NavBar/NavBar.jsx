@@ -2,12 +2,12 @@
 import { Link, useLocation } from 'react-router-dom';
 import styles from './NavBar.module.css';
 import { useState, useContext } from "react";
-import { UserContext } from "../contexts/userContext";
+import { UserContext } from "../../contexts/userContext";
 // icon imports
 import { HiLanguage } from 'react-icons/hi2';
 import { GoSearch } from 'react-icons/go';
-
-import Logo from './Logo';
+import { AiOutlineUser } from 'react-icons/ai';
+import Logo from '../Logo';
 import AuthPopup from './AuthPopup';
 
 /**
@@ -34,7 +34,7 @@ function LoggedOutLinks({ handleLogin, handleRegister }) {
 function LoggedInLinks({ handleLogout }) {
 	return (
 		<>
-			<Link to="" className={styles.link}>Profile</Link>
+			<Link to="" className={styles.link}><AiOutlineUser className={styles.profileIcon} /></Link>
 			<Link to="/" className={styles.link} onClick={handleLogout}>Logout</Link>
 		</>
 	)
@@ -62,7 +62,7 @@ export default function NavBar() {
 
 	function handleLogout() {
 		localStorage.removeItem('userInfo');
-		localStorage.removeItem('token');
+		localStorage.removeItem('jwt');
 		setAuthenticated(false);
 	}
 
