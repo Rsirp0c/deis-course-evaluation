@@ -88,7 +88,7 @@ export default function NavBar() {
 				<Link to="/" className={styles.linkLogo}>
 					<Logo />
 				</Link>
-				{authenticated ? <LoggedInLinks handleOnClick={handleOnClick} /> : <LoggedOutLinks handleLogin={handleLogin} handelRegister={handleRegister} />}
+				{authenticated ? <LoggedInLinks handleOnClick={handleOnClick} /> : <LoggedOutLinks handleLogin={handleLogin} handleRegister={handleRegister} />}
 				<Link to="" className={styles.link}><HiLanguage className={styles.languageIcon} /></Link>
 			</nav>
 		</>

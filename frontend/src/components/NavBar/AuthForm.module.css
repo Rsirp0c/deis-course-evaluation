@@ -39,3 +39,9 @@
 .loginButton:hover {
 	opacity: 0.85;
 }
+
+.error {
+	color: red;
+	font-size: 13px;
+	font-weight: 700;
+}

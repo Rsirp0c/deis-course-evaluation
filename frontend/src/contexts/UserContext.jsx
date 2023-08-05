@@ -29,8 +29,7 @@ export default function UserProvider({ children }) {
 				if (validated) {
 
 					// TO DO: parse localstorage data correctly 
-					const userInfo = localStorage.getItem('userInfo');
-
+					const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 					const username = userInfo.username;
 					const id = userInfo.id;
 					const email = userInfo.email;

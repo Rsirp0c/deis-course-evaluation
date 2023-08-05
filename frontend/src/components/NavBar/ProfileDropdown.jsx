@@ -20,7 +20,7 @@ export default function ProfileDropdown({ handleLogout, handleOnClick }) {
 							{name ? `Welcome ${name}!` : "Welcome!"}
 						</p>
 						<p className={styles.email}>
-							{email} email
+							{email}
 						</p>
 						<div className={styles.links}>
 							<Link className={styles.link}><span className={styles.text}>My Saved Courses</span></Link>

@@ -5,14 +5,14 @@ export const login = async (req, res) => {
 	const { email, password } = req.body;
 	const user = await User.findOne({ email });
 	if (!user) {
-		return res.status(400).json({ error: 'User not found' });
+		return res.status(401).json({ error: 'User not found' });
 	} else {
 		const match = await user.validatePassword(password);
 		if (match) {
 			const userJSON = user.toAuthJSON();
 			res.status(200).send({ userJSON });
 		} else {
-			res.status(400).json({ error: 'Invalid password' });
+			res.status(401).json({ error: 'Invalid password' });
 		}
 	}
 };
@@ -26,21 +26,23 @@ export const register = async (req, res) => {
 		await user.save();
 		res.status(200).send({ userJSON });
 	} catch (err) {
-		res.status(400).json({ error: 'Invalid data', err });
+		const error = err.errors
+		const errorType = Object.keys(error)[0]
+		const errorMessage = error[errorType].message
+		res.status(400).json({ error: errorMessage });
 	}
 };
 
 // TO DO: A thorough jwt validation is important, make sure jwt is well validified 
 export const validateToken = async (req, res) => {
-	const token = req.get('Authorization')
-	jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
-		if (err) {
-			res.status(401).json({ message: 'Invalid token' })
-		} else {
-			res.status(200).json({ message: 'Valid token' });
-		}
-
-	});
+	const token = req.get('Authorization').split(' ')[1];
+	try {
+		const decoded = jwt.verify(token, process.env.JWT_SECRET);
+		res.status(200).json({ message: 'Valid token' });
+	} catch (err) {
+		console.log({ err });
+		res.status(401).json({ message: 'Invalid token' })
+	}
 
 }
 /**

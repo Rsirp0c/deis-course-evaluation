@@ -21,7 +21,7 @@ const userSchema = Schema(
 			type: String,
 			required: [true, 'Email is required'],
 			unique: true,
-			match: [/\S+@\S+\.\S+/, 'is invalid']
+			match: [/\S+@\S+\.\S+/, 'Invalid email']
 		},
 		evals: [{ type: Schema.Types.ObjectId, ref: 'EvalForm' }],
 		likedCourses: [{ type: Schema.Types.ObjectId, ref: 'Course' }],
@@ -46,6 +46,10 @@ userSchema.methods.validatePassword = function (password) {
 	return this.hash === hash;
 };
 
+/**
+ * this method generates a JWT token signed synchronously by the server (HMAC SHA256 algorithm)
+ * @returns signed JWT token
+ */
 userSchema.methods.generateJWT = function () {
 	const today = new Date();
 	const secret = process.env.JWT_SECRET; // Create a secret for the JWT in your env file

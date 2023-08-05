@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import styles from './AuthPopup.module.css';
-
+import { useState } from 'react'
 import getGoogleUrl from '../../utils/getGoogleUrl';
 import { FcGoogle } from 'react-icons/fc';
 import { HiOutlineXMark } from 'react-icons/hi2';
@@ -8,7 +8,11 @@ import { HiOutlineXMark } from 'react-icons/hi2';
 import AuthForm from './AuthForm.jsx';
 
 // This is the login and register popup, which shows login or user depending on which button is clicked
-export default function LoginRegister({ loggingIn, setLoggingIn, registering, setRegistering }) {
+export default function AuthPopup({ loggingIn, setLoggingIn, registering, setRegistering }) {
+
+	const [formEmail, setFormEmail] = useState("");
+	const [formPassword, setFormPassword] = useState("");
+	const [error, setError] = useState("")
 
 	let containerStyle;
 	let title;
@@ -23,6 +27,9 @@ export default function LoginRegister({ loggingIn, setLoggingIn, registering, se
 			setLoggingIn(true);
 			setRegistering(false);
 		}
+		setError("")
+		setFormEmail("")
+		setFormPassword("")
 	}
 
 	function handleClosePopup(setComponent) {
@@ -61,7 +68,15 @@ export default function LoginRegister({ loggingIn, setLoggingIn, registering, se
 					<div className={styles.loginContent}>
 						<HiOutlineXMark className={styles.closeIcon} onClick={() => handleClosePopup(setComponent)} />
 						<Title />
-						<AuthForm loggingIn={loggingIn} handleClosePopup={() => handleClosePopup(setComponent)} />
+						<AuthForm
+							loggingIn={loggingIn}
+							error={error}
+							setError={setError}
+							formEmail={formEmail}
+							setFormEmail={setFormEmail}
+							formPassword={formPassword}
+							setFormPassword={setFormPassword}
+							handleClosePopup={() => handleClosePopup(setComponent)} />
 						<div className={styles.divider}>
 							<div className={styles.dividerLine}></div>
 							<p className={styles.dividerText}>or</p>
