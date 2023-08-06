@@ -7,6 +7,7 @@ import useWindowWidth from '../../utils/useWindowWidth';
 import { GoSearch } from 'react-icons/go';
 
 
+
 function Select({ title }) {
 	const options = [
 		{ id: 1, name: `Select ${title}` },
@@ -21,7 +22,10 @@ function Select({ title }) {
 	)
 }
 
-// This is the main search page in the main page
+/**
+ *  This is the main search page in the main page
+ *  TO DO: convert to split page main page
+ * */
 function MainSearchBar() {
 
 	const navigate = useNavigate();
