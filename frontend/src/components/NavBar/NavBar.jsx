@@ -24,11 +24,11 @@ function SearchBar() {
 	)
 }
 // set the state of the login popup to true, which shows the popup
-function LoggedOutLinks({ handleLogin, handleRegister }) {
+function LoggedOutLinks({ handleLogin, handleRegister, loginButtonStyle, registerButtonStyle }) {
 	return (
 		<>
-			<button className={styles.loginButton} onClick={handleLogin}>Login</button>
-			<button className={styles.registerButton} onClick={handleRegister}>Register</button>
+			<button className={loginButtonStyle} onClick={handleLogin}>Log in</button>
+			<button className={registerButtonStyle} onClick={handleRegister}>Register</button>
 		</>
 	)
 }
@@ -77,18 +77,39 @@ export default function NavBar() {
 		setRegistering(true);
 	}
 
+	let navStyle;
+	let loginButtonStyle;
+	let registerButtonStyle;
+
+	if (pathIsHome) {
+		navStyle = styles.navBarMain;
+		loginButtonStyle = styles.loginButtonMain;
+		registerButtonStyle = styles.registerButtonMain;
+	} else {
+		navStyle = styles.navBar;
+		loginButtonStyle = styles.loginButton;
+		registerButtonStyle = styles.registerButton;
+	}
+
 	return (
 		<>
 			{/* conditionally render popup components login/register and profile dropdown */}
 			{renderLoginRegister && <AuthPopup setLoggingIn={setLoggingIn} loggingIn={loggingIn} setRegistering={setRegistering} registering={registering} />}
 			{clicked && <ProfileDropdown handleLogout={handleLogout} handleOnClick={handleOnClick} />}
 
-			<nav className={styles.navBar}>
+			<nav className={navStyle}>
 				{!pathIsHome && <SearchBar />}
 				<Link to="/" className={styles.linkLogo}>
 					<Logo />
 				</Link>
-				{authenticated ? <LoggedInLinks handleOnClick={handleOnClick} /> : <LoggedOutLinks handleLogin={handleLogin} handleRegister={handleRegister} />}
+				{authenticated ?
+					<LoggedInLinks handleOnClick={handleOnClick} /> :
+					<LoggedOutLinks
+						handleLogin={handleLogin}
+						handleRegister={handleRegister}
+						loginButtonStyle={loginButtonStyle}
+						registerButtonStyle={registerButtonStyle}
+					/>}
 				<Link to="" className={styles.link}><HiLanguage className={styles.languageIcon} /></Link>
 			</nav>
 		</>

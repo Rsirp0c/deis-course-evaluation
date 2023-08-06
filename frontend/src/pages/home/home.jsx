@@ -26,7 +26,7 @@ function Select({ title }) {
  *  This is the main search page in the main page
  *  TO DO: convert to split page main page
  * */
-function MainSearchBar() {
+function SearchCourse() {
 
 	const navigate = useNavigate();
 
@@ -36,23 +36,27 @@ function MainSearchBar() {
 	}
 	return (
 		<>
+			<div className={styles.searchReviewContainer}>
+				<p className={styles.searchTitle}>Search Course Reviews</p>
+				<div className={styles.searchReview}>
 
-			<div className={styles.mainSearchBarContainer}>
-				<form action="" onSubmit={handleSubmit} className={styles.mainSearchBar}>
-					<div className={styles.wrapper}>
-						<Select title="department" />
-					</div>
-					<div className={styles.wrapper}>
-						<Select title="course" />
-					</div>
-					<div className={styles.searchWrapper}>
-						<input type="text" placeholder="Search" className={styles.search} />
-						<button type="submit" className={styles.searchButton}><GoSearch className={styles.searchIcon} /></button>
+					<form action="" onSubmit={handleSubmit} className={styles.searchBar}>
+						<div className={styles.wrapper}>
+							<Select title="department" />
+						</div>
+						<div className={styles.wrapper}>
+							<Select title="course" />
+						</div>
+						<div className={styles.searchWrapper}>
+							<input type="text" placeholder="Search" className={styles.search} />
+							<button type="submit" className={styles.searchButton}><GoSearch className={styles.searchIcon} /></button>
 
-					</div>
+						</div>
 
-					<button type="submit" className={styles.goButton}>GO</button>
-				</form>
+						<button type="submit" className={styles.goButton}>Search</button>
+					</form>
+				</div>
+
 			</div>
 
 		</>
@@ -65,13 +69,11 @@ export default function Home() {
 
 	return (
 		<>
-			<div className={styles.homeImage}>
-				<p className={styles.homeTitle}>Course Evaluation: By you, and for you</p>
+			<div className={styles.container}>
+				<div className={styles.leftContainer}></div>
 
-			</div>
-			{width >= 1100 && <MainSearchBar />}
-			<div className={styles.popularCourses}>
-				Popular courses
+				<div className={styles.rightContainer}></div>
+				<SearchCourse />
 			</div>
 		</>
 	)

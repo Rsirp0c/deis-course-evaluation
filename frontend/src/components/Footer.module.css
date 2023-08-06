@@ -8,6 +8,7 @@
 	border-top: 1px solid rgba(0, 0, 0, 0.198);
 }
 
+
 .footerLinks {
 	padding-right: 30px;
 }
@@ -24,6 +25,8 @@
 	vertical-align: middle;
 	font-size: 30px;
 }
+
+
 
 .copyright {
 	padding: 0 10px 0 40px;
@@ -43,4 +46,22 @@
 
 .logoTextBold {
 	font-weight: 700;
+}
+
+/*******
+main page footer
+********/
+
+.footerMain {
+	composes: footer;
+	color: #FFFFFF;
+	background-color: transparent;
+	position: fixed;
+	bottom: 0;
+	border-top: none;
+}
+
+.iconMain {
+	composes: icon;
+	color: #FFFFFF;
 }
