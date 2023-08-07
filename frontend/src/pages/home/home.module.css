@@ -1,114 +1,156 @@
 /* main page  */
-.homeImage {
-	background-color: rgb(153, 203, 246);
-	width: 100%;
-	height: 250px;
-}
 
-.homeTitle {
-	font-size: 40px;
-	font-weight: 700;
-	color: #FFF;
-	text-align: center;
-	margin-top: 60px;
-	transform: translateX(-60%);
-	width: 900px;
-	text-align: left;
-	position: absolute;
-	left: 50%;
-}
 
-@media screen and (max-width: 1200px) {
-	.homeTitle {
-		width: auto;
-	}
-}
+@media screen and (max-width: 1200px) {}
 
 
 /**********
-main search bar  
+search review 
 **********/
 
-
-.mainSearchBarContainer {
-	position: absolute;
-	top: 260px;
-	height: 95px;
-	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-	transform: translateX(-50%);
-	left: 50%;
-	width: 1100px;
-	background-color: #FFF;
+.searchReviewContainer {
+	position: fixed;
+	height: 100%;
+	width: 50%;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	z-index: 2;
 }
 
-.mainSearchBar {
+.searchReviewWrapper {
+	position: fixed;
+	height: 360px;
+	width: auto;
+	transform: translateY(15vh);
+	/* BETTER WAY TO ADJUST POSITION?*/
+	z-index: 3;
 	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.searchReview {
+	width: 350px;
+	background-color: transparent;
+	display: flex;
+
+}
+
+.searchTitle {
+	color: #FFF;
+	text-align: center;
+	font-size: 40px;
+	font-weight: 700;
+	padding-bottom: 100px;
+}
+
+.searchBar {
+	display: flex;
+	flex-direction: column;
 	justify-content: space-around;
 	margin-top: 2px;
 }
 
 .wrapper {
-	display: flex;
-	flex-direction: column;
 	height: 100%;
 	padding-top: 15px;
-
 }
 
 .select {
-	width: 280px;
+	width: 350px;
 	height: 60px;
-	border-radius: 10px;
+	border-radius: 7px;
 	border: none;
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 	font-family: Montserrat;
-	padding-left: 10px;
+	padding-left: 30px;
 }
 
 .search {
 	composes: select;
+	width: 320px;
 }
 
 .searchWrapper {
-	height: 100%;
-	padding-top: 15px;
+	composes: wrapper;
 }
 
 .searchButton {
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	transform: translate(-40px, 20px);
 }
 
 .searchIcon {
 	vertical-align: middle;
-	padding-left: 5px;
 	font-size: 20px;
 	color: #3A7BD5;
-	transform: translate(-38px, -1px);
+
 }
 
 .goButton {
-	width: 80px;
-	height: 60px;
-	border-radius: 8px;
+	composes: select;
+	text-align: center;
+	margin-top: 15px;
+	padding: 20px 20px 20px;
 	background: #3A7BD5;
 	border: none;
 	font-weight: 700;
 	font-size: 18px;
 	color: #FFF;
 	cursor: pointer;
-	margin-top: 15px;
-	margin-left: -50px;
+}
+
+.goButton:hover {
+	opacity: 0.8;
+}
+
+/**********
+review 
+**********/
+.reviewContainer {
+	composes: searchReviewContainer;
+	right: 0;
+	left: auto;
+}
+
+.reviewWrapper {
+	composes: searchReviewWrapper;
+	/* transform: translate(60vw, 20vh); */
 }
 
 
 /**********
-popular courses
+background image
 **********/
-.popularCourses {
+.container {
+	margin-top: -65px;
+	position: fixed;
 	width: 100%;
-	height: 600px;
-	/* background-color: rgb(40, 115, 145); */
+	height: 100vh;
+	z-index: 1;
+	background-image: url(/statue.jpg);
+	background-size: cover;
+	display: flex;
+}
+
+.rightContainer {
+	height: 200%;
+	width: 100%;
+	background-color: rgba(166, 200, 255, 0.522);
+	z-index: 1;
+}
+
+.leftContainer {
+	transform: translate(-50vw, -50vh) rotate(5deg);
+	height: 200%;
+	width: 100%;
+	background-color: rgba(29, 5, 78, 0.368);
+	z-index: 2;
+	position: fixed;
 }

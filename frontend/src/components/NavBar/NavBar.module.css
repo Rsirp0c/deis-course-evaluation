@@ -9,6 +9,7 @@
 	z-index: 1;
 }
 
+
 .link {
 	font-weight: 400;
 	text-decoration: none;
@@ -116,4 +117,35 @@
 	width: 2px;
 	height: 25px;
 	background-color: #FFFFFF;
+}
+
+/*********
+main page navBar
+*********/
+.navBarMain {
+	composes: navBar;
+	background-color: transparent;
+	z-index: 1000;
+}
+
+.loginButtonMain {
+	composes: loginButton;
+	background-color: transparent;
+	padding: 5px 26px;
+	margin: 0;
+	color: #FFFFFF;
+	border-radius: 12px;
+	border: none;
+	text-align: center;
+	width: 120px;
+	cursor: pointer;
+	height: 40px;
+	font-weight: 500;
+}
+
+.registerButtonMain {
+	composes: loginButtonMain;
+	border: 3px solid #FFFFFF;
+	width: 140px;
+	margin: 10px;
 }
