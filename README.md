@@ -70,3 +70,9 @@ Nice to haves
 1. Check that you've installed jsdoc globally: `npm install -g jsdoc`
 2. Run `npm run doc` in the root directory of the project
 3. Open `docs/index.html` in your browser with live servere
+## Start contributing
+1. Clone the repo
+2. Run `npm install` inside the /backend and /frontend directory of the project
+3. Running the project: 
+	- Run `npm start` in the /backend directory of the project
+	- Run `npm run dev` in the /frontend directory of the project
