@@ -59,6 +59,7 @@ main page footer
 	position: fixed;
 	bottom: 0;
 	border-top: none;
+	z-index: 1000;
 }
 
 .iconMain {

@@ -13,9 +13,9 @@ import UserProvider from './contexts/userContext';
 // Pages import
 import ErrorPage from './error-page.jsx'
 import Layout from './components/Layout.jsx';
-import Home from './pages/home/Home.jsx'
+import Home from './pages/home/home.jsx'
 import Course from './pages/course/course.jsx'
-import RatingForm from './pages/rating-form/rating-form.jsx'
+import Review from './pages/review/review.jsx'
 import Search from './pages/search/search.jsx'
 // import Search, { Loader as searchLoader } from './pages/search.jsx'
 
@@ -34,8 +34,8 @@ const router = createBrowserRouter([
 				element: <Course />,
 			},
 			{
-				path: 'rating-form',
-				element: <RatingForm />,
+				path: 'review',
+				element: <Review />,
 			},
 			{
 				path: 'search',

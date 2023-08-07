@@ -12,9 +12,9 @@ search review
 .searchReviewContainer {
 	position: fixed;
 	height: auto;
-	width: 500px;
-	transform: translate(5vw, 20vh);
-	/* BETTER WAY TO DO THIS?*/
+	width: auto;
+	transform: translate(7vw, 20vh);
+	/* BETTER WAY TO ADJUST POSITION?*/
 	z-index: 3;
 	display: flex;
 	flex-direction: column;
@@ -95,9 +95,20 @@ search review
 	font-size: 18px;
 	color: #FFF;
 	cursor: pointer;
-
 }
 
+.goButton:hover {
+	opacity: 0.8;
+}
+
+/**********
+review 
+**********/
+
+.reviewContainer {
+	composes: searchReviewContainer;
+	transform: translate(60vw, 20vh);
+}
 
 /**********
 background image

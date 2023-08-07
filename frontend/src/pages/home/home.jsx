@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import styles from './Home.module.css'
 import { useNavigate } from 'react-router-dom';
-import useWindowWidth from '../../utils/useWindowWidth';
+// import useWindowWidth from '../../utils/useWindowWidth';
 
 // icon imports
 import { GoSearch } from 'react-icons/go';
@@ -45,7 +45,7 @@ function SearchCourse() {
 							<Select title="department" />
 						</div>
 						<div className={styles.wrapper}>
-							<Select title="course" />
+							<Select title="core requirement" />
 						</div>
 						<div className={styles.searchWrapper}>
 							<input type="text" placeholder="Search" className={styles.search} />
@@ -63,9 +63,43 @@ function SearchCourse() {
 	)
 }
 
+function ReviewCourse() {
+
+	const navigate = useNavigate();
+
+	const handleSubmit = (event) => {
+		event.preventDefault()
+		navigate("/review")
+	}
+	return (
+		<>
+			<div className={styles.reviewContainer}>
+				<p className={styles.searchTitle}>Write a Review, Now!</p>
+				<div className={styles.searchReview}>
+
+					<form action="" onSubmit={handleSubmit} className={styles.searchBar}>
+						<div className={styles.wrapper}>
+							<Select title="department" />
+						</div>
+						<div className={styles.searchWrapper}>
+							<input type="text" placeholder="Search" className={styles.search} />
+							<button type="submit" className={styles.searchButton}><GoSearch className={styles.searchIcon} /></button>
+
+						</div>
+
+						<button type="submit" className={styles.goButton}>Review</button>
+					</form>
+				</div>
+
+			</div>
+
+		</>
+	)
+}
+
 export default function Home() {
 
-	const width = useWindowWidth();
+	// const width = useWindowWidth();
 
 	return (
 		<>
@@ -74,6 +108,7 @@ export default function Home() {
 
 				<div className={styles.rightContainer}></div>
 				<SearchCourse />
+				<ReviewCourse />
 			</div>
 		</>
 	)

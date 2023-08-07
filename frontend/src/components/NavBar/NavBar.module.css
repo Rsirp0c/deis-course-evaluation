@@ -125,6 +125,7 @@ main page navBar
 .navBarMain {
 	composes: navBar;
 	background-color: transparent;
+	z-index: 1000;
 }
 
 .loginButtonMain {
