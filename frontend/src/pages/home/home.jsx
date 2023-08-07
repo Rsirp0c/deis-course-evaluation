@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 import styles from './Home.module.css'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 // import useWindowWidth from '../../utils/useWindowWidth';
 
 // icon imports
 import { GoSearch } from 'react-icons/go';
-
+import { SlArrowDown } from 'react-icons/sl'
 
 
 function Select({ title }) {
@@ -44,9 +45,11 @@ function SearchCourse() {
 						<form action="" onSubmit={handleSubmit} className={styles.searchBar}>
 							<div className={styles.wrapper}>
 								<Select title="department" />
+								<SlArrowDown className={styles.arrowDown} />
 							</div>
 							<div className={styles.wrapper}>
-								<Select title="core requirement" />
+								<Select title="professor" />
+								<SlArrowDown className={styles.arrowDown} />
 							</div>
 							<div className={styles.searchWrapper}>
 								<input type="text" placeholder="Search" className={styles.search} />
@@ -69,10 +72,14 @@ function SearchCourse() {
 function ReviewCourse() {
 
 	const navigate = useNavigate();
-
+	const [searchValue, setSearchValue] = useState("");
 	const handleSubmit = (event) => {
 		event.preventDefault()
-		navigate("/review")
+
+		const data = {
+			searchValue: searchValue
+		};
+		navigate("/review", { state: data })
 	}
 	return (
 		<>
@@ -84,6 +91,7 @@ function ReviewCourse() {
 						<form action="" onSubmit={handleSubmit} className={styles.searchBar}>
 							<div className={styles.wrapper}>
 								<Select title="department" />
+								<SlArrowDown className={styles.arrowDown} />
 							</div>
 							<div className={styles.searchWrapper}>
 								<input type="text" placeholder="Search" className={styles.search} />
