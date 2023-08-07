@@ -8,12 +8,21 @@
 search review 
 **********/
 
-
 .searchReviewContainer {
 	position: fixed;
-	height: auto;
+	height: 100%;
+	width: 50%;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	z-index: 2;
+}
+
+.searchReviewWrapper {
+	position: fixed;
+	height: 360px;
 	width: auto;
-	transform: translate(7vw, 20vh);
+	transform: translateY(15vh);
 	/* BETTER WAY TO ADJUST POSITION?*/
 	z-index: 3;
 	display: flex;
@@ -104,11 +113,17 @@ search review
 /**********
 review 
 **********/
-
 .reviewContainer {
 	composes: searchReviewContainer;
-	transform: translate(60vw, 20vh);
+	right: 0;
+	left: auto;
 }
+
+.reviewWrapper {
+	composes: searchReviewWrapper;
+	/* transform: translate(60vw, 20vh); */
+}
+
 
 /**********
 background image

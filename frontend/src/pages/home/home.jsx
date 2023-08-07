@@ -37,24 +37,27 @@ function SearchCourse() {
 	return (
 		<>
 			<div className={styles.searchReviewContainer}>
-				<p className={styles.searchTitle}>Search Course Reviews</p>
-				<div className={styles.searchReview}>
+				<div className={styles.searchReviewWrapper}>
+					<p className={styles.searchTitle}>Search Course Reviews</p>
+					<div className={styles.searchReview}>
 
-					<form action="" onSubmit={handleSubmit} className={styles.searchBar}>
-						<div className={styles.wrapper}>
-							<Select title="department" />
-						</div>
-						<div className={styles.wrapper}>
-							<Select title="core requirement" />
-						</div>
-						<div className={styles.searchWrapper}>
-							<input type="text" placeholder="Search" className={styles.search} />
-							<button type="submit" className={styles.searchButton}><GoSearch className={styles.searchIcon} /></button>
+						<form action="" onSubmit={handleSubmit} className={styles.searchBar}>
+							<div className={styles.wrapper}>
+								<Select title="department" />
+							</div>
+							<div className={styles.wrapper}>
+								<Select title="core requirement" />
+							</div>
+							<div className={styles.searchWrapper}>
+								<input type="text" placeholder="Search" className={styles.search} />
+								<button type="submit" className={styles.searchButton}><GoSearch className={styles.searchIcon} /></button>
 
-						</div>
+							</div>
 
-						<button type="submit" className={styles.goButton}>Search</button>
-					</form>
+							<button type="submit" className={styles.goButton}>Search</button>
+						</form>
+					</div>
+
 				</div>
 
 			</div>
@@ -74,24 +77,27 @@ function ReviewCourse() {
 	return (
 		<>
 			<div className={styles.reviewContainer}>
-				<p className={styles.searchTitle}>Write a Review, Now!</p>
-				<div className={styles.searchReview}>
+				<div className={styles.reviewWrapper}>
+					<p className={styles.searchTitle}>Write a Review, Now!</p>
+					<div className={styles.searchReview}>
 
-					<form action="" onSubmit={handleSubmit} className={styles.searchBar}>
-						<div className={styles.wrapper}>
-							<Select title="department" />
-						</div>
-						<div className={styles.searchWrapper}>
-							<input type="text" placeholder="Search" className={styles.search} />
-							<button type="submit" className={styles.searchButton}><GoSearch className={styles.searchIcon} /></button>
+						<form action="" onSubmit={handleSubmit} className={styles.searchBar}>
+							<div className={styles.wrapper}>
+								<Select title="department" />
+							</div>
+							<div className={styles.searchWrapper}>
+								<input type="text" placeholder="Search" className={styles.search} />
+								<button type="submit" className={styles.searchButton}><GoSearch className={styles.searchIcon} /></button>
 
-						</div>
+							</div>
 
-						<button type="submit" className={styles.goButton}>Review</button>
-					</form>
+							<button type="submit" className={styles.goButton}>Review</button>
+						</form>
+					</div>
+
 				</div>
-
 			</div>
+
 
 		</>
 	)
