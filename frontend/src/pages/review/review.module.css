@@ -1,3 +1,13 @@
+.dropdownWrapper {
+	margin-top: 40px;
+}
+
+.tempButtonStyle {
+	width: 280px;
+	height: 60px;
+	margin-right: 20px;
+}
+
 .review {
 	color: rgba(16, 20, 34, 0.771);
 }
@@ -89,12 +99,20 @@
 	background-color: #3A7BD5;
 }
 
+/* Attendance buttons*/
+
 .attendanceButton {
 	composes: ratingButton;
 	font-family: Montserrat;
 	font-size: 14px;
+	margin-right: 0;
 	color: rgba(0, 0, 0, 0.71);
-	width: 300px;
+	width: 305px;
+}
+
+.attendanceButtonsWrapper {
+	composes: ratingButtonsWrapper;
+	justify-content: space-between;
 }
 
 .attendanceButtonSelected {
@@ -111,3 +129,56 @@
 	composes: attendanceButton;
 	composes: lastRatingButton;
 }
+
+/* Grade button*/
+.gradeDropdown {
+	width: 615px;
+	composes: ratingButton;
+	border-radius: 5px;
+	margin-right: 0;
+}
+
+/* Delivery Button*/
+
+.deliveryButton {
+	composes: attendanceButton;
+	width: 200px;
+}
+
+.deliveryButtonSelected {
+	composes: deliveryButton;
+	background-color: #3A7BD5;
+}
+
+.lastDeliveryButton {
+	composes: ratingButton;
+	composes: lastRatingButton;
+}
+
+.firstDeliveryButton {
+	composes: ratingButton;
+	composes: firstRatingButton;
+}
+
+.deliveryButtonsWrapper {
+	composes: ratingButtonsWrapper;
+	justify-content: space-between;
+}
+
+/* Divider */
+.dividerContainer {
+	display: flex;
+	justify-content: left;
+	width: 98%;
+	margin: 0 auto;
+}
+
+.divider {
+	width: 60px;
+	height: 3px;
+	background-color: #3A7BD5;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+/* Comment section*/

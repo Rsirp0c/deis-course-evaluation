@@ -37,6 +37,7 @@ export default function Review() {
 	const [difficulty, setDifficulty] = useState(3);
 	const [quality, setQuality] = useState(3);
 	const [attendance, setAttendance] = useState(1);
+	const [delivery, setDelivery] = useState('In Person');
 	const numRatingButtons = new Array(1, 2, 3, 4, 5);
 
 
@@ -66,7 +67,7 @@ export default function Review() {
 		)
 	}
 	/**
-	 * Not DRY enough, cleaan up this later
+	 * Not 'DRY' enough, cleaan up this later
 	 * @param {*} param0 
 	 * @returns 
 	 */
@@ -78,23 +79,46 @@ export default function Review() {
 			}
 			let buttonStyle = value === state ? styles.attendanceButtonSelected : styles.attendanceButton
 			if (value === 1) {
-				buttonStyle = `${buttonStyle} ${styles.firstAttendanceButton}`;
-				return <button className={buttonStyle} onClick={handleOnClick}>Yes</button>
+				return <button className={buttonStyle = `${buttonStyle} ${styles.firstAttendanceButton}`} onClick={handleOnClick}>Yes</button>
 			}
 			else if (value === 2) {
-				buttonStyle = `${buttonStyle} ${styles.lastAttendanceButton}`;
-				return <button className={buttonStyle} onClick={handleOnClick}>No</button>
+				return <button className={`${buttonStyle} ${styles.lastAttendanceButton}`} onClick={handleOnClick}>No</button>
 			}
 
 		}
 		return (
-			<div className={styles.ratingButtonsWrapper}>
+			<div className={styles.attendanceButtonsWrapper}>
 				<AttendanceButton value={1} state={state} setState={setState} />
 				<AttendanceButton value={2} state={state} setState={setState} />
 			</div >
 		)
 	}
 
+	function DeliveryButtons({ state, setState }) {
+		function DeliveryButton({ value, state, setState }) {
+			function handleOnClick(e) {
+				e.preventDefault();
+				if (value !== state) setState(value);
+			}
+			let buttonStyle = value === state ? styles.deliveryButtonSelected : styles.deliveryButton
+			if (value === 'In Person') {
+				return <button className={`${buttonStyle} ${styles.firstDeliveryButton}`} onClick={handleOnClick}>{value}</button>
+			}
+			else if (value === 'Hybrid') {
+				return <button className={`${buttonStyle} ${styles.lastDeliveryButton}`} onClick={handleOnClick}>{value}</button>
+			} else {
+				return <button className={`${buttonStyle}`} onClick={handleOnClick}>{value}</button>
+			}
+
+		}
+		return (
+			<div className={styles.deliveryButtonsWrapper}>
+				<DeliveryButton value={'In Person'} state={state} setState={setState} />
+				<DeliveryButton value={'Online'} state={state} setState={setState} />
+				<DeliveryButton value={'Hybrid'} state={state} setState={setState} />
+			</div >
+		)
+	}
 	return (
 		<div className={styles.review}>
 			<div className={styles.titleContainer}>
@@ -103,8 +127,8 @@ export default function Review() {
 			<div className={styles.reviewContainer}>
 				<form className={styles.form}>
 					<div className={styles.dropdownWrapper}>
-						<button>Select Semester</button>
-						<button>Select Professor</button>
+						<button className={styles.tempButtonStyle}>temp* Select Semester</button>
+						<button className={styles.tempButtonStyle}>temp* Select Professor</button>
 					</div>
 					<div className={styles.ratingWrapper}>
 						<h2 className={styles.ratingDesc}>Rate the difficulty of this course</h2>
@@ -115,16 +139,22 @@ export default function Review() {
 						<RatingButtons state={quality} setState={setQuality} />
 					</div>
 					<div className={styles.ratingWrapper}>
-						<h2>Attendance is requried</h2>
+						<h2 className={styles.ratingDesc}>Attendance is requried</h2>
 						<AttendanceButtons state={attendance} setState={setAttendance} />
 					</div>
 					<div className={styles.ratingWrapper}>
-						<h2>Your GPA (optional)</h2>
+						<h2 className={styles.ratingDesc}>Your grade (optional)</h2>
+						<button className={styles.gradeDropdown} onClick={(e) => e.preventDefault()}>
+
+						</button>
 					</div>
 					<div className={styles.ratingWrapper}>
-						<h2>Delivery mode</h2>
+						<h2 className={styles.ratingDesc}>Delivery mode</h2>
+						<DeliveryButtons state={delivery} setState={setDelivery} />
 					</div>
-					<div className={styles.divider}></div>
+
+					<div className={styles.dividerContainer}><div className={styles.divider}></div></div>
+
 					<div className={styles.commentWrapper}>
 						<h2 className={styles.ratingDesc}>Your Comment:</h2>
 						<textarea placeholder="Write a comment..."></textarea>
