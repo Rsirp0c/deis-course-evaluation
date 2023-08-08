@@ -3,10 +3,6 @@
 
 @media screen and (max-width: 1200px) {}
 
-select {
-	appearance: none;
-}
-
 /**********
 search review 
 **********/
@@ -14,27 +10,18 @@ search review
 .searchReviewContainer {
 	position: fixed;
 	height: 100%;
-	width: 50%;
-	left: 0;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	z-index: 2;
 }
 
 .searchReviewWrapper {
-	position: fixed;
-	height: 360px;
-	width: auto;
-	transform: translateY(15vh);
-	/* BETTER WAY TO ADJUST POSITION?*/
-	z-index: 3;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	transform: translateY(20vh);
 }
 
 .searchReview {
-	width: 350px;
+	width: auto;
 	background-color: transparent;
 	display: flex;
 
@@ -55,10 +42,6 @@ search review
 	margin-top: 2px;
 }
 
-.wrapper {
-	height: 100%;
-	padding-top: 15px;
-}
 
 .select {
 	width: 350px;
@@ -73,14 +56,15 @@ search review
 
 .search {
 	composes: select;
-	width: 320px;
+	width: 450px;
 }
 
 .searchWrapper {
-	composes: wrapper;
+	height: 100%;
+	padding-top: 15px;
 }
 
-.searchButton {
+.searchInput {
 	background-color: transparent;
 	border: none;
 	cursor: pointer;
@@ -97,16 +81,10 @@ search review
 
 }
 
-.arrowDown {
-	composes: searchButton;
-	composes: searchIcon;
-	z-index: 1;
 
-}
-
-
-.goButton {
-	composes: select;
+.searchButton {
+	composes: search;
+	width: 480px;
 	text-align: center;
 	margin-top: 15px;
 	padding: 20px 20px 20px;
@@ -118,29 +96,14 @@ search review
 	cursor: pointer;
 }
 
-.goButton:hover {
+.searchButton:hover {
 	opacity: 0.8;
 }
 
 /**********
-review 
-**********/
-.reviewContainer {
-	composes: searchReviewContainer;
-	right: 0;
-	left: auto;
-}
-
-.reviewWrapper {
-	composes: searchReviewWrapper;
-	/* transform: translate(60vw, 20vh); */
-}
-
-
-/**********
 background image
 **********/
-.container {
+.background {
 	margin-top: -65px;
 	position: fixed;
 	width: 100%;
@@ -151,18 +114,9 @@ background image
 	display: flex;
 }
 
-.rightContainer {
-	height: 200%;
-	width: 100%;
-	background-color: rgba(166, 200, 255, 0.522);
-	z-index: 1;
-}
-
-.leftContainer {
-	transform: translate(-50vw, -50vh) rotate(5deg);
-	height: 200%;
+.container {
+	height: 100%;
 	width: 100%;
 	background-color: rgba(29, 5, 78, 0.368);
 	z-index: 2;
-	position: fixed;
 }
