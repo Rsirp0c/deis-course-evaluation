@@ -1,0 +1,113 @@
+.review {
+	color: rgba(16, 20, 34, 0.771);
+}
+
+.titleContainer {
+	height: 150px;
+	width: 100%;
+	box-shadow: 0 2px 20px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+	padding-top: 50px;
+	margin-left: 55px;
+	font-size: 30px;
+	font-weight: 700;
+}
+
+.titleSpan {
+	font-weight: 400;
+}
+
+.reviewContainer {
+	display: flex;
+	justify-content: center;
+}
+
+/*Controls the contents width*/
+.form {
+	width: 1150px;
+	height: auto;
+}
+
+.h2 {
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.ratingDesc {
+	margin: auto 0;
+}
+
+
+.ratingWrapper {
+	margin-top: 40px;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	width: 100%;
+}
+
+/* Rating buttons*/
+.ratingButtonsWrapper {
+	display: flex;
+	justify-content: space-evenly;
+	flex-direction: row;
+	width: 615px;
+}
+
+.levelText {
+	margin: auto 0;
+}
+
+.ratingButton {
+	height: 35px;
+	width: 90px;
+	border: none;
+	background-color: rgba(0, 0, 0, 0.205);
+	margin-right: 3px;
+	cursor: pointer;
+}
+
+.ratingButton:hover {
+	background-color: #3a7bd5b6;
+}
+
+.firstRatingButton {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.lastRatingButton {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	margin-right: 0;
+}
+
+.ratingButtonSelected {
+	composes: ratingButton;
+	background-color: #3A7BD5;
+}
+
+.attendanceButton {
+	composes: ratingButton;
+	font-family: Montserrat;
+	font-size: 14px;
+	color: rgba(0, 0, 0, 0.71);
+	width: 300px;
+}
+
+.attendanceButtonSelected {
+	composes: attendanceButton;
+	background-color: #3A7BD5;
+}
+
+.firstAttendanceButton {
+	composes: attendanceButton;
+	composes: firstRatingButton;
+}
+
+.lastAttendanceButton {
+	composes: attendanceButton;
+	composes: lastRatingButton;
+}

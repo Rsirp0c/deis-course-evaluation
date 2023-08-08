@@ -19,8 +19,8 @@
 			"requirements": "Does not satisfy any requirements"
 		},
 		{
-			"course": "COSI 10A",
-			"courseTitle": "INTRODUCTION TO PROBLEM SOLVING IN PYTHON",
+			"course": "COSI 21B",
+			"courseTitle": "DATA STRUCTURES AND ALOGORITHMS",
 			"professors": [
 				{
 					"name": "Timothy Hickey",

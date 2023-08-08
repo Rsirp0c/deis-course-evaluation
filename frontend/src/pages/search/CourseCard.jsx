@@ -6,8 +6,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-// These are for custom rating hearts from MUI
+/**
+ * These are for custom rating hearts from MUI
+ * */
 const StyledRating = styled(Rating)({
 	'& .MuiRating-iconFilled': {
 		color: '#3A7BD5',
@@ -17,7 +20,9 @@ const StyledRating = styled(Rating)({
 	},
 });
 
-// CSS styles changing rating box color based on rating
+/**
+ * CSS styles changing rating box color based on rating
+ * */
 function RatingBox({ ratingAverage }) {
 
 	let color
@@ -43,14 +48,22 @@ function RatingBox({ ratingAverage }) {
 		</div>
 	)
 }
-
+/**
+ * React component for a course card
+ */
 export default function CourseCard({ course }) {
 
 	const [clicked, setClicked] = useState(false)
+	const navigate = useNavigate();
 
-	function handleClick() {
+	function handleLikedCourse() {
 		setClicked(!clicked)
 		// Implement adding the course to the user's list
+	}
+
+	function handleRateCourse() {
+		const courseName = course.course + ' ' + course.courseTitle;
+		navigate(`/review/${courseName}`)
 	}
 	return (
 		<div className={styles.card}>
@@ -62,7 +75,7 @@ export default function CourseCard({ course }) {
 					<p className={styles.prerequisites}>Prerequisite: {course.prerequisites}</p>
 				</div>
 				<div className={styles.button}>
-					<button className={styles.listButton} onClick={handleClick}>
+					<button className={styles.listButton} onClick={handleLikedCourse}>
 						<StyledRating
 							name="rating-heart"
 							max={1}
@@ -74,7 +87,7 @@ export default function CourseCard({ course }) {
 						/>
 						<p>Add to list</p>
 					</button>
-					<button className={styles.rateButton}>Rate this course</button>
+					<button className={styles.rateButton} onClick={handleRateCourse}>Rate this course</button>
 				</div>
 			</div>
 		</div>
