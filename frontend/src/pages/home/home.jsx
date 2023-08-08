@@ -1,27 +1,11 @@
 /* eslint-disable react/prop-types */
 import styles from './Home.module.css'
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+// import { useState } from 'react';
 // import useWindowWidth from '../../utils/useWindowWidth';
 
 // icon imports
 import { GoSearch } from 'react-icons/go';
-import { SlArrowDown } from 'react-icons/sl'
-
-
-function Select({ title }) {
-	const options = [
-		{ id: 1, name: `Select ${title}` },
-		{ id: 2, name: "option 1" },
-		{ id: 3, name: "option 2" },
-		{ id: 4, name: "option 3" },
-	]
-	return (
-		<select name="" className={styles.select} >
-			{options.map(option => <option key={option.id} value="">{option.name}</option>)}
-		</select>
-	)
-}
 
 /**
  *  This is the main search page in the main page
@@ -33,6 +17,7 @@ function SearchCourse() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
+
 		navigate("/search")
 	}
 	return (
@@ -43,21 +28,11 @@ function SearchCourse() {
 					<div className={styles.searchReview}>
 
 						<form action="" onSubmit={handleSubmit} className={styles.searchBar}>
-							<div className={styles.wrapper}>
-								<Select title="department" />
-								<SlArrowDown className={styles.arrowDown} />
-							</div>
-							<div className={styles.wrapper}>
-								<Select title="professor" />
-								<SlArrowDown className={styles.arrowDown} />
-							</div>
 							<div className={styles.searchWrapper}>
 								<input type="text" placeholder="Search" className={styles.search} />
-								<button type="submit" className={styles.searchButton}><GoSearch className={styles.searchIcon} /></button>
-
+								<button type="submit" className={styles.searchInput}><GoSearch className={styles.searchIcon} /></button>
 							</div>
-
-							<button type="submit" className={styles.goButton}>Search</button>
+							<button type="submit" className={styles.searchButton}>Search</button>
 						</form>
 					</div>
 
@@ -69,47 +44,6 @@ function SearchCourse() {
 	)
 }
 
-function ReviewCourse() {
-
-	const navigate = useNavigate();
-	const [searchValue, setSearchValue] = useState("");
-	const handleSubmit = (event) => {
-		event.preventDefault()
-
-		const data = {
-			searchValue: searchValue
-		};
-		navigate("/review", { state: data })
-	}
-	return (
-		<>
-			<div className={styles.reviewContainer}>
-				<div className={styles.reviewWrapper}>
-					<p className={styles.searchTitle}>Write a Review, Now!</p>
-					<div className={styles.searchReview}>
-
-						<form action="" onSubmit={handleSubmit} className={styles.searchBar}>
-							<div className={styles.wrapper}>
-								<Select title="department" />
-								<SlArrowDown className={styles.arrowDown} />
-							</div>
-							<div className={styles.searchWrapper}>
-								<input type="text" placeholder="Search" className={styles.search} />
-								<button type="submit" className={styles.searchButton}><GoSearch className={styles.searchIcon} /></button>
-
-							</div>
-
-							<button type="submit" className={styles.goButton}>Review</button>
-						</form>
-					</div>
-
-				</div>
-			</div>
-
-
-		</>
-	)
-}
 
 export default function Home() {
 
@@ -117,12 +51,9 @@ export default function Home() {
 
 	return (
 		<>
-			<div className={styles.container}>
-				<div className={styles.leftContainer}></div>
-
-				<div className={styles.rightContainer}></div>
+			<div className={styles.background}>
+				<div className={styles.container}></div>
 				<SearchCourse />
-				<ReviewCourse />
 			</div>
 		</>
 	)
