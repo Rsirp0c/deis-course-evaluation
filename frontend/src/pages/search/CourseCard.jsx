@@ -78,7 +78,7 @@ export default function CourseCard({ course }) {
           </p>
         </div>
         <div className={styles.button}>
-          <button className={styles.listButton} onClick={handleLikedCourse}>
+          <button type='button' className={styles.listButton} onClick={handleLikedCourse}>
             <StyledRating
               name="rating-heart"
               max={1}
@@ -90,7 +90,7 @@ export default function CourseCard({ course }) {
             />
             <p>Add to list</p>
           </button>
-          <button className={styles.rateButton} onClick={handleRateCourse}>Rate this course</button>
+          <button type='button' className={styles.rateButton} onClick={handleRateCourse}>Rate this course</button>
         </div>
       </div>
     </div>
