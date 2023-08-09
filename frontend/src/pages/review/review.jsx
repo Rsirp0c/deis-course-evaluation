@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 import { useParams } from 'react-router-dom';
-import styles from './review.module.css';
 import { useState } from 'react';
+import styles from './review.module.css';
+import DropdownSelection from './DropdownSelection.jsx';
 
 /**
  * Formats the course name passed through URL to be title case
- * @param {} str 
- * @returns 
+ * @param {} str
+ * @returns
  */
 function format(str) {
-
 	const smallWordsSet = new Set(['a', 'an', 'and', 'as', 'at', 'but', 'by', 'for', 'if', 'in', 'nor', 'of', 'on', 'or', 'so', 'the', 'to', 'up', 'yet']);
 
 	const words = str.split(' ');
@@ -18,16 +18,15 @@ function format(str) {
 
 	for (let i = 0; i < words.length; i++) {
 		if (i === 0 || i === 1) {
-			newStr += words[i].toUpperCase() + ' ';
+			newStr += `${words[i].toUpperCase()} `;
 		} else {
-			const word = words[i].toLowerCase()
+			const word = words[i].toLowerCase();
 			if (smallWordsSet.has(word) && i !== 2) {
-				newStr += word.toLowerCase() + ' ';
+				newStr += `${word.toLowerCase()} `;
 			} else {
-				newStr += word.charAt(0).toUpperCase() + word.slice(1) + ' ';
+				newStr += `${word.charAt(0).toUpperCase() + word.slice(1)} `;
 			}
 		}
-
 	}
 	return newStr;
 }
@@ -38,23 +37,20 @@ export default function Review() {
 	const [quality, setQuality] = useState(3);
 	const [attendance, setAttendance] = useState(1);
 	const [delivery, setDelivery] = useState('In Person');
-	const numRatingButtons = new Array(1, 2, 3, 4, 5);
-
+	const numRatingButtons = [1, 2, 3, 4, 5];
 
 	function RatingButtons({ state, setState }) {
-
 		function RatingButton({ rate, state, setState }) {
 			function handleOnClick(e) {
 				e.preventDefault();
 				if (rate !== state) setState(rate);
 			}
 			let buttonStyle = rate === state ? styles.ratingButtonSelected : styles.ratingButton;
-			if (rate === 1)
-				buttonStyle = `${buttonStyle} ${styles.firstRatingButton}`;
+			if (rate === 1) buttonStyle = `${buttonStyle} ${styles.firstRatingButton}`;
 			else if (rate === 5) {
 				buttonStyle = `${buttonStyle} ${styles.lastRatingButton}`;
 			}
-			return <button className={buttonStyle} onClick={handleOnClick}></button>
+			return <button className={buttonStyle} onClick={handleOnClick} />;
 		}
 		return (
 			<div className={styles.ratingButtonsWrapper}>
@@ -63,35 +59,33 @@ export default function Review() {
 					<RatingButton key={rate} rate={rate} state={state} setState={setState} />
 				))}
 				<p className={styles.levelText}>GOAT</p>
-			</div >
-		)
+			</div>
+		);
 	}
 	/**
-	 * Not 'DRY' enough, cleaan up this later
-	 * @param {*} param0 
-	 * @returns 
-	 */
+	   * Not 'DRY' enough, cleaan up this later
+	   * @param {*} param0
+	   * @returns
+	   */
 	function AttendanceButtons({ state, setState }) {
 		function AttendanceButton({ value, state, setState }) {
 			function handleOnClick(e) {
 				e.preventDefault();
 				if (value !== state) setState(value);
 			}
-			let buttonStyle = value === state ? styles.attendanceButtonSelected : styles.attendanceButton
+			let buttonStyle = value === state ? styles.attendanceButtonSelected : styles.attendanceButton;
 			if (value === 1) {
-				return <button className={buttonStyle = `${buttonStyle} ${styles.firstAttendanceButton}`} onClick={handleOnClick}>Yes</button>
+				return <button className={buttonStyle = `${buttonStyle} ${styles.firstAttendanceButton}`} onClick={handleOnClick}>Yes</button>;
+			} if (value === 2) {
+				return <button className={`${buttonStyle} ${styles.lastAttendanceButton}`} onClick={handleOnClick}>No</button>;
 			}
-			else if (value === 2) {
-				return <button className={`${buttonStyle} ${styles.lastAttendanceButton}`} onClick={handleOnClick}>No</button>
-			}
-
 		}
 		return (
 			<div className={styles.attendanceButtonsWrapper}>
 				<AttendanceButton value={1} state={state} setState={setState} />
 				<AttendanceButton value={2} state={state} setState={setState} />
-			</div >
-		)
+			</div>
+		);
 	}
 
 	function DeliveryButtons({ state, setState }) {
@@ -100,35 +94,36 @@ export default function Review() {
 				e.preventDefault();
 				if (value !== state) setState(value);
 			}
-			let buttonStyle = value === state ? styles.deliveryButtonSelected : styles.deliveryButton
+			const buttonStyle = value === state ? styles.deliveryButtonSelected : styles.deliveryButton;
 			if (value === 'In Person') {
-				return <button className={`${buttonStyle} ${styles.firstDeliveryButton}`} onClick={handleOnClick}>{value}</button>
+				return <button className={`${buttonStyle} ${styles.firstDeliveryButton}`} onClick={handleOnClick}>{value}</button>;
+			} if (value === 'Hybrid') {
+				return <button className={`${buttonStyle} ${styles.lastDeliveryButton}`} onClick={handleOnClick}>{value}</button>;
 			}
-			else if (value === 'Hybrid') {
-				return <button className={`${buttonStyle} ${styles.lastDeliveryButton}`} onClick={handleOnClick}>{value}</button>
-			} else {
-				return <button className={`${buttonStyle}`} onClick={handleOnClick}>{value}</button>
-			}
-
+			return <button className={`${buttonStyle}`} onClick={handleOnClick}>{value}</button>;
 		}
 		return (
 			<div className={styles.deliveryButtonsWrapper}>
-				<DeliveryButton value={'In Person'} state={state} setState={setState} />
-				<DeliveryButton value={'Online'} state={state} setState={setState} />
-				<DeliveryButton value={'Hybrid'} state={state} setState={setState} />
-			</div >
-		)
+				<DeliveryButton value="In Person" state={state} setState={setState} />
+				<DeliveryButton value="Online" state={state} setState={setState} />
+				<DeliveryButton value="Hybrid" state={state} setState={setState} />
+			</div>
+		);
 	}
 	return (
 		<div className={styles.review}>
 			<div className={styles.titleContainer}>
-				<h1 className={styles.title}><span className={styles.titleSpan}>Rate: </span>{format(course)}</h1>
+				<h1 className={styles.title}>
+					<span className={styles.titleSpan}>Rate: </span>
+					{format(course)}
+				</h1>
 			</div>
 			<div className={styles.reviewContainer}>
 				<form className={styles.form}>
 					<div className={styles.dropdownWrapper}>
-						<button className={styles.tempButtonStyle}>temp* Select Semester</button>
-						<button className={styles.tempButtonStyle}>temp* Select Professor</button>
+						<DropdownSelection/>
+						<button type='button' className={styles.tempButtonStyle}>temp* Select Semester</button>
+						<button type='button' className={styles.tempButtonStyle}>temp* Select Professor</button>
 					</div>
 					<div className={styles.ratingWrapper}>
 						<h2 className={styles.ratingDesc}>Rate the difficulty of this course</h2>
@@ -144,26 +139,22 @@ export default function Review() {
 					</div>
 					<div className={styles.ratingWrapper}>
 						<h2 className={styles.ratingDesc}>Your grade (optional)</h2>
-						<button className={styles.gradeDropdown} onClick={(e) => e.preventDefault()}>
-
-						</button>
+						<button className={styles.gradeDropdown} onClick={(e) => e.preventDefault()} />
 					</div>
 					<div className={styles.ratingWrapper}>
 						<h2 className={styles.ratingDesc}>Delivery mode</h2>
 						<DeliveryButtons state={delivery} setState={setDelivery} />
 					</div>
 
-					<div className={styles.dividerContainer}><div className={styles.divider}></div></div>
+					<div className={styles.dividerContainer}><div className={styles.divider} /></div>
 
 					<div className={styles.commentWrapper}>
 						<h2 className={styles.ratingDesc}>Your Comment:</h2>
-						<textarea placeholder="Write a comment..."></textarea>
+						<textarea placeholder="Write a comment..." />
 					</div>
-					<div className={styles.submit}>
-
-					</div>
+					<div className={styles.submit} />
 				</form>
 			</div>
 		</div>
-	)
+	);
 }

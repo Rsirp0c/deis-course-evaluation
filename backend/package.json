@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"doc": "jsdoc -c jsdoc.json",
-		"lint": "eslint . --fix --ext .js,.jsx",
+		"lint": "eslint . --fix --ext .js",
 		"start": "nodemon index.js"
 	},
 	"author": "",
@@ -21,7 +21,6 @@
 	"type": "module",
 	"devDependencies": {
 		"eslint": "^8.43.0",
-		"eslint-plugin-react": "^7.32.2",
 		"jsdoc": "^4.0.2",
 		"morgan": "^1.10.0",
 		"nodemon": "^2.0.22"
