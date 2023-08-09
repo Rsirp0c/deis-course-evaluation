@@ -1,12 +1,3 @@
-.dropdownWrapper {
-	margin-top: 40px;
-}
-
-.tempButtonStyle {
-	width: 280px;
-	height: 60px;
-	margin-right: 20px;
-}
 
 .review {
 	color: rgba(16, 20, 34, 0.771);
@@ -34,6 +25,12 @@
 	justify-content: center;
 }
 
+.dropdownWrapper{
+	margin-top: 40px;
+	display: flex;
+	justify-direction: row;
+	width: 100%;
+}
 /*Controls the contents width*/
 .form {
 	width: 1150px;
@@ -58,111 +55,16 @@
 	width: 100%;
 }
 
-/* Rating buttons*/
-.ratingButtonsWrapper {
-	display: flex;
-	justify-content: space-evenly;
-	flex-direction: row;
+/* Grade button*/
+.gradeDropdown {
 	width: 615px;
-}
-
-.levelText {
-	margin: auto 0;
-}
-
-.ratingButton {
 	height: 35px;
-	width: 90px;
 	border: none;
 	background-color: rgba(0, 0, 0, 0.205);
 	margin-right: 3px;
 	cursor: pointer;
-}
-
-.ratingButton:hover {
-	background-color: #3a7bd5b6;
-}
-
-.firstRatingButton {
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-}
-
-.lastRatingButton {
-	border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
-	margin-right: 0;
-}
-
-.ratingButtonSelected {
-	composes: ratingButton;
-	background-color: #3A7BD5;
-}
-
-/* Attendance buttons*/
-
-.attendanceButton {
-	composes: ratingButton;
-	font-family: Montserrat;
-	font-size: 14px;
-	margin-right: 0;
-	color: rgba(0, 0, 0, 0.71);
-	width: 305px;
-}
-
-.attendanceButtonsWrapper {
-	composes: ratingButtonsWrapper;
-	justify-content: space-between;
-}
-
-.attendanceButtonSelected {
-	composes: attendanceButton;
-	background-color: #3A7BD5;
-}
-
-.firstAttendanceButton {
-	composes: attendanceButton;
-	composes: firstRatingButton;
-}
-
-.lastAttendanceButton {
-	composes: attendanceButton;
-	composes: lastRatingButton;
-}
-
-/* Grade button*/
-.gradeDropdown {
-	width: 615px;
-	composes: ratingButton;
 	border-radius: 5px;
 	margin-right: 0;
-}
-
-/* Delivery Button*/
-
-.deliveryButton {
-	composes: attendanceButton;
-	width: 200px;
-}
-
-.deliveryButtonSelected {
-	composes: deliveryButton;
-	background-color: #3A7BD5;
-}
-
-.lastDeliveryButton {
-	composes: ratingButton;
-	composes: lastRatingButton;
-}
-
-.firstDeliveryButton {
-	composes: ratingButton;
-	composes: firstRatingButton;
-}
-
-.deliveryButtonsWrapper {
-	composes: ratingButtonsWrapper;
-	justify-content: space-between;
 }
 
 /* Divider */
@@ -182,3 +84,34 @@
 }
 
 /* Comment section*/
+
+.textBoxContainer{
+	display: flex;
+	justify-content: center;
+}
+
+/* submit button */
+
+.submit{
+	margin: 40px 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.submitButton{
+	font-family: 'Montserrat', sans-serif;
+	color: #FFFFFF;
+	font-size: 20px;
+	font-weight: 700;
+	width: 300px;
+	height: 50px;
+	border: none;
+	background-color: #3A7BD5;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.submitButton:hover{
+	opacity: 0.8;
+
+}
