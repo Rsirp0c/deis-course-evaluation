@@ -1,0 +1,117 @@
+
+.review {
+	color: rgba(16, 20, 34, 0.771);
+}
+
+.titleContainer {
+	height: 150px;
+	width: 100%;
+	box-shadow: 0 2px 20px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+	padding-top: 50px;
+	margin-left: 55px;
+	font-size: 30px;
+	font-weight: 700;
+}
+
+.titleSpan {
+	font-weight: 400;
+}
+
+.reviewContainer {
+	display: flex;
+	justify-content: center;
+}
+
+.dropdownWrapper{
+	margin-top: 40px;
+	display: flex;
+	justify-direction: row;
+	width: 100%;
+}
+/*Controls the contents width*/
+.form {
+	width: 1150px;
+	height: auto;
+}
+
+.h2 {
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.ratingDesc {
+	margin: auto 0;
+}
+
+
+.ratingWrapper {
+	margin-top: 40px;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	width: 100%;
+}
+
+/* Grade button*/
+.gradeDropdown {
+	width: 615px;
+	height: 35px;
+	border: none;
+	background-color: rgba(0, 0, 0, 0.205);
+	margin-right: 3px;
+	cursor: pointer;
+	border-radius: 5px;
+	margin-right: 0;
+}
+
+/* Divider */
+.dividerContainer {
+	display: flex;
+	justify-content: left;
+	width: 98%;
+	margin: 0 auto;
+}
+
+.divider {
+	width: 60px;
+	height: 3px;
+	background-color: #3A7BD5;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+/* Comment section*/
+
+.textBoxContainer{
+	display: flex;
+	justify-content: center;
+}
+
+/* submit button */
+
+.submit{
+	margin: 40px 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.submitButton{
+	font-family: 'Montserrat', sans-serif;
+	color: #FFFFFF;
+	font-size: 20px;
+	font-weight: 700;
+	width: 300px;
+	height: 50px;
+	border: none;
+	background-color: #3A7BD5;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.submitButton:hover{
+	opacity: 0.8;
+
+}
