@@ -2,8 +2,14 @@
 import { createContext, useEffect, useState } from 'react';
 import { setJWT, validateJWT } from '../utils/auth.js';
 
-export const UserContext = createContext(null);
 
+export const UserContext = createContext(null);
+/**
+ * This sets thhe global state for user info
+ * TO DO: split up api calls and context into separate files
+ * @param {*} param0 
+ * @returns 
+ */
 export default function UserProvider({ children }) {
     const [error, setError] = useState(false);
     const [authenticated, setAuthenticated] = useState(false);
@@ -34,6 +40,23 @@ export default function UserProvider({ children }) {
                     setId(id);
                     setEmail(email);
                     setAuthenticated(true);
+					
+					
+					fetch('http://localhost:3000/api/liked-courses', {
+						method: 'POST',
+						headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ userId: id }),
+						}).then((res) => res.json()).then((res) => {
+					if (!res.error) {
+								localStorage.setItem('likedCourses', JSON.stringify(res));
+					} else {
+						console.log(res.error);
+					}
+		}).catch((err) => {
+			console.log(err);
+		});
                 } else {
                     setAuthenticated(false);
                 }
@@ -44,6 +67,8 @@ export default function UserProvider({ children }) {
                 setError(true);
                 setLoading(false);
             });
+
+		
     }, []);
 
     if (loading) {

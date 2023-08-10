@@ -93,8 +93,9 @@ export default function CourseCard({ course, reload }) {
 		setLoggingIn(true);
 	}else{
 		setClicked(!clicked);
-		console.log(reload)
-		reload();
+		if(reload){
+			reload();
+		}
 	}
   }
 

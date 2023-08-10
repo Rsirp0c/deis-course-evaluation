@@ -13,20 +13,12 @@ import User from '../models/user.js';
  * @param {*} res 
  */
 export const add = async (req, res) => {
-	let { courseId } = req.body;
-	const { userId } = req.body;
-	let liked
+	const { likedCoursesIds, userId } = req.body;
+	console.log(likedCoursesIds);
 	try {
-		liked = await User.findById(userId).select('likedCourses');
-	
-		const duplicated = liked.likedCourses.includes(courseId);
-		if (duplicated) {
-			res.status(400).json({ error: 'Course already liked' });
-			return;
-		}
-		const result = await User.findByIdAndUpdate(userId, { $push: { likedCourses: courseId } }, { new: true })
+		const result = await User.findByIdAndUpdate(userId, { likedCourses: likedCoursesIds }, { new: true })
 		if(result) res.status(200).json(result);
-		else res.status(404).json({ error: 'Courses not found'});
+		else res.status(404).json({ error: 'Add liked course failed'});
 	} catch (err) {
 		console.error(err);
 		res.status(500).json({ error: err.message });
