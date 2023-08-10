@@ -4,8 +4,9 @@ import Rating from '@mui/material/Rating';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { styled } from '@mui/material/styles';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../contexts/UserContext.jsx';
 import styles from './CourseCard.module.css';
 
 /**
@@ -51,20 +52,59 @@ function RatingBox({ ratingAverage }) {
 
 /**
  * React component for a course card
+ * 
+ * Stores liked courses in local storage and updates when liked/unliked, if user is logged in, stores liked courses in database
  */
-export default function CourseCard({ course }) {
-  const [clicked, setClicked] = useState(false);
+export default function CourseCard({ course, reload }) {
+  	const [clicked, setClicked] = useState(false);
+	const [added, setAdded] = useState(false);
+	const { loggingInState, idState } = useContext(UserContext);
+	const [id, setId] = idState;
+	const [loggingIn, setLoggingIn] = loggingInState;
+
+	// check if course is in liked courses when page is loaded
+	useEffect(() => {
+		const likedCourses = JSON.parse(localStorage.getItem('likedCourses')) || [];
+		if(id){
+			if(likedCourses.includes(course._id)){
+				setClicked(true);
+				setAdded(true);
+			}
+		}
+	}, []);
+
+	useEffect(() => {	
+		const likedCourses = JSON.parse(localStorage.getItem('likedCourses')) || [];
+		if(clicked && !added){
+			setAdded(true);
+			likedCourses.push(course._id);
+			localStorage.setItem('likedCourses', JSON.stringify(likedCourses));
+		}else if(!clicked && added){
+			setAdded(false);
+			const deletedCourses = likedCourses.filter((likedCourse) => likedCourse !== course._id);
+			localStorage.setItem('likedCourses', JSON.stringify(deletedCourses));
+		}
+	}, [clicked]);
+
   const navigate = useNavigate();
 
   function handleLikedCourse() {
-    setClicked(!clicked);
-    // Implement adding the course to the user's list
+	if(!id){
+		setLoggingIn(true);
+	}else{
+		setClicked(!clicked);
+		console.log(reload)
+		reload();
+	}
   }
+
+
 
   function handleRateCourse() {
     const courseName = `${course.course} ${course.courseTitle}`;
     navigate(`/review/${courseName}`);
   }
+  
   return (
     <div className={styles.card}>
       <RatingBox ratingAverage={course.ratingAverage} />

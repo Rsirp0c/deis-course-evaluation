@@ -18,14 +18,15 @@ export const add = async (req, res) => {
 	let liked
 	try {
 		liked = await User.findById(userId).select('likedCourses');
+	
 		const duplicated = liked.likedCourses.includes(courseId);
 		if (duplicated) {
-			res.status(200).json({ message: 'Course already liked' });
+			res.status(400).json({ error: 'Course already liked' });
 			return;
 		}
 		const result = await User.findByIdAndUpdate(userId, { $push: { likedCourses: courseId } }, { new: true })
 		if(result) res.status(200).json(result);
-		else res.status(404).json({ error: 'Course not found'});
+		else res.status(404).json({ error: 'Courses not found'});
 	} catch (err) {
 		console.error(err);
 		res.status(500).json({ error: err.message });
@@ -50,6 +51,7 @@ export const remove = async (req, res) => {
 };
 
 /**
+ * 
  * This controller returns the likedCourses array of a user
  * @param {*} req
  * @param {*} res
@@ -57,7 +59,12 @@ export const remove = async (req, res) => {
 export const get = async (req, res) => {
 	const { userId } = req.body;
 	try {
-		const likedCourses = User.findById(userId).likedCourses;
+		const result = await User.findById(userId).select('likedCourses');
+		const likedCourses = result.likedCourses;
+		if (likedCourses.length === 0) {	
+			res.json({ error: 'No liked courses' });
+			return;
+		}
 		res.status(200).json(likedCourses);
 	} catch (err) {
 		console.error(err);
@@ -65,3 +72,13 @@ export const get = async (req, res) => {
 	}
 };
 
+export const getWithIds = async (req, res) => {
+	const { likedCoursesIds } = req.body;
+	try {
+		const result = await Course.find({ _id: { $in: likedCoursesIds } });
+		res.status(200).json(result);
+	}catch (err) {
+		console.error(err);
+		res.status(500).json({ error: err.message });
+	}
+};
