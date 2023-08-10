@@ -1,0 +1,21 @@
+h1{
+	margin: 20px
+}
+p{
+	text-align: center;
+}
+
+/* Divider */
+.dividerContainer {
+	display: flex;
+	justify-content: left;
+	width: 98%;
+	margin: 0 auto;
+}
+
+.divider {
+	width: 60px;
+	height: 3px;
+	background-color: #3A7BD5;
+	margin: 20px 0 20px 20px;
+}

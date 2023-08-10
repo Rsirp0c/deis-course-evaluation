@@ -19,6 +19,30 @@ export default function UserProvider({ children }) {
     const [loggingIn, setLoggingIn] = useState(false); // state for login popup, use this when user clicks on login button or functionalities that require login
     const [loading, setLoading] = useState(true);
 
+
+	useEffect(() => {
+		if (authenticated) {
+
+			fetch('http://localhost:3000/api/liked-courses', {
+				method: 'POST',
+				headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ userId: id }),
+				}).then((res) => res.json()).then((res) => {
+			if (!res.error) {
+						localStorage.setItem('likedCourses', JSON.stringify(res));
+			} else {
+				console.log(res.error);
+			}
+			}).catch((err) => {
+				console.log(err);
+			});
+		}
+	}, []);
+
+
+
     useEffect(() => {
         setJWT().then((success) => {
             if (success === false) {
@@ -41,22 +65,6 @@ export default function UserProvider({ children }) {
                     setEmail(email);
                     setAuthenticated(true);
 					
-					
-					fetch('http://localhost:3000/api/liked-courses', {
-						method: 'POST',
-						headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({ userId: id }),
-						}).then((res) => res.json()).then((res) => {
-					if (!res.error) {
-								localStorage.setItem('likedCourses', JSON.stringify(res));
-					} else {
-						console.log(res.error);
-					}
-		}).catch((err) => {
-			console.log(err);
-		});
                 } else {
                     setAuthenticated(false);
                 }

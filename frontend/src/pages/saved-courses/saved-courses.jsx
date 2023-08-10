@@ -33,10 +33,16 @@ const [reloadPage , setReloadPage] = useState(false);
 
   }, [reloadPage]);
  
+  const empty = () => {
+	if (data.length === 0) return <p>No saved courses</p>
+	return null
+	;}
 
 	return (
 		<div>
 			<h1>My Saved Courses</h1>
+			<div className={styles.dividerContainer}><div className={styles.divider} /></div>
+			{empty()}
 			{data ? data.map((course) =>  (<CourseCard key={course._id} course={course} reload={reload}/>)) : <p>Loading...</p>}
 		</div>
 	);
