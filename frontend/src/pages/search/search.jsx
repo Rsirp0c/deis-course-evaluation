@@ -1,7 +1,7 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
+import {useSearchParams} from 'react-router-dom';
 import styles from './search.module.css';
 import CourseCard from '../../components/CourseCard.jsx';
-import { UserContext } from '../../contexts/UserContext.jsx';
 
 function Error() {
   return (
@@ -14,22 +14,25 @@ function Error() {
 export default function Search() {
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
-  const { idState } = useContext(UserContext);
-  const [id, setId] = idState;
-  
+  const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams.get('course'));
   // fetch data from backend when page is loaded
   useEffect(() => {
-    fetch('http://localhost:3000/api/courses')
+    fetch(`http://localhost:3000/api/courses?course=${searchParams.get('course')}`)
       .then((res) => res.json()).then((res) => {
-        console.log(`retrieved course data`);
-        setData(res);
+		if(!res.error){
+			console.log(`retrieved course data`);
+			setData(res);
+			return
+		}
+        setError(true);
+		console.log(res.error);
       })
       .catch((err) => {
         console.log(err); 
         setError(true);
       });
 
-	  // TO DO: fetch liked courses from backend and store in localstorage
   }, []);
 
 
@@ -38,7 +41,7 @@ export default function Search() {
 
   return (
     <div>
-      {data ? data.map((course) =>  (<CourseCard key={course._id} course={course} />)) 
+      {data ? data.map((course) =>  (<CourseCard key={course._id} course={course}  />)) 
 	: <p>Loading...</p>}
     </div>
   );

@@ -52,7 +52,7 @@ function RatingBox({ ratingAverage }) {
 
 /**
  * React component for a course card
- * 
+ * TO DO: clean up and modularize this whole file
  * Stores liked courses in local storage and updates when liked/unliked, if user is logged in, stores liked courses in database
  */
 export default function CourseCard({ course, reload }) {

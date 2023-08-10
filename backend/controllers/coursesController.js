@@ -13,11 +13,28 @@ import Course from '../models/course.js';
  * @param {Object} res - response object
  */
 async function index(req, res, next) {
+	const course = req.query.course;
+
+	console.log(course);
+	let courses = [];
 	try {
-		const courses = await Course.find({});
-		res.locals.courses = courses;
-		res.status(200).json(courses);
-		next();
+		if(!course){
+			courses = await Course.find({});
+			res.locals.courses = courses;
+			res.status(200).json(courses);
+			next();
+		}else{
+			courses = await Course.find(
+				{$or: [
+					{ "course": { $regex: course, $options: "i" }},
+					{ "courseTitle": { $regex: course, $options: "i" }},
+				]},
+			);
+			console.log(courses);
+			res.status(200).json(courses);
+
+		}
+			
 	} catch (err) {
 		res.status(500).json({ error: err.message });
 	}

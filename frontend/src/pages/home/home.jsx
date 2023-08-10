@@ -1,23 +1,28 @@
 import { useNavigate } from 'react-router-dom';
-// import { useState } from 'react';
+import { useState } from 'react';
 // import useWindowWidth from '../../utils/useWindowWidth';
 
 // icon imports
 import { GoSearch } from 'react-icons/go';
-import styles from './Home.module.css';
+import styles from './home.module.css';
 
 /**
  *  This is the main search page in the main page
  *  TO DO: convert to split page main page
  * */
 function SearchCourse() {
-  const navigate = useNavigate();
+  const [text, setText] = useState("");
+	const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    navigate('/search');
+    navigate(`/search?course=${text}`);
   };
+
+  const handleOnChange = (event) => {
+	setText(event.target.value);
+  };
+
   return (
     <div className={styles.searchReviewContainer}>
       <div className={styles.searchReviewWrapper}>
@@ -26,7 +31,7 @@ function SearchCourse() {
 
           <form action="" onSubmit={handleSubmit} className={styles.searchBar}>
             <div className={styles.searchWrapper}>
-              <input type="text" placeholder="Search" className={styles.search} />
+              <input type="text" placeholder="Search" className={styles.search} value={text} onChange={handleOnChange}/>
               <button type="submit" className={styles.searchInput}><GoSearch className={styles.searchIcon} /></button>
             </div>
             <button type="submit" className={styles.searchButton}>Search</button>
