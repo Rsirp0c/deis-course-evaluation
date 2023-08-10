@@ -4,8 +4,9 @@ import Rating from '@mui/material/Rating';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { styled } from '@mui/material/styles';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../contexts/UserContext.jsx';
 import styles from './CourseCard.module.css';
 
 /**
@@ -53,13 +54,66 @@ function RatingBox({ ratingAverage }) {
  * React component for a course card
  */
 export default function CourseCard({ course }) {
-  const [clicked, setClicked] = useState(false);
+  	const [clicked, setClicked] = useState(false);
+	const [added, setAdded] = useState(false);
+	const { loggingInState, idState } = useContext(UserContext);
+	const [id, setId] = idState;
+	const [loggingIn, setLoggingIn] = loggingInState;
+
+
+	useEffect(() => {
+		if(clicked){
+			fetch('http://localhost:3000/api/liked-courses/add', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					courseId: course._id,
+					userId: id,
+				}),
+			}).then((res) => {
+				if (res.status === 200) {
+					console.log('Successfully added course to liked courses');
+				} else {	
+					console.log('Failed to add course to liked courses');
+				}
+			});
+		}else if(!clicked && added){
+			setAdded(false);
+			fetch('http://localhost:3000/api/liked-courses/remove', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					courseId: course._id,
+					userId: id,
+					}),
+				}).then((res) => {
+					if (res.status === 200) {
+						console.log('Successfully removed course from liked courses');
+					} else {
+						res.json().then((data) =>console.log(data))
+						console.log('Failed to remove course from liked courses');
+					}
+				});
+		}
+	}, [clicked]);
+
   const navigate = useNavigate();
 
   function handleLikedCourse() {
-    setClicked(!clicked);
     // Implement adding the course to the user's list
+	if(!id){
+		setLoggingIn(true);
+	}else{
+		setClicked(!clicked);
+		setAdded(true);
+	}
   }
+
+
 
   function handleRateCourse() {
     const courseName = `${course.course} ${course.courseTitle}`;

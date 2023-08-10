@@ -18,9 +18,10 @@ export const add = async (req, res) => {
 	let liked
 	try {
 		liked = await User.findById(userId).select('likedCourses');
+	
 		const duplicated = liked.likedCourses.includes(courseId);
 		if (duplicated) {
-			res.status(200).json({ message: 'Course already liked' });
+			res.status(400).json({ message: 'Course already liked' });
 			return;
 		}
 		const result = await User.findByIdAndUpdate(userId, { $push: { likedCourses: courseId } }, { new: true })

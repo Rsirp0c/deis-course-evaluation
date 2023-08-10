@@ -10,16 +10,6 @@ function Error() {
   );
 }
 
-/** For implementing the react-router-dom loader method */
-// export async function Loader() {
-// 	const res = await fetch('http://localhost:3000/api/courses')
-// 	if (res.status === 404) {
-// 		throw new Response("Not Found", { status: 404 });
-// 	}
-// 	const data = await res.json()
-// 	return data
-// }
-
 export default function Search() {
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);

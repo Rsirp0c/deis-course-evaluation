@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
-import { useState, useContext } from 'react';
-import { UserContext } from '../../contexts/userContext.jsx';
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext.jsx';
 import styles from './AuthForm.module.css';
 
 export default function AuthForm(props) {
