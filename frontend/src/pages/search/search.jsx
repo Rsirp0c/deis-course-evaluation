@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import styles from './search.module.css';
-import CourseCard from './CourseCard.jsx';
+import CourseCard from '../../components/CourseCard.jsx';
+import { UserContext } from '../../contexts/UserContext.jsx';
 
 function Error() {
   return (
@@ -13,31 +14,32 @@ function Error() {
 export default function Search() {
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
-
+  const { idState } = useContext(UserContext);
+  const [id, setId] = idState;
+  
   // fetch data from backend when page is loaded
   useEffect(() => {
     fetch('http://localhost:3000/api/courses')
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(`retrieved data ${res}`);
-
+      .then((res) => res.json()).then((res) => {
+        console.log(`retrieved course data`);
         setData(res);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err); 
         setError(true);
       });
+
+	  // TO DO: fetch liked courses from backend and store in localstorage
   }, []);
 
-  // console.log(data)
+
 
   if (error) return <Error />;
 
   return (
     <div>
-      {data ? data.map((course) => (
-        <CourseCard key={course._id} course={course} />
-      )) : <p>Loading...</p>}
+      {data ? data.map((course) =>  (<CourseCard key={course._id} course={course} />)) 
+	: <p>Loading...</p>}
     </div>
   );
 }

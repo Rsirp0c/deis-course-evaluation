@@ -6,7 +6,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { styled } from '@mui/material/styles';
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../../contexts/UserContext.jsx';
+import { UserContext } from '../contexts/UserContext.jsx';
 import styles from './CourseCard.module.css';
 
 /**
@@ -52,64 +52,49 @@ function RatingBox({ ratingAverage }) {
 
 /**
  * React component for a course card
+ * 
+ * Stores liked courses in local storage and updates when liked/unliked, if user is logged in, stores liked courses in database
  */
-export default function CourseCard({ course }) {
+export default function CourseCard({ course, reload }) {
   	const [clicked, setClicked] = useState(false);
 	const [added, setAdded] = useState(false);
 	const { loggingInState, idState } = useContext(UserContext);
 	const [id, setId] = idState;
 	const [loggingIn, setLoggingIn] = loggingInState;
 
-
+	// check if course is in liked courses when page is loaded
 	useEffect(() => {
-		if(clicked){
-			fetch('http://localhost:3000/api/liked-courses/add', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					courseId: course._id,
-					userId: id,
-				}),
-			}).then((res) => {
-				if (res.status === 200) {
-					console.log('Successfully added course to liked courses');
-				} else {	
-					console.log('Failed to add course to liked courses');
-				}
-			});
+		const likedCourses = JSON.parse(localStorage.getItem('likedCourses')) || [];
+		if(id){
+			if(likedCourses.includes(course._id)){
+				setClicked(true);
+				setAdded(true);
+			}
+		}
+	}, []);
+
+	useEffect(() => {	
+		const likedCourses = JSON.parse(localStorage.getItem('likedCourses')) || [];
+		if(clicked && !added){
+			setAdded(true);
+			likedCourses.push(course._id);
+			localStorage.setItem('likedCourses', JSON.stringify(likedCourses));
 		}else if(!clicked && added){
 			setAdded(false);
-			fetch('http://localhost:3000/api/liked-courses/remove', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					courseId: course._id,
-					userId: id,
-					}),
-				}).then((res) => {
-					if (res.status === 200) {
-						console.log('Successfully removed course from liked courses');
-					} else {
-						res.json().then((data) =>console.log(data))
-						console.log('Failed to remove course from liked courses');
-					}
-				});
+			const deletedCourses = likedCourses.filter((likedCourse) => likedCourse !== course._id);
+			localStorage.setItem('likedCourses', JSON.stringify(deletedCourses));
 		}
 	}, [clicked]);
 
   const navigate = useNavigate();
 
   function handleLikedCourse() {
-    // Implement adding the course to the user's list
 	if(!id){
 		setLoggingIn(true);
 	}else{
 		setClicked(!clicked);
-		setAdded(true);
+		console.log(reload)
+		reload();
 	}
   }
 
@@ -119,6 +104,7 @@ export default function CourseCard({ course }) {
     const courseName = `${course.course} ${course.courseTitle}`;
     navigate(`/review/${courseName}`);
   }
+  
   return (
     <div className={styles.card}>
       <RatingBox ratingAverage={course.ratingAverage} />

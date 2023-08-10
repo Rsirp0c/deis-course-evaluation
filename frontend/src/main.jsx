@@ -16,6 +16,7 @@ import Home from './pages/home/home.jsx';
 import Course from './pages/course/course.jsx';
 import Review from './pages/review/review.jsx';
 import Search from './pages/search/search.jsx';
+import SavedCourse from './pages/saved-courses/saved-courses.jsx';
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,10 @@ const router = createBrowserRouter([
         path: 'search',
         element: <Search />,
       },
-
+	  {
+		path: 'saved-courses',
+		element: <SavedCourse />,
+	  }
     ],
   },
 ]);

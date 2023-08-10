@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext } from 'react';
-import { useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { setJWT, validateJWT } from '../utils/auth.js';
 
 export const UserContext = createContext(null);
