@@ -9,6 +9,6 @@ import { index, display } from '../controllers/coursesController.js';
  * GET api/courses/courseId
  */
 router.get('/', index);
-router.get('/:id', display);
+// router.get('/:id', display);
 
 export default router;

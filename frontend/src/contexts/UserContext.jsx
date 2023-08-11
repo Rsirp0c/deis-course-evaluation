@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from 'react';
-import { setJWT, validateJWT } from '../utils/auth.js';
+import { setJWT, validateJWT } from '../services/auth.js';
+import fetchLikedCourses from '../services/fetchLikedCourses.js';
 
 
 export const UserContext = createContext(null);
@@ -22,25 +23,9 @@ export default function UserProvider({ children }) {
 
 	useEffect(() => {
 		if (authenticated) {
-
-			fetch('http://localhost:3000/api/liked-courses', {
-				method: 'POST',
-				headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ userId: id }),
-				}).then((res) => res.json()).then((res) => {
-			if (!res.error) {
-						localStorage.setItem('likedCourses', JSON.stringify(res));
-			} else {
-				console.log(res.error);
-			}
-			}).catch((err) => {
-				console.log(err);
-			});
+			fetchLikedCourses(id)
 		}
-	}, []);
-
+	}, [authenticated]);
 
 
     useEffect(() => {

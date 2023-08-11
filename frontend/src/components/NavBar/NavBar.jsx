@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 // icon imports
 import { HiLanguage } from 'react-icons/hi2';
@@ -11,15 +11,26 @@ import styles from './NavBar.module.css';
 import Logo from '../Logo';
 import AuthPopup from './AuthPopup';
 import ProfileDropdown from './ProfileDropdown';
+import storeLikedCourses from '../../services/storeLikedCourse';
 
 /**
- * NavBar sub components
+ * NavBar sub components 
+ * TO DO: implement advanced search function, dropdown menu when user types in search bar
  * */
 function SearchBar() {
+	const [text, setText] = useState("");
+	const navigate = useNavigate();
+	function handleOnChange(event) {
+		setText(event.target.value);
+	}
+	function handleSubmit(event) {
+		event.preventDefault();
+		navigate(`/search?course=${text}`);
+	}
   return (
     <form action="" className={styles.searchBar}>
-      <input type="text" className={styles.searchInput} placeholder="Search" />
-      <button type="submit" className={styles.searchButton}><GoSearch className={styles.searchIcon} /></button>
+      <input type="text" className={styles.searchInput} onChange={handleOnChange} placeholder="Search" />
+      <button type="submit" className={styles.searchButton} onClick={handleSubmit}><GoSearch className={styles.searchIcon} /></button>
     </form>
   );
 }
@@ -72,26 +83,7 @@ export default function NavBar() {
   function handleLogout() {
     localStorage.removeItem('userInfo');
     localStorage.removeItem('jwt');
-	const likedCoursesIds = JSON.parse(localStorage.getItem('likedCourses'));
-	fetch('http://localhost:3000/api/liked-courses/add', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify({
-			likedCoursesIds,
-			userId: id,
-		}),
-	}).then((res) => res.json()).then((res) => {
-		if (!res.error) {
-			console.log(res);
-			localStorage.removeItem('likedCourses');
-		} else {
-			console.log(res.error);
-		}
-	}).catch((err) => {
-		console.log(err);
-	});
+	storeLikedCourses(id)
     setAuthenticated(false);
 	
   }

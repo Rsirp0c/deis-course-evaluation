@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { HiOutlineXMark } from 'react-icons/hi2';
-import getGoogleUrl from '../../utils/getGoogleUrl';
+import getGoogleUrl from '../../services/getGoogleUrl';
 import styles from './AuthPopup.module.css';
 
 import AuthForm from './AuthForm.jsx';
