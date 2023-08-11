@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext} from 'react';
 import {useSearchParams} from 'react-router-dom';
+import {UserContext} from '../../contexts/UserContext.jsx';
 import styles from './search.module.css';
 import CourseCard from '../../components/CourseCard.jsx';
+import fetchCourse from '../../services/fetchCourse.js';
 
 function Error() {
   return (
@@ -15,27 +17,20 @@ export default function Search() {
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams.get('course'));
+  const {authState} = useContext(UserContext);
+  const [authenticated, setAuthenticated] = authState;
+
+  	function storeData(retrievedData){
+		setData([...retrievedData])
+	}
+	function storeError(retrievedError){
+		setError(retrievedError)
+	}
+
   // fetch data from backend when page is loaded
   useEffect(() => {
-    fetch(`http://localhost:3000/api/courses?course=${searchParams.get('course')}`)
-      .then((res) => res.json()).then((res) => {
-		if(!res.error){
-			console.log(`retrieved course data`);
-			setData(res);
-			return
-		}
-        setError(true);
-		console.log(res.error);
-      })
-      .catch((err) => {
-        console.log(err); 
-        setError(true);
-      });
-
-  }, []);
-
-
+	fetchCourse(searchParams.get('course'), storeData, storeError);
+  }, [searchParams, authenticated]);
 
   if (error) return <Error />;
 
