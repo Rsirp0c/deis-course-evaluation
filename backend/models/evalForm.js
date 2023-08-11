@@ -36,8 +36,10 @@ const evalFormSchema = Schema(
 			type: Schema.Types.ObjectId,
 			ref: 'User'
 		},
+		// change to course id so we can link to course model
 		course: {
-			type: String,
+			type: Schema.Types.ObjectId,
+			ref: 'Course',
 			required: true
 		},
 		semester: {
@@ -49,10 +51,10 @@ const evalFormSchema = Schema(
 			required: true
 		},
 		difficulty: {
-			type: String,
+			type: Number,
 			required: true
 		},
-		rate: {
+		quality: {
 			type: Number,
 			required: true
 		},
@@ -60,7 +62,7 @@ const evalFormSchema = Schema(
 			type: Boolean,
 			required: true
 		},
-		gradeRecieved: {
+		grade: {
 			type: String
 		},
 		delivery: {

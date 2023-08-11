@@ -6,6 +6,7 @@
 .titleContainer {
 	height: 150px;
 	width: 100%;
+	margin-top: -20px;
 	box-shadow: 0 2px 20px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -114,4 +115,17 @@
 .submitButton:hover{
 	opacity: 0.8;
 
+}
+
+/* submited page */
+
+.submittedTextContainer{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 200px;
+}
+
+.submittedText{
+	font-weight: 400;
 }

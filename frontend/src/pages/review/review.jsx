@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
-import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useParams} from 'react-router-dom';
+import { useState, useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext.jsx';
 import { format } from '../../utils/formatSentence.js';
 import styles from './review.module.css';
 import DropdownSelection from './components/DropdownSelection.jsx';
@@ -16,17 +17,28 @@ import LetterGradeDropdown from './components/LetterGradeDropdown.jsx';
  */
 export default function Review() {
 	const { course } = useParams();
+	const { idState } = useContext(UserContext);
+	const [id, setId] = idState;
+	const [submit, setSubmit] = useState(false);
 	const [difficulty, setDifficulty] = useState(3);
 	const [quality, setQuality] = useState(3);
-	const [attendance, setAttendance] = useState(1);
+	const [attendance, setAttendance] = useState(true);
 	const [delivery, setDelivery] = useState('In Person');
 	const [grade, setGrade] = useState('');
 	const [professor, setProfessor] = useState('');
 	const [semester, setSemester] = useState('');
 	const [comment, setComment] = useState('');
 
-	// TODO: get semesters and professor values from backend
-	const semesters = [
+	// set professor options from course info stored in session storage
+	const courseInfo = JSON.parse(sessionStorage.getItem('courseInfo'));
+	const courseId = courseInfo._id;
+	const {professors} = courseInfo;
+	Object.keys(professors).forEach((key) => {
+		professors[key] = { label: professors[key].name, value: professors[key].name };
+	});
+
+	// TO DO: should i use these default values or fetch them dynamically from the backend?
+	const term = [
 		{ label: 'FALL 2021', value: 'FALL 2021' },
 		{ label: 'SPRING 2021', value: 'SPRING 2021' },
 		{ label: 'FALL 2020', value: 'FALL 2020' },
@@ -36,11 +48,6 @@ export default function Review() {
 		{ label: 'FALL 2018', value: 'FALL 2018' },
 		{ label: 'SPRING 2018', value: 'SPRING 2018' },
 		{ label: 'FALL 2017', value: 'FALL 2017' },
-	];
-	const professors = [
-		{ label: 'Professor 1', value: 'Professor 1' },
-		{ label: 'Professor 2', value: 'Professor 2' },
-		{ label: 'Professor 3', value: 'Professor 3' },
 	]
 
 	const letterGrades = [
@@ -62,23 +69,59 @@ export default function Review() {
 
 	function handleSubmit(event) {
 		event.preventDefault();
+		console.log('submitting form')
+		
+		const commentString = comment.comment
+
+		fetch('http://localhost:3000/api/evaluations/forms', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				userId: id || 'anonymous',
+				courseId,
+				difficulty,
+				quality,
+				attendance,
+				delivery,
+				grade,
+				professor,
+				semester,
+				commentString,
+			})
+		}).then((response) => response.json())
+			.then((data) => {
+				if(!data.error){
+					setSubmit(true)
+				}else{
+					console.log(data.error)
+				}
+			})
 	}
 
 	function handleProfessorChange(event, value) {
 		setProfessor(value)
-		console.log({professor})
 	}
 	function handleSemesterChange(event, value) {
 		setSemester(value)
 	}
-	function handleCommentChange(event, value) {
-		setComment(value)
+	function handleCommentChange(event) {
+		setComment({...comment, comment: event.target.value})
 	}
 	function handleGradeChange(event, value) {
 		setGrade(value)
 	}
 
-
+	if(submit){
+		return (
+			<div className={styles.submittedTextContainer}>
+					<h1 className={styles.submittedText}>
+						Thank you for your submission!
+					</h1>
+			</div>
+		)
+	}
 	return (
 		<div className={styles.review}>
 			<div className={styles.titleContainer}>
@@ -90,7 +133,7 @@ export default function Review() {
 			<div className={styles.reviewContainer}>
 				<form className={styles.form}>
 					<div className={styles.dropdownWrapper}>
-						<DropdownSelection options={semesters} label="Select Semester" handleChange={handleSemesterChange} />
+						<DropdownSelection options={term} label="Select Term" handleChange={handleSemesterChange} />
 						<DropdownSelection options={professors} label="Select Professor" handleChange={handleProfessorChange}/>
 					</div>
 					<div className={styles.ratingWrapper}>
@@ -119,7 +162,7 @@ export default function Review() {
 					<div className={styles.commentWrapper}>
 						<h2 className={styles.ratingDesc}>Your Comment:</h2>
 						<div className={styles.textBoxContainer}>
-							<TextBox setComment={setComment} handleCommentChange={handleCommentChange} />
+							<TextBox comment={comment} handleCommentChange={handleCommentChange} />
 						</div>
 					</div>
 					<div className={styles.submit}>

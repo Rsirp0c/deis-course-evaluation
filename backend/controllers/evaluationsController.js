@@ -2,6 +2,8 @@
  * @module EvaluationsController
  */
 import EvalForm from '../models/evalForm.js';
+import Course from '../models/course.js';
+import User from '../models/user.js';
 
 /**
  * Gets the parameters from the request body and returns them in an JSON object
@@ -9,18 +11,17 @@ import EvalForm from '../models/evalForm.js';
  * @param {Object} body - request body
  * @returns {{course: string, semester: string, professor: string, difficulty: number, rate: number, attendance: string, gradeRecieved: string, delivery: string, comment: string}} - JSON object with the parameters
  */
-const getEvalFormParams = (body) => {
-	const { course, semester, professor, difficulty, rate, attendance, gradeRecieved, delivery, comment } = body;
+const getEvalFormParams = ({ courseId, semester, professor, difficulty, quality, attendance, grade, delivery, commentString }) => {
 	return {
-		course,
+		course: courseId,
 		semester,
 		professor,
 		difficulty,
-		rate,
+		quality,
 		attendance,
-		gradeRecieved,
+		grade,
 		delivery,
-		comment
+		comment: commentString
 	};
 };
 
@@ -34,7 +35,7 @@ const getEvalFormParams = (body) => {
  *    "course": "COSI-103",
  *    "semester": "SPRING",
  *    "professor": "Timothy Hickey",
- *    "difficulty": "easy", 
+ *    "difficulty": "4", 
  *    "rate": 5,
  *    "attendance": true,
  *    "grade-received": "A",
@@ -50,8 +51,19 @@ const getEvalFormParams = (body) => {
  */
 async function create(req, res) {
 	try {
+		const {courseId, userId} = req.body;
+		// save evalform with the req aruguments 
 		const newEvalForm = new EvalForm(getEvalFormParams(req.body));
 		const savedEvalForm = await newEvalForm.save();
+		// add evalform id to course comments with the matching course id 
+		const evalFormId = savedEvalForm._id;
+		const course = await Course.findByIdAndUpdate(courseId, { $push: { comments: evalFormId } }, { new: true });
+		// add evalform id to user evals with the matching user id
+		if (userId !== 'anonymous'){
+			const user = await User.findByIdAndUpdate(userId, { $push: { evals: evalFormId } }, { new: true });
+			console.log({user})
+		}
+		console.log({savedEvalForm, course})
 		res.status(201).json(savedEvalForm);
 	} catch (err) {
 		res.status(500).json({ error: err.message });
