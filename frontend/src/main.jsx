@@ -18,6 +18,7 @@ import Course from './pages/course/course.jsx';
 import Review from './pages/review/review.jsx';
 import Search from './pages/search/search.jsx';
 import SavedCourse from './pages/saved-courses/saved-courses.jsx';
+import MyReviews from './pages/my-reviews/my-reviews.jsx';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,13 @@ const router = createBrowserRouter([
 		element: 
 			<ProtectedRoute>
 				<SavedCourse />
+			</ProtectedRoute>,
+	  },
+	  {
+		path: 'my-reviews',
+		element:
+			<ProtectedRoute>
+				<MyReviews />
 			</ProtectedRoute>,
 	  }
     ],
