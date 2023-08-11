@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useParams } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import { useState } from 'react';
 import { format } from '../../utils/formatSentence.js';
 import styles from './review.module.css';
@@ -16,9 +16,17 @@ import LetterGradeDropdown from './components/LetterGradeDropdown.jsx';
  */
 export default function Review() {
 	const { course } = useParams();
+	const [submit, setSubmit] = useState(false);
+
+
+	// Split the string into two parts, put these in format function under utils folder
+	const index = course.lastIndexOf(' ');
+	const courseName = course.substring(0, index);
+	const courseId = course.substring(index + 1);
+
 	const [difficulty, setDifficulty] = useState(3);
 	const [quality, setQuality] = useState(3);
-	const [attendance, setAttendance] = useState(1);
+	const [attendance, setAttendance] = useState(true);
 	const [delivery, setDelivery] = useState('In Person');
 	const [grade, setGrade] = useState('');
 	const [professor, setProfessor] = useState('');
@@ -62,29 +70,65 @@ export default function Review() {
 
 	function handleSubmit(event) {
 		event.preventDefault();
+		console.log('submitting form')
+		
+		const commentString = comment.comment
+
+		fetch('http://localhost:3000/api/evaluations/forms', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				courseId,
+				difficulty,
+				quality,
+				attendance,
+				delivery,
+				grade,
+				professor,
+				semester,
+				commentString,
+			})
+		}).then((response) => response.json())
+			.then((data) => {
+				if(!data.error){
+					setSubmit(true)
+				}else{
+					console.log(data.error)
+				}
+			})
 	}
 
 	function handleProfessorChange(event, value) {
 		setProfessor(value)
-		console.log({professor})
 	}
 	function handleSemesterChange(event, value) {
 		setSemester(value)
 	}
-	function handleCommentChange(event, value) {
-		setComment(value)
+	function handleCommentChange(event) {
+		console.log(comment.comment)
+		setComment({...comment, comment: event.target.value})
 	}
 	function handleGradeChange(event, value) {
 		setGrade(value)
 	}
 
-
+	if(submit){
+		return (
+			<div className={styles.submittedTextContainer}>
+					<h1 className={styles.submittedText}>
+						Thank you for your submission!
+					</h1>
+			</div>
+		)
+	}
 	return (
 		<div className={styles.review}>
 			<div className={styles.titleContainer}>
 				<h1 className={styles.title}>
 					<span className={styles.titleSpan}>Rate: </span>
-					{format(course)}
+					{format(courseName)}
 				</h1>
 			</div>
 			<div className={styles.reviewContainer}>
@@ -119,7 +163,7 @@ export default function Review() {
 					<div className={styles.commentWrapper}>
 						<h2 className={styles.ratingDesc}>Your Comment:</h2>
 						<div className={styles.textBoxContainer}>
-							<TextBox setComment={setComment} handleCommentChange={handleCommentChange} />
+							<TextBox comment={comment} handleCommentChange={handleCommentChange} />
 						</div>
 					</div>
 					<div className={styles.submit}>

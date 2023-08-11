@@ -3,13 +3,12 @@ import { createContext, useEffect, useState } from 'react';
 import { setJWT, validateJWT } from '../services/auth.js';
 import fetchLikedCourses from '../services/fetchLikedCourses.js';
 
-
 export const UserContext = createContext(null);
 /**
  * This sets thhe global state for user info
  * TO DO: split up api calls and context into separate files
- * @param {*} param0 
- * @returns 
+ * @param {*} param0
+ * @returns
  */
 export default function UserProvider({ children }) {
     const [error, setError] = useState(false);
@@ -20,13 +19,11 @@ export default function UserProvider({ children }) {
     const [loggingIn, setLoggingIn] = useState(false); // state for login popup, use this when user clicks on login button or functionalities that require login
     const [loading, setLoading] = useState(true);
 
-
-	useEffect(() => {
-		if (authenticated) {
-			fetchLikedCourses(id)
-		}
-	}, [authenticated]);
-
+    useEffect(() => {
+        if (authenticated) {
+            fetchLikedCourses(id);
+        }
+    }, [authenticated]);
 
     useEffect(() => {
         setJWT().then((success) => {
@@ -49,7 +46,6 @@ export default function UserProvider({ children }) {
                     setId(id);
                     setEmail(email);
                     setAuthenticated(true);
-					
                 } else {
                     setAuthenticated(false);
                 }
@@ -60,8 +56,6 @@ export default function UserProvider({ children }) {
                 setError(true);
                 setLoading(false);
             });
-
-		
     }, []);
 
     if (loading) {

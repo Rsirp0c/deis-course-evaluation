@@ -9,18 +9,17 @@ import EvalForm from '../models/evalForm.js';
  * @param {Object} body - request body
  * @returns {{course: string, semester: string, professor: string, difficulty: number, rate: number, attendance: string, gradeRecieved: string, delivery: string, comment: string}} - JSON object with the parameters
  */
-const getEvalFormParams = (body) => {
-	const { course, semester, professor, difficulty, rate, attendance, gradeRecieved, delivery, comment } = body;
+const getEvalFormParams = ({ courseId, semester, professor, difficulty, quality, attendance, grade, delivery, commentString }) => {
 	return {
-		course,
+		course: courseId,
 		semester,
 		professor,
 		difficulty,
-		rate,
+		quality,
 		attendance,
-		gradeRecieved,
+		grade,
 		delivery,
-		comment
+		comment: commentString
 	};
 };
 
@@ -34,7 +33,7 @@ const getEvalFormParams = (body) => {
  *    "course": "COSI-103",
  *    "semester": "SPRING",
  *    "professor": "Timothy Hickey",
- *    "difficulty": "easy", 
+ *    "difficulty": "4", 
  *    "rate": 5,
  *    "attendance": true,
  *    "grade-received": "A",
@@ -51,7 +50,9 @@ const getEvalFormParams = (body) => {
 async function create(req, res) {
 	try {
 		const newEvalForm = new EvalForm(getEvalFormParams(req.body));
+		console.log({newEvalForm})
 		const savedEvalForm = await newEvalForm.save();
+		console.log({savedEvalForm})
 		res.status(201).json(savedEvalForm);
 	} catch (err) {
 		res.status(500).json({ error: err.message });

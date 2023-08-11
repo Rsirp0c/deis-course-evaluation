@@ -115,3 +115,16 @@
 	opacity: 0.8;
 
 }
+
+/* submited page */
+
+.submittedTextContainer{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 200px;
+}
+
+.submittedText{
+	font-weight: 400;
+}
