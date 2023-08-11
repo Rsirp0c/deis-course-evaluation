@@ -2,6 +2,8 @@
  * @module EvaluationsController
  */
 import EvalForm from '../models/evalForm.js';
+import Course from '../models/course.js';
+import User from '../models/user.js';
 
 /**
  * Gets the parameters from the request body and returns them in an JSON object
@@ -49,10 +51,19 @@ const getEvalFormParams = ({ courseId, semester, professor, difficulty, quality,
  */
 async function create(req, res) {
 	try {
+		const {courseId, userId} = req.body;
+		// save evalform with the req aruguments 
 		const newEvalForm = new EvalForm(getEvalFormParams(req.body));
-		console.log({newEvalForm})
 		const savedEvalForm = await newEvalForm.save();
-		console.log({savedEvalForm})
+		// add evalform id to course comments with the matching course id 
+		const evalFormId = savedEvalForm._id;
+		const course = await Course.findByIdAndUpdate(courseId, { $push: { comments: evalFormId } }, { new: true });
+		// add evalform id to user evals with the matching user id
+		if (userId !== 'anonymous'){
+			const user = await User.findByIdAndUpdate(userId, { $push: { evals: evalFormId } }, { new: true });
+			console.log({user})
+		}
+		console.log({savedEvalForm, course})
 		res.status(201).json(savedEvalForm);
 	} catch (err) {
 		res.status(500).json({ error: err.message });

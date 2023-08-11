@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useParams} from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext.jsx';
 import { format } from '../../utils/formatSentence.js';
 import styles from './review.module.css';
 import DropdownSelection from './components/DropdownSelection.jsx';
@@ -16,14 +17,9 @@ import LetterGradeDropdown from './components/LetterGradeDropdown.jsx';
  */
 export default function Review() {
 	const { course } = useParams();
+	const { idState } = useContext(UserContext);
+	const [id, setId] = idState;
 	const [submit, setSubmit] = useState(false);
-
-
-	// Split the string into two parts, put these in format function under utils folder
-	const index = course.lastIndexOf(' ');
-	const courseName = course.substring(0, index);
-	const courseId = course.substring(index + 1);
-
 	const [difficulty, setDifficulty] = useState(3);
 	const [quality, setQuality] = useState(3);
 	const [attendance, setAttendance] = useState(true);
@@ -33,8 +29,16 @@ export default function Review() {
 	const [semester, setSemester] = useState('');
 	const [comment, setComment] = useState('');
 
-	// TODO: get semesters and professor values from backend
-	const semesters = [
+	// set professor options from course info stored in session storage
+	const courseInfo = JSON.parse(sessionStorage.getItem('courseInfo'));
+	const courseId = courseInfo._id;
+	const {professors} = courseInfo;
+	Object.keys(professors).forEach((key) => {
+		professors[key] = { label: professors[key].name, value: professors[key].name };
+	});
+
+	// TO DO: should i use these default values or fetch them dynamically from the backend?
+	const term = [
 		{ label: 'FALL 2021', value: 'FALL 2021' },
 		{ label: 'SPRING 2021', value: 'SPRING 2021' },
 		{ label: 'FALL 2020', value: 'FALL 2020' },
@@ -44,11 +48,6 @@ export default function Review() {
 		{ label: 'FALL 2018', value: 'FALL 2018' },
 		{ label: 'SPRING 2018', value: 'SPRING 2018' },
 		{ label: 'FALL 2017', value: 'FALL 2017' },
-	];
-	const professors = [
-		{ label: 'Professor 1', value: 'Professor 1' },
-		{ label: 'Professor 2', value: 'Professor 2' },
-		{ label: 'Professor 3', value: 'Professor 3' },
 	]
 
 	const letterGrades = [
@@ -80,6 +79,7 @@ export default function Review() {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
+				userId: id || 'anonymous',
 				courseId,
 				difficulty,
 				quality,
@@ -107,7 +107,6 @@ export default function Review() {
 		setSemester(value)
 	}
 	function handleCommentChange(event) {
-		console.log(comment.comment)
 		setComment({...comment, comment: event.target.value})
 	}
 	function handleGradeChange(event, value) {
@@ -128,13 +127,13 @@ export default function Review() {
 			<div className={styles.titleContainer}>
 				<h1 className={styles.title}>
 					<span className={styles.titleSpan}>Rate: </span>
-					{format(courseName)}
+					{format(course)}
 				</h1>
 			</div>
 			<div className={styles.reviewContainer}>
 				<form className={styles.form}>
 					<div className={styles.dropdownWrapper}>
-						<DropdownSelection options={semesters} label="Select Semester" handleChange={handleSemesterChange} />
+						<DropdownSelection options={term} label="Select Term" handleChange={handleSemesterChange} />
 						<DropdownSelection options={professors} label="Select Professor" handleChange={handleProfessorChange}/>
 					</div>
 					<div className={styles.ratingWrapper}>

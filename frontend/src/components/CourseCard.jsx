@@ -109,7 +109,8 @@ export default function CourseCard({ course, reload }) {
     }
 
     function handleRateCourse() {
-        const courseInfo= `${course.course} ${course.courseTitle} ${course._id}`;
+        const courseInfo= `${course.course} ${course.courseTitle}`;
+		sessionStorage.setItem('courseInfo', JSON.stringify(course));
         navigate(`/review/${courseInfo}`);
     }
 
