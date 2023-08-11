@@ -1,7 +1,14 @@
+
+// 
+
+
+
 export default function Course() {
-  return (
-    <div>
-      <h1>course</h1>
-    </div>
-  );
+
+	const courseInfo = JSON.parse(sessionStorage.getItem('courseInfo'));
+  	return (
+    	<div>
+      		<h1>course</h1>
+    	</div>
+  	);
 }

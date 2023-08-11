@@ -104,7 +104,14 @@ export default function Review() {
 		setProfessor(value)
 	}
 	function handleSemesterChange(event, value) {
-		setSemester(value)
+		Object.keys(term).forEach((key) => {
+			if(term[key].value === value){
+				console.log('setting semester')
+				setSemester(value)
+			}
+		})
+			
+		// setSemester(value)
 	}
 	function handleCommentChange(event) {
 		setComment({...comment, comment: event.target.value})

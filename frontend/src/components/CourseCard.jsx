@@ -5,7 +5,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { styled } from '@mui/material/styles';
 import { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link} from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext.jsx';
 import styles from './CourseCard.module.css';
 
@@ -63,6 +63,7 @@ export default function CourseCard({ course, reload }) {
     const { loggingInState, idState } = useContext(UserContext);
     const [id, setId] = idState;
     const [loggingIn, setLoggingIn] = loggingInState;
+    const navigate = useNavigate();
 
     // check if course is in liked courses when page is loaded
     useEffect(() => {
@@ -76,6 +77,7 @@ export default function CourseCard({ course, reload }) {
         }
     }, []);
 
+	// fetch liked courses from local storage and update when liked/unliked
     useEffect(() => {
         const likedCourses =
             JSON.parse(localStorage.getItem('likedCourses')) || [];
@@ -95,7 +97,6 @@ export default function CourseCard({ course, reload }) {
         }
     }, [clicked]);
 
-    const navigate = useNavigate();
 
     function handleLikedCourse() {
         if (!id) {
@@ -114,12 +115,16 @@ export default function CourseCard({ course, reload }) {
         navigate(`/review/${courseInfo}`);
     }
 
+	function handleClickCourse(){
+		sessionStorage.setItem('courseInfo', JSON.stringify(course));
+	}
+
     return (
         <div className={styles.card}>
             <RatingBox ratingAverage={course.ratingAverage} />
             <div className={styles.body}>
                 <div className={styles.contents}>
-                    <p className={styles.course}>{course.course}</p>
+                    <Link to='/course' className={styles.course} onClick={handleClickCourse}>{course.course}</Link>
                     <p className={styles.courseTitle}>{course.courseTitle}</p>
                     <p className={styles.prerequisites}>
                         Prerequisite:
