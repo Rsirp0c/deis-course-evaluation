@@ -41,30 +41,25 @@ async function index(req, res, next) {
 }
 
 /**
- * @todo optimization for error handling; add more filter for the sorting functionality on the main page? or create another function
- * @summary GET api/courses/courseId
- * @description Get a specific course by courseid    
- * @sorai910
- * @async
- * @param {Object} req - request object
- * @param {Object} res - response object
+ * @description Get all evaluations with the given course id
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
  */
-async function display(req, res, next) {
+async function getEvalWithIds(req, res) {
+	const { courseId } = req.body;
 	try {
-		const course = await Course.findById(req.param._id);
-
-		if (!course) {
-			res.status(404).json({ error: 'Course not found' });
+		const result = await Course.findById(courseId).populate('comments');
+		const evalForms = result.comments;
+		if (evalForms.length === 0) {
+			res.status(404).json({ error: 'No evaluations' });
 			return;
 		}
-
-		res.locals.course = course;
-		res.status(200).json(course);
-		next();
+		res.status(200).json(evalForms);
 	} catch (err) {
 		console.error(err);
 		res.status(500).json({ error: err.message });
 	}
 }
 
-export { index, display };
+export { index, getEvalWithIds };

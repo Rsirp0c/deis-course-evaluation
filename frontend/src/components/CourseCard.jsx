@@ -43,7 +43,7 @@ function RatingBox({ ratingAverage }) {
         <div className={`${styles.rating} ${color}`}>
             <p className={styles.ratingScoreContainer}>
                 <span className={styles.ratingScore}>
-                    {ratingAverage === -1 ? '-' : ratingAverage}
+                    {ratingAverage === 0 ? '-' : ratingAverage}
                 </span>
                 / 5
             </p>

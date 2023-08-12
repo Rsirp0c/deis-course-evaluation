@@ -15,11 +15,11 @@
  * @property {string} _id - EvalForm ID generated automatically
  * @example
  * {
- *   "course": "COSI-21B",
+ *   "course": ObjectId("dsagfdfgdsfgdfsg"),
  *   "semester": "FALL",
  *   "professor": "Iraklis",
  *   "difficulty": "easy", 
- *   "rate": 5,
+ *   "usefulness": 5,
  *   "attendance": true,
  *   "delivery": "In-Person",
  *   "comment": "good",
@@ -54,7 +54,11 @@ const evalFormSchema = Schema(
 			type: Number,
 			required: true
 		},
-		quality: {
+		rate: {
+			type: Number,
+			required: true
+		},
+		usefulness: {
 			type: Number,
 			required: true
 		},
@@ -63,7 +67,7 @@ const evalFormSchema = Schema(
 			required: true
 		},
 		grade: {
-			type: String
+			type: Number,
 		},
 		delivery: {
 			type: String,
@@ -77,5 +81,6 @@ const evalFormSchema = Schema(
 	{
 		timestamps: true,
 	});
+
 
 export default model('EvalForm', evalFormSchema);

@@ -16,7 +16,7 @@ export default function ComboBox({options, label, handleGradeChange}) {
   return (  
 	<ThemeProvider theme={theme}>
 		<Autocomplete
-			onInputChange={(event, value) => handleGradeChange(event, value)}
+			onChange={(event, value) => handleGradeChange(event, value)}
       		disablePortal
       		id="combo-box-demo"
       		options={options}

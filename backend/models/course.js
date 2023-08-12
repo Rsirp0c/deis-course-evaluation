@@ -19,6 +19,8 @@
  *   "comments": [ "64919ed6dc61bc03321359b9", "84919ed6dc6abc03324359b9" ],
  *   "gradeAverage": 4.5,
  *   "ratingAverage": 4.5,
+ *   "usefullnessAverage": 4.5,
+ *   "difficultyAverage": 4.5,
  *   "courseDescription": "This course introduces the fundamental concepts of data structures and algorithms. Topics include asymptotic analysis, abstract data types, lists, stacks, queues, trees, heaps, priority queues, balanced trees, graphs, sorting and searching, and hashing. The course also covers algorithm design and analysis techniques.",
  *   "prerequisites": [ "COSI-10A", "COSI-12B" ],
  *   "_id": "64919ed6dc61bc03321359b9",
@@ -41,14 +43,35 @@ const courseSchema = Schema({
 		required: true,
 	},
 	comments: {
-		type: [{ type: Schema.Types.ObjectId, ref: 'EvalForm' }]  // Link to EvalForm model to populate data
+		type: [{ type: Schema.Types.ObjectId, ref: 'EvalForm' }],  // Link to EvalForm model to populate data
+		default: [],
 	},
 	gradeAverage: {
-		type: Number,
+		type: Object,
+		default: {
+			grade: 0,
+			numGrades: 0,
+		},
+		grade: {
+			type: Number,
+			default: 0,
+		},
+		numGrades: {
+			type: Number,
+			default: 0,
+		}
 	},
 	ratingAverage: {
 		type: Number,
-		default: -1,
+		default: 0,
+	},
+	usefullnessAverage: {
+		type: Number,
+		default: 0,
+	},
+	difficultyAverage: {
+		type: Number,
+		default: 0,
 	},
 	courseDescription: {
 		type: String,

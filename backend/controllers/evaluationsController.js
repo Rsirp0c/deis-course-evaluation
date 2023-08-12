@@ -11,13 +11,14 @@ import User from '../models/user.js';
  * @param {Object} body - request body
  * @returns {{course: string, semester: string, professor: string, difficulty: number, rate: number, attendance: string, gradeRecieved: string, delivery: string, comment: string}} - JSON object with the parameters
  */
-const getEvalFormParams = ({ courseId, semester, professor, difficulty, quality, attendance, grade, delivery, commentString }) => {
+const getEvalFormParams = ({ courseId, semester, professor, difficulty, rate, usefulness, attendance, grade, delivery, commentString }) => {
 	return {
 		course: courseId,
 		semester,
 		professor,
 		difficulty,
-		quality,
+		rate, 
+		usefulness,
 		attendance,
 		grade,
 		delivery,
@@ -25,6 +26,23 @@ const getEvalFormParams = ({ courseId, semester, professor, difficulty, quality,
 	};
 };
 
+const updateCourseAverages = async (course, savedEvalForm) => {
+	// Do the score calculations here. Note: calculate after the request is sent to the client
+	const numComments = course.comments.length;
+	course.ratingAverage = Math.round((course.ratingAverage * numComments + savedEvalForm.rate) / (numComments + 1));
+	course.difficultyAverage = Math.round((course.difficultyAverage * numComments + savedEvalForm.difficulty) / (numComments + 1));
+	course.usefullnessAverage = Math.round((course.usefullnessAverage * numComments + savedEvalForm.usefulness) / (numComments + 1));
+
+	// If the grade is not null, then update the gradeAverage
+	if (savedEvalForm.grade !== 0) {
+		console.log(course.gradeAverage)
+		const numGrades = course.gradeAverage.numGrades;
+		course.gradeAverage.grade = Math.round((course.gradeAverage.grade * numGrades + savedEvalForm.grade) / (numGrades + 1));
+		course.gradeAverage.numGrades = numGrades + 1;
+	}
+	const savedCourse = await course.save();
+	console.log({ savedCourse });
+}
 /**
  * @summary POST api/v1/evaluations/forms
  * @description Creates a new EvalForm
@@ -35,8 +53,9 @@ const getEvalFormParams = ({ courseId, semester, professor, difficulty, quality,
  *    "course": "COSI-103",
  *    "semester": "SPRING",
  *    "professor": "Timothy Hickey",
- *    "difficulty": "4", 
- *    "rate": 5,
+ *    "difficulty": "4",
+ *    "rate": "4", 
+ *    "usefulness": 5,
  *    "attendance": true,
  *    "grade-received": "A",
  *    "delivery": "In-Person", 
@@ -64,9 +83,16 @@ async function create(req, res) {
 			console.log({user})
 		}
 		console.log({savedEvalForm, course})
+		try{
+			await updateCourseAverages(course, savedEvalForm);
+		}catch(err){
+			throw err;
+		}
 		res.status(201).json(savedEvalForm);
+
 	} catch (err) {
 		res.status(500).json({ error: err.message });
+		console.log(err);
 	}
 }
 
@@ -97,4 +123,5 @@ async function read(req, res) {
 	}
 }
 
-export { create, read };
+
+export { create, read};

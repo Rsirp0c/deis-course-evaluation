@@ -19,12 +19,14 @@ mongoose.
 // upload mock data
 
 import Course from './models/course.js';
+import EvalForm from './models/evalForm.js';
 import courseData from './data/courses.json' assert { type: 'json' };
 
 const data = courseData.courses;
 async function uploadData() {
 	try {
 		await Course.deleteMany({});
+		await EvalForm.deleteMany({});
 		await Course.insertMany(data);
 		console.log('Data import success');
 		process.exit();
