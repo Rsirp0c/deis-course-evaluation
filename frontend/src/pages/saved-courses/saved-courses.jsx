@@ -12,6 +12,7 @@ const [reloadPage , setReloadPage] = useState(false);
  function reload(){
 	setReloadPage(!reloadPage);
  }
+ 
  useEffect(() => {
 	likedCoursesIds = JSON.parse(localStorage.getItem('likedCourses')) || [];
 	fetch('http://localhost:3000/api/liked-courses/ids', {

@@ -12,7 +12,7 @@ import RateCourseButton from './RateCourseButton';
  * 
  * Stores liked courses in local storage and updates when liked/unliked, if user is logged in, stores liked courses in database
  */
-export default function CourseCard({ course }) {
+export default function CourseCard({ course, reload}) {
 
 
 	function handleClickCourse(){
@@ -32,7 +32,7 @@ export default function CourseCard({ course }) {
                     </p>
                 </div>
                 <div className={styles.button}>
-					<LikeButton courseId={course._id}/>
+					<LikeButton courseId={course._id} reload={reload}/>
 					<RateCourseButton course={course}/>
                 </div>
             </div>

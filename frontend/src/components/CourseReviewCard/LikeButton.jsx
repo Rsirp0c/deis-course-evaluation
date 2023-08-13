@@ -6,7 +6,7 @@ import { useState, useContext, useEffect } from 'react';
 import styles from './LikeButton.module.css';
 import { UserContext } from '../../contexts/UserContext.jsx';
 
-export default function LikeButton({courseId, isCourse}){
+export default function LikeButton({courseId, isCourse, reload}){
     const [clicked, setClicked] = useState(false);
     const [added, setAdded] = useState(false);
 
@@ -52,6 +52,7 @@ export default function LikeButton({courseId, isCourse}){
             setLoggingIn(true);
         } else {
             setClicked(!clicked);
+			if (reload) reload();
         }
     }
 
