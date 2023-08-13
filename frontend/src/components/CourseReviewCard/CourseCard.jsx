@@ -6,8 +6,9 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { styled } from '@mui/material/styles';
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate, Link} from 'react-router-dom';
-import { UserContext } from '../contexts/UserContext.jsx';
+import { UserContext } from '../../contexts/UserContext.jsx';
 import styles from './CourseCard.module.css';
+import RatingBox from "./RatingBox.jsx";
 
 /**
  * These are for custom rating hearts from MUI
@@ -21,36 +22,6 @@ const StyledRating = styled(Rating)({
     },
 });
 
-/**
- * CSS styles changing rating box color based on rating
- * */
-function RatingBox({ ratingAverage }) {
-    let color;
-
-    if (ratingAverage === 5) {
-        color = styles.green;
-    } else if (ratingAverage >= 4) {
-        color = styles.lightGreen;
-    } else if (ratingAverage >= 3) {
-        color = styles.yellow;
-    } else if (ratingAverage >= 2) {
-        color = styles.orange;
-    } else if (ratingAverage >= 1) {
-        color = styles.red;
-    }
-
-    return (
-        <div className={`${styles.rating} ${color}`}>
-            <p className={styles.ratingScoreContainer}>
-                <span className={styles.ratingScore}>
-                    {ratingAverage === 0 ? '-' : ratingAverage}
-                </span>
-                / 5
-            </p>
-            <p className={styles.ratingCount}>31 ratings</p>
-        </div>
-    );
-}
 
 /**
  * React component for a course card
@@ -116,12 +87,12 @@ export default function CourseCard({ course, reload }) {
     }
 
 	function handleClickCourse(){
-		sessionStorage.setItem('courseInfo', JSON.stringify(course));
+		localStorage.setItem('courseInfo', JSON.stringify(course));
 	}
 
     return (
         <div className={styles.card}>
-            <RatingBox ratingAverage={course.ratingAverage} />
+            <RatingBox ratingAverage={course.ratingAverage} isCourse numRatings={course.comments.length}/>
             <div className={styles.body}>
                 <div className={styles.contents}>
                     <Link to='/course' className={styles.course} onClick={handleClickCourse}>{course.course}</Link>

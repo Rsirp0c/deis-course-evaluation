@@ -29,9 +29,9 @@ const getEvalFormParams = ({ courseId, semester, professor, difficulty, rate, us
 const updateCourseAverages = async (course, savedEvalForm) => {
 	// Do the score calculations here. Note: calculate after the request is sent to the client
 	const numComments = course.comments.length;
-	course.ratingAverage = Math.round((course.ratingAverage * numComments + savedEvalForm.rate) / (numComments + 1));
-	course.difficultyAverage = Math.round((course.difficultyAverage * numComments + savedEvalForm.difficulty) / (numComments + 1));
-	course.usefullnessAverage = Math.round((course.usefullnessAverage * numComments + savedEvalForm.usefulness) / (numComments + 1));
+	course.ratingAverage = Math.round(((course.ratingAverage * numComments + savedEvalForm.rate) / (numComments + 1))*10)/10;
+	course.difficultyAverage = Math.round(((course.difficultyAverage * numComments + savedEvalForm.difficulty) / (numComments + 1))*10)/10;
+	course.usefullnessAverage = Math.round(((course.usefullnessAverage * numComments + savedEvalForm.usefulness) / (numComments + 1)*10))/10;
 
 	// If the grade is not null, then update the gradeAverage
 	if (savedEvalForm.grade !== 0) {

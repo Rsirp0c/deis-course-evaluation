@@ -3,7 +3,7 @@
  * @param {} str
  * @returns
  */
-export function format(str) {
+export default function format(str) {
     const smallWordsSet = new Set([
         'a',
         'an',
@@ -30,7 +30,7 @@ export function format(str) {
 
     let newStr = '';
 
-    for (let i = 0; i < words.length; i++) {
+    for (let i = 0; i < words.length; i+=1) {
         if (i === 0 || i === 1) {
             newStr += `${words[i].toUpperCase()} `;
         } else {

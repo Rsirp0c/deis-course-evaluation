@@ -2,7 +2,7 @@
 import { useParams} from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext.jsx';
-import { format } from '../../utils/formatSentence.js';
+import format  from '../../utils/formatSentence.js';
 import styles from './review.module.css';
 import DropdownSelection from './components/DropdownSelection.jsx';
 import RatingButtons from './components/RatingButtons.jsx';

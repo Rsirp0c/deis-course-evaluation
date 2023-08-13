@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import styles from './saved-courses.module.css';
-import CourseCard from '../../components/CourseCard.jsx';	
+import CourseCard from '../../components/CourseReviewCard/CourseCard.jsx';	
 
 export default function SavedCourses() {
  // fetch data from backend when page is loaded

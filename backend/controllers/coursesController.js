@@ -42,6 +42,7 @@ async function index(req, res, next) {
 
 /**
  * @description Get all evaluations with the given course id
+ * @summary POST api/courses/reviews
  * @param {*} req 
  * @param {*} res 
  * @returns 
