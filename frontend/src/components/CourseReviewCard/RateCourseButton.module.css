@@ -1,0 +1,20 @@
+.rateButton {
+	width: 210px;
+	height: 50px;
+	background-color: #3A7BD5;
+	color: #fff;
+	font-size: 20px;
+	font-weight: 700;
+	border-radius: 20px;
+	cursor: pointer;
+	border: none;
+}
+
+.rateButtonCourse{
+	composes: rateButton;
+	margin: 20px;
+}
+
+.rateButton:hover {
+	opacity: 0.95;
+}

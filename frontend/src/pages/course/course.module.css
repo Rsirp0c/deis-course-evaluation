@@ -1,3 +1,98 @@
+.container{
+	width: 1100px;
+	margin: 0 auto;
+	height: aut0;
+	background-color: #F2F2F2;
+}
+
+
+.courseTitleContainer{
+	width: 1100px;
+	height: 170px;
+	background-color: #FFFFFF;
+	box-shadow: 0px 2px 8px 0.5px #888888;
+	margin: 50px auto 30px;
+}
+.upperHalf{
+	width: 100%;
+	height: 80px;
+	background-color: #D9D9D9;
+	font-size: 30px;
+	display: flex;	
+	justify-content: space-between;
+}
+
+.course{
+	text-align: left;
+	height: 100%;
+	line-height: 80px;
+	padding-left: 20px;
+}
+.lowerHalf{
+	width: 100%;
+	height: 90px;
+	background-color: #FFFFFF;
+	display: flex;
+	flex-direction: row;
+	font-weight: 600;
+}
+
+.bold{
+	font-weight: 700;
+}
+
+.profContainer{
+	margin-top: 20px;
+	display: flex;
+	flex-direction: row;
+	width: 80%;
+	margin-left: 20px;
+}
+.prof{
+	font-weight: 400;
+	margin: 0 10px;
+}
+
+/* Course info box*/
+.logistics{
+	width: 400px;
+	background-color: #FFFFFF;
+}
+.courseInfoContainer{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.courseDescriptionContainer{
+	width: 655px;
+	height: 360px;
+	background-color: #FFFFFF;
+	box-shadow: 0px 2px 8px 0.5px #888888;
+}
+.courseDescription{
+	width: 555px;
+	margin: 0 auto;
+	
+}
+.prerequisite{
+	margin-top: 30px;
+	text-align: left;
+	font-size: 18px;
+}
+.description{
+	margin-top: 10px;
+	text-align: left;
+	font-weight: 700;
+	font-size: 18px;
+
+}
+.descriptionText{
+	text-align: left;
+	margin-top: 10px;
+	line-height: 25px;
+}
+
+
 .divider{
 	width: 100%;
 	height: auto;

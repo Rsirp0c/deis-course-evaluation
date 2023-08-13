@@ -23,7 +23,7 @@ export default function UserProvider({ children }) {
         if (authenticated) {
             fetchLikedCourses(id);
         }
-    }, [authenticated]);
+    }, []);
 
     useEffect(() => {
         setJWT().then((success) => {

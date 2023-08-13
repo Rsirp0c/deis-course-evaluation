@@ -29,6 +29,8 @@ export default function Review() {
 	const [professor, setProfessor] = useState('');
 	const [semester, setSemester] = useState('');
 	const [comment, setComment] = useState('');
+	const { courseFormatted, courseTitleFormatted} = format(course)
+	
 
 	// set professor options from course info stored in session storage
 	const courseInfo = JSON.parse(sessionStorage.getItem('courseInfo'));
@@ -134,7 +136,7 @@ export default function Review() {
 			<div className={styles.titleContainer}>
 				<h1 className={styles.title}>
 					<span className={styles.titleSpan}>Rate: </span>
-					{format(course)}
+					{courseFormatted} {courseTitleFormatted}
 				</h1>
 			</div>
 			<div className={styles.reviewContainer}>
