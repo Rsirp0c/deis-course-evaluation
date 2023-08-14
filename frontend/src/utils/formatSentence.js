@@ -3,7 +3,7 @@
  * @param {} str
  * @returns
  */
-export function format(str) {
+export default function format(str) {
     const smallWordsSet = new Set([
         'a',
         'an',
@@ -28,19 +28,20 @@ export function format(str) {
 
     const words = str.split(' ');
 
-    let newStr = '';
+	let courseFormatted = '';
+    let courseTitleFormatted = '';
 
-    for (let i = 0; i < words.length; i++) {
+    for (let i = 0; i < words.length; i+=1) {
         if (i === 0 || i === 1) {
-            newStr += `${words[i].toUpperCase()} `;
+            courseFormatted += `${words[i].toUpperCase()} `;
         } else {
             const word = words[i].toLowerCase();
             if (smallWordsSet.has(word) && i !== 2) {
-                newStr += `${word.toLowerCase()} `;
+                courseTitleFormatted += `${word.toLowerCase()} `;
             } else {
-                newStr += `${word.charAt(0).toUpperCase() + word.slice(1)} `;
+                courseTitleFormatted += `${word.charAt(0).toUpperCase() + word.slice(1)} `;
             }
         }
     }
-    return newStr;
+    return {courseFormatted, courseTitleFormatted};
 }

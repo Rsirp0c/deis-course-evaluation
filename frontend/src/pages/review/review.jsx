@@ -2,7 +2,7 @@
 import { useParams} from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext.jsx';
-import { format } from '../../utils/formatSentence.js';
+import format  from '../../utils/formatSentence.js';
 import styles from './review.module.css';
 import DropdownSelection from './components/DropdownSelection.jsx';
 import RatingButtons from './components/RatingButtons.jsx';
@@ -21,13 +21,16 @@ export default function Review() {
 	const [id, setId] = idState;
 	const [submit, setSubmit] = useState(false);
 	const [difficulty, setDifficulty] = useState(3);
-	const [quality, setQuality] = useState(3);
+	const [rate, setRate] = useState(3); 
+	const [usefulness, setUsefulness] = useState(3);
 	const [attendance, setAttendance] = useState(true);
 	const [delivery, setDelivery] = useState('In Person');
-	const [grade, setGrade] = useState('');
+	const [grade, setGrade] = useState(0);
 	const [professor, setProfessor] = useState('');
 	const [semester, setSemester] = useState('');
 	const [comment, setComment] = useState('');
+	const { courseFormatted, courseTitleFormatted} = format(course)
+	
 
 	// set professor options from course info stored in session storage
 	const courseInfo = JSON.parse(sessionStorage.getItem('courseInfo'));
@@ -51,26 +54,25 @@ export default function Review() {
 	]
 
 	const letterGrades = [
-		{ label: 'A+', value: 'A+' },
-		{ label: 'A', value: 'A' },
-		{ label: 'A-', value: 'A-' },
-		{ label: 'B+', value: 'B+' },
-		{ label: 'B', value: 'B' },
-		{ label: 'B-', value: 'B-' },
-		{ label: 'C+', value: 'C+' },
-		{ label: 'C', value: 'C' },
-		{ label: 'C-', value: 'C-' },
-		{ label: 'D+', value: 'D+' },
-		{ label: 'D', value: 'D' },
-		{ label: 'D-', value: 'D-' },
-		{ label: 'F', value: 'F' },
-		{ label: 'Prefer not to say', value: ''}
+		{ label: 'A+', value: 13 },
+		{ label: 'A', value: 12 },
+		{ label: 'A-', value: 11},
+		{ label: 'B+', value: 10 },
+		{ label: 'B', value: 9 },
+		{ label: 'B-', value: 8 },
+		{ label: 'C+', value: 7 },
+		{ label: 'C', value: 6 },
+		{ label: 'C-', value: 5 },
+		{ label: 'D+', value: 4 },
+		{ label: 'D', value: 3 },
+		{ label: 'D-', value: 2 },
+		{ label: 'F', value: 1 },
+		{ label: 'Prefer not to say', value: 0}
 	];
 
 	function handleSubmit(event) {
 		event.preventDefault();
 		console.log('submitting form')
-		
 		const commentString = comment.comment
 
 		fetch('http://localhost:3000/api/evaluations/forms', {
@@ -82,7 +84,8 @@ export default function Review() {
 				userId: id || 'anonymous',
 				courseId,
 				difficulty,
-				quality,
+				rate,
+				usefulness,
 				attendance,
 				delivery,
 				grade,
@@ -104,13 +107,19 @@ export default function Review() {
 		setProfessor(value)
 	}
 	function handleSemesterChange(event, value) {
-		setSemester(value)
+		Object.keys(term).forEach((key) => {
+			if(term[key].value === value){
+				setSemester(value)
+			}
+		})
+			
+		// setSemester(value)
 	}
 	function handleCommentChange(event) {
 		setComment({...comment, comment: event.target.value})
 	}
 	function handleGradeChange(event, value) {
-		setGrade(value)
+		setGrade(value.value)
 	}
 
 	if(submit){
@@ -127,7 +136,7 @@ export default function Review() {
 			<div className={styles.titleContainer}>
 				<h1 className={styles.title}>
 					<span className={styles.titleSpan}>Rate: </span>
-					{format(course)}
+					{courseFormatted} {courseTitleFormatted}
 				</h1>
 			</div>
 			<div className={styles.reviewContainer}>
@@ -141,8 +150,12 @@ export default function Review() {
 						<RatingButtons state={difficulty} setState={setDifficulty} />
 					</div>
 					<div className={styles.ratingWrapper}>
-						<h2 className={styles.ratingDesc}>Rate the quality of this course</h2>
-						<RatingButtons state={quality} setState={setQuality} />
+						<h2 className={styles.ratingDesc}>Rate the usefulness of this course</h2>
+						<RatingButtons state={usefulness} setState={setUsefulness} />
+					</div>
+					<div className={styles.ratingWrapper}>
+						<h2 className={styles.ratingDesc}>Rate the overall quality of the course</h2>
+						<RatingButtons state={rate} setState={setRate} />
 					</div>
 					<div className={styles.ratingWrapper}>
 						<h2 className={styles.ratingDesc}>Attendance is requried</h2>

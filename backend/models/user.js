@@ -24,7 +24,13 @@ const userSchema = Schema(
 			match: [/\S+@\S+\.\S+/, 'Invalid email']
 		},
 		evals: [{ type: Schema.Types.ObjectId, ref: 'EvalForm' }],
-		likedCourses: [{ type: Schema.Types.ObjectId, ref: 'Course' }],
+		likedCourses: {
+			type: [{
+				type: Schema.Types.ObjectId, 
+				ref: 'Course'
+			}],
+			default: []
+		},
 		provider: String,
 		hash: String,
 		salt: String,

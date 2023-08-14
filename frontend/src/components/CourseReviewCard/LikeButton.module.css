@@ -1,0 +1,28 @@
+.listButton {
+	width: 145px;
+	height: 50px;
+	background-color: #fff;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #3A7BD5;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	align-self: flex-end;
+	margin-bottom: 50px;
+}
+
+.listButtonCourse{
+	composes: listButton;
+	margin-bottom: 15px;
+	margin-right: 20px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+	display: absolute;
+}
+.ratingHeart {
+	margin-right: 10px;
+}

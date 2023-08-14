@@ -1,0 +1,62 @@
+
+/* ratings section */
+.rating {
+	width: 110px;
+	height: 200px;
+	background-color: rgba(164, 164, 164, 0.797);
+	display: flex;
+	justify-content: center;
+	position: absolute;
+}
+
+
+
+.ratingScoreContainer {
+	position: absolute;
+	top: 70px;
+}
+
+/* ratingbox for reviews */
+.ratingReview{
+	composes: rating;
+	height: 250px;
+}
+.ratingScoreContainerReview {
+	composes: ratingScoreContainer;
+	top: 100px;
+}
+
+.ratingScore {
+	font-size: 30px;
+	font-weight: 700;
+	color: black;
+	margin-right: 1px;
+}
+
+.ratingCount {
+	position: absolute;
+	bottom: 25px;
+	font-size: 15px;
+	font-weight: 400;
+}
+
+.red {
+	background-color: #ee2f2f9f;
+}
+
+.orange {
+	background-color: #f99e009f;
+}
+
+.yellow {
+	background-color: #ffff009f;
+}
+
+.lightGreen {
+	background-color: #eeffbb;
+}
+
+.green {
+	background-color: #b9e79f;
+}
+

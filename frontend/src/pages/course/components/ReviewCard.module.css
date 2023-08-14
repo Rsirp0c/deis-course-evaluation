@@ -1,0 +1,67 @@
+.card {
+	background-color: #fff;
+	width: 1200px;
+	height: 250px;
+	margin: 30px auto;
+	box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.bold{
+	font-weight: 600;
+}
+/* body section */
+.body {
+	padding-left: 110px;
+	width: calc(100% - 110px);
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.contents {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	margin-left: 30px;
+}
+.course {
+	color: #000;
+	font-size: 20px;
+	font-weight: 300;
+	top: 28px;
+	width: 500px;
+	position: absolute;
+	text-align: left;
+}
+.courseFont{
+	font-size: 25px;
+	margin-right: 20px;
+}
+.date{
+	font-size: 20px;
+	font-weight: 600;
+	top: 25px;
+	right: 20px;
+	width: 200px;
+	position: absolute;
+}
+
+.infoContainer{
+	display: flex;
+	flex-direction: row;
+	top: 70px;
+	position: absolute;
+}
+.info{
+	margin-right: 20px;
+}
+.comment{
+	position: absolute;
+	top: 115px;
+	font-weight: 600;
+	
+}
+.commentText{
+	position: absolute;
+	top: 145px;
+}

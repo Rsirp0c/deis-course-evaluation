@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import styles from './saved-courses.module.css';
-import CourseCard from '../../components/CourseCard.jsx';	
+import CourseCard from '../../components/CourseReviewCard/CourseCard.jsx';	
 
 export default function SavedCourses() {
  // fetch data from backend when page is loaded
@@ -12,6 +12,7 @@ const [reloadPage , setReloadPage] = useState(false);
  function reload(){
 	setReloadPage(!reloadPage);
  }
+ 
  useEffect(() => {
 	likedCoursesIds = JSON.parse(localStorage.getItem('likedCourses')) || [];
 	fetch('http://localhost:3000/api/liked-courses/ids', {

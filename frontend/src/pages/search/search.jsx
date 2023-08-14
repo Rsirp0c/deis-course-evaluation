@@ -2,7 +2,7 @@ import { useEffect, useState, useContext} from 'react';
 import {useSearchParams} from 'react-router-dom';
 import {UserContext} from '../../contexts/UserContext.jsx';
 import styles from './search.module.css';
-import CourseCard from '../../components/CourseCard.jsx';
+import CourseCard from '../../components/CourseReviewCard/CourseCard.jsx';
 import fetchCourse from '../../services/fetchCourse.js';
 
 function Error() {

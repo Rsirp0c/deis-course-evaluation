@@ -64,6 +64,11 @@ export const get = async (req, res) => {
 	}
 };
 
+/**
+ * This controller returns the courses with the given ids
+ * @param {*} req 
+ * @param {*} res 
+ */
 export const getWithIds = async (req, res) => {
 	const { likedCoursesIds } = req.body;
 	try {

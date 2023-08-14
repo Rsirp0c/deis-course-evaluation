@@ -1,7 +1,128 @@
+
+
+import { useState, useEffect } from 'react';
+import format from '../../utils/formatSentence.js'
+import styles from './course.module.css'
+import ReviewCard from './components/ReviewCard.jsx';
+import fetchReviews from '../../services/fetchReviews.js';
+import convertToLetterGrade from '../../utils/convertToLetterGrade.js';
+import LikeButton from '../../components/CourseReviewCard/LikeButton.jsx';
+import RateCourseButton from '../../components/CourseReviewCard/RateCourseButton.jsx';
+
 export default function Course() {
-  return (
-    <div>
-      <h1>course</h1>
-    </div>
-  );
+
+	const [reviews, setReviews] = useState([]);
+	const courseInfo = JSON.parse(localStorage.getItem('courseInfo'));
+	const { 
+		_id, 
+		course, 
+		courseTitle, 
+		courseDescription, 
+		difficultyAverage, 
+		ratingAverage, 
+		gradeAverage, 
+		usefulnessAverage, 
+		prerequisites, 
+		professors } = courseInfo;
+	const { courseFormatted, courseTitleFormatted} = format(`${course} ${courseTitle}`)
+	
+	useEffect(()=>{
+		fetchReviews(setReviews, _id);
+	}, [])
+	
+	let color;
+
+	if (ratingAverage === 5) {
+		color = styles.green;
+	} else if (ratingAverage >= 4) {
+		color = styles.lightGreen;
+	} else if (ratingAverage >= 3) {
+		color = styles.yellow;
+	} else if (ratingAverage >= 2) {
+		color = styles.orange;
+	} else if (ratingAverage >= 1) {
+		color = styles.red;
+	}
+	
+	let difficulty;
+	let usefulness;
+	let rating;
+	if(difficultyAverage === 0 ){
+		difficulty = 'N/A'
+	}else{
+		difficulty = difficultyAverage
+	}
+	if(usefulnessAverage === 0 ){
+		usefulness = 'N/A'
+	}else{
+		usefulness = usefulnessAverage
+	}
+	if(ratingAverage === 0 ){
+		rating = '-'
+	}else{
+		rating = ratingAverage	
+	}
+  	return (
+    	<div>
+			<div className={styles.container}>
+				<div className={styles.courseTitleContainer}>
+					<div className={styles.upperHalf}>
+						<p className={styles.course}><span className={styles.bold}>{courseFormatted}</span> {courseTitleFormatted}</p>
+						<LikeButton courseId={_id} className={styles.likeButton} isCourse/>
+					</div>
+					<div className={styles.lowerHalf}>
+						<div className={styles.profContainer}>
+							Instructors: {professors.map((professor, index) => (
+								<p className={styles.prof} key={index.toString()}>{professor.name},</p>
+							))}
+						</div>
+						<RateCourseButton course={courseInfo} isCourse/>
+					</div>
+
+				</div>
+				<div className={styles.courseInfoContainer}>
+					<div className={styles.left}>
+						<div className={styles.rating}>
+							<div className={styles.gridContainer}>
+								<div className={color} />
+							</div>
+							<div className={styles.ratingTextContainer}>
+								<span className={styles.ratingText}>{rating}</span> <span className={styles.ratingSubText}>/ 5</span>	
+							</div>
+						</div>
+						<div className={styles.subRatings}>
+							<p className={styles.subRate}>Difficulty <span className={styles.subRateValue}>{difficulty}</span></p>
+							<p className={styles.subRate}>Usefulness <span className={styles.subRateValue}>{usefulness}</span></p>
+							<p className={styles.subRate}>Average grade <span className={styles.subRateValue}>{convertToLetterGrade(gradeAverage.grade)}</span></p>
+						</div>
+				
+					</div>
+					<div className={styles.right}>
+						<div className={styles.courseDescription}>
+							<p className={styles.prerequisite}><span className={styles.bold}>Prerequisites: </span>
+							{prerequisites.length === 0 ? 'None' : prerequisites.map((prerequisite, index) => (
+								<span key={index.toString()}>{prerequisite}</span>
+							))}
+							</p>
+							<p className={styles.description}>Description: </p>
+							<p className={styles.descriptionText}> {courseDescription}</p>
+						</div>
+					</div>
+				
+				</div>
+			
+		
+			
+			</div>
+
+			<div className={styles.divider}>
+				{reviews.length === 1 ? <p>{reviews.length} Student Rating</p> : 		
+				<p>{reviews.length} Student Ratings</p>}
+			</div>
+			{reviews.map((review) => (
+				<ReviewCard key={review._id} review={review} course={course}/>
+			))}
+	
+    	</div>
+  	);
 }

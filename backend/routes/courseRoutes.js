@@ -1,14 +1,14 @@
 import express from 'express';
 const router = express.Router();
 
-import { index, display } from '../controllers/coursesController.js';
+import { index, getEvalWithIds } from '../controllers/coursesController.js';
 
 /**
  * Courses API routes
  * GET api/courses
- * GET api/courses/courseId
+ * GET api/courses/reviews
  */
 router.get('/', index);
-// router.get('/:id', display);
+router.post('/reviews', getEvalWithIds);
 
 export default router;

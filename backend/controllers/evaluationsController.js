@@ -4,26 +4,7 @@
 import EvalForm from '../models/evalForm.js';
 import Course from '../models/course.js';
 import User from '../models/user.js';
-
-/**
- * Gets the parameters from the request body and returns them in an JSON object
- * @MingCWang
- * @param {Object} body - request body
- * @returns {{course: string, semester: string, professor: string, difficulty: number, rate: number, attendance: string, gradeRecieved: string, delivery: string, comment: string}} - JSON object with the parameters
- */
-const getEvalFormParams = ({ courseId, semester, professor, difficulty, quality, attendance, grade, delivery, commentString }) => {
-	return {
-		course: courseId,
-		semester,
-		professor,
-		difficulty,
-		quality,
-		attendance,
-		grade,
-		delivery,
-		comment: commentString
-	};
-};
+import { updateCourseAverages, getEvalFormParams } from '../utils/evaluationUtils.js';
 
 /**
  * @summary POST api/v1/evaluations/forms
@@ -35,8 +16,9 @@ const getEvalFormParams = ({ courseId, semester, professor, difficulty, quality,
  *    "course": "COSI-103",
  *    "semester": "SPRING",
  *    "professor": "Timothy Hickey",
- *    "difficulty": "4", 
- *    "rate": 5,
+ *    "difficulty": "4",
+ *    "rate": "4", 
+ *    "usefulness": 5,
  *    "attendance": true,
  *    "grade-received": "A",
  *    "delivery": "In-Person", 
@@ -61,12 +43,18 @@ async function create(req, res) {
 		// add evalform id to user evals with the matching user id
 		if (userId !== 'anonymous'){
 			const user = await User.findByIdAndUpdate(userId, { $push: { evals: evalFormId } }, { new: true });
-			console.log({user})
 		}
-		console.log({savedEvalForm, course})
+		console.log({savedEvalForm})
+		try{
+			await updateCourseAverages(course, savedEvalForm);
+		}catch(err){
+			throw err;
+		}
 		res.status(201).json(savedEvalForm);
+
 	} catch (err) {
 		res.status(500).json({ error: err.message });
+		console.log(err);
 	}
 }
 
@@ -97,4 +85,5 @@ async function read(req, res) {
 	}
 }
 
-export { create, read };
+
+export { create, read};

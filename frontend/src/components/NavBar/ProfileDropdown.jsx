@@ -23,7 +23,7 @@ export default function ProfileDropdown({ handleLogout, handleOnClick }) {
           </p>
           <div className={styles.links}>
             <Link to="/saved-courses" className={styles.link}><span className={styles.text}>My Saved Courses</span></Link>
-            {/* <Link to="/my-profile" className={styles.link}><span className={styles.text}>My Profile</span></Link> */}
+            <Link to="/my-reviews" className={styles.link}><span className={styles.text}>My reviews</span></Link>
           </div>
           <button to="/" type='button' className={styles.signout} onClick={handleLogout}><span className={styles.text}>Sign Out</span></button>
         </div>

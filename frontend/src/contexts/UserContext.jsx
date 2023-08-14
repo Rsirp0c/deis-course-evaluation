@@ -19,12 +19,13 @@ export default function UserProvider({ children }) {
     const [loggingIn, setLoggingIn] = useState(false); // state for login popup, use this when user clicks on login button or functionalities that require login
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        if (authenticated) {
-            fetchLikedCourses(id);
-        }
-    }, [authenticated]);
 
+	useEffect(() => {
+		if (authenticated) {
+			fetchLikedCourses(id)
+		}
+	}, [authenticated])
+	
     useEffect(() => {
         setJWT().then((success) => {
             if (success === false) {
@@ -45,12 +46,18 @@ export default function UserProvider({ children }) {
                     setName(username);
                     setId(id);
                     setEmail(email);
-                    setAuthenticated(true);
+                   	setAuthenticated(true);
                 } else {
                     setAuthenticated(false);
                 }
                 setLoading(false);
             })
+			.then(() => {
+				if (authenticated) {
+					
+					console.log('fetching liked courses')
+				}
+			})
             .catch((err) => {
                 console.log(err);
                 setError(true);
