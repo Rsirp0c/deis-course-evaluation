@@ -47,25 +47,26 @@ const courseSchema = Schema({
 		default: [],
 	},
 	gradeAverage: {
-		type: Object,
+		type: {
+		  grade: {
+			type: Number,
+			default: 0
+		  },
+		  numGrades: {
+			type: Number,
+			default: 0
+		  }
+		},
 		default: {
-			grade: 0,
-			numGrades: 0,
-		},
-		grade: {
-			type: Number,
-			default: 0,
-		},
-		numGrades: {
-			type: Number,
-			default: 0,
+		  grade: 0,
+		  numGrades: 0
 		}
 	},
 	ratingAverage: {
 		type: Number,
 		default: 0,
 	},
-	usefullnessAverage: {
+	usefulnessAverage: {
 		type: Number,
 		default: 0,
 	},

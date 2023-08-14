@@ -21,18 +21,47 @@ export default function Course() {
 		difficultyAverage, 
 		ratingAverage, 
 		gradeAverage, 
-		usefullnessAverage, 
+		usefulnessAverage, 
 		prerequisites, 
 		professors } = courseInfo;
 	const { courseFormatted, courseTitleFormatted} = format(`${course} ${courseTitle}`)
-	console.log(gradeAverage)
-	console.log(professors)
 	
 	useEffect(()=>{
 		fetchReviews(setReviews, _id);
 	}, [])
 	
+	let color;
 
+	if (ratingAverage === 5) {
+		color = styles.green;
+	} else if (ratingAverage >= 4) {
+		color = styles.lightGreen;
+	} else if (ratingAverage >= 3) {
+		color = styles.yellow;
+	} else if (ratingAverage >= 2) {
+		color = styles.orange;
+	} else if (ratingAverage >= 1) {
+		color = styles.red;
+	}
+	
+	let difficulty;
+	let usefulness;
+	let rating;
+	if(difficultyAverage === 0 ){
+		difficulty = 'N/A'
+	}else{
+		difficulty = difficultyAverage
+	}
+	if(usefulnessAverage === 0 ){
+		usefulness = 'N/A'
+	}else{
+		usefulness = usefulnessAverage
+	}
+	if(ratingAverage === 0 ){
+		rating = '-'
+	}else{
+		rating = ratingAverage	
+	}
   	return (
     	<div>
 			<div className={styles.container}>
@@ -43,8 +72,8 @@ export default function Course() {
 					</div>
 					<div className={styles.lowerHalf}>
 						<div className={styles.profContainer}>
-							Instructors: {professors.map((professor) => (
-								<p className={styles.prof} key={professor._id}>{professor.name},</p>
+							Instructors: {professors.map((professor, index) => (
+								<p className={styles.prof} key={index.toString()}>{professor.name},</p>
 							))}
 						</div>
 						<RateCourseButton course={courseInfo} isCourse/>
@@ -52,17 +81,27 @@ export default function Course() {
 
 				</div>
 				<div className={styles.courseInfoContainer}>
-					<div className={styles.logistics}>
-						<p>{difficultyAverage}</p>
-						<p>{usefullnessAverage}</p>
-						<p>{ratingAverage}</p>
-						<p>{convertToLetterGrade(gradeAverage.grade)}</p>
+					<div className={styles.left}>
+						<div className={styles.rating}>
+							<div className={styles.gridContainer}>
+								<div className={color} />
+							</div>
+							<div className={styles.ratingTextContainer}>
+								<span className={styles.ratingText}>{rating}</span> <span className={styles.ratingSubText}>/ 5</span>	
+							</div>
+						</div>
+						<div className={styles.subRatings}>
+							<p className={styles.subRate}>Difficulty <span className={styles.subRateValue}>{difficulty}</span></p>
+							<p className={styles.subRate}>Usefulness <span className={styles.subRateValue}>{usefulness}</span></p>
+							<p className={styles.subRate}>Average grade <span className={styles.subRateValue}>{convertToLetterGrade(gradeAverage.grade)}</span></p>
+						</div>
+				
 					</div>
-					<div className={styles.courseDescriptionContainer}>
+					<div className={styles.right}>
 						<div className={styles.courseDescription}>
 							<p className={styles.prerequisite}><span className={styles.bold}>Prerequisites: </span>
-							{prerequisites.length === 0 ? 'None' : prerequisites.map((prerequisite) => (
-								<span key={prerequisite._id}>{prerequisite}</span>
+							{prerequisites.length === 0 ? 'None' : prerequisites.map((prerequisite, index) => (
+								<span key={index.toString()}>{prerequisite}</span>
 							))}
 							</p>
 							<p className={styles.description}>Description: </p>

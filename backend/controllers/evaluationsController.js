@@ -4,45 +4,8 @@
 import EvalForm from '../models/evalForm.js';
 import Course from '../models/course.js';
 import User from '../models/user.js';
+import { updateCourseAverages, getEvalFormParams } from '../utils/evaluationUtils.js';
 
-/**
- * Gets the parameters from the request body and returns them in an JSON object
- * @MingCWang
- * @param {Object} body - request body
- * @returns {{course: string, semester: string, professor: string, difficulty: number, rate: number, attendance: string, gradeRecieved: string, delivery: string, comment: string}} - JSON object with the parameters
- */
-const getEvalFormParams = ({ courseId, semester, professor, difficulty, rate, usefulness, attendance, grade, delivery, commentString }) => {
-	return {
-		course: courseId,
-		semester,
-		professor,
-		difficulty,
-		rate, 
-		usefulness,
-		attendance,
-		grade,
-		delivery,
-		comment: commentString
-	};
-};
-
-const updateCourseAverages = async (course, savedEvalForm) => {
-	// Do the score calculations here. Note: calculate after the request is sent to the client
-	const numComments = course.comments.length;
-	course.ratingAverage = Math.round(((course.ratingAverage * numComments + savedEvalForm.rate) / (numComments + 1))*10)/10;
-	course.difficultyAverage = Math.round(((course.difficultyAverage * numComments + savedEvalForm.difficulty) / (numComments + 1))*10)/10;
-	course.usefullnessAverage = Math.round(((course.usefullnessAverage * numComments + savedEvalForm.usefulness) / (numComments + 1)*10))/10;
-
-	// If the grade is not null, then update the gradeAverage
-	if (savedEvalForm.grade !== 0) {
-		console.log(course.gradeAverage)
-		const numGrades = course.gradeAverage.numGrades;
-		course.gradeAverage.grade = Math.round((course.gradeAverage.grade * numGrades + savedEvalForm.grade) / (numGrades + 1));
-		course.gradeAverage.numGrades = numGrades + 1;
-	}
-	const savedCourse = await course.save();
-	console.log({ savedCourse });
-}
 /**
  * @summary POST api/v1/evaluations/forms
  * @description Creates a new EvalForm
@@ -80,9 +43,8 @@ async function create(req, res) {
 		// add evalform id to user evals with the matching user id
 		if (userId !== 'anonymous'){
 			const user = await User.findByIdAndUpdate(userId, { $push: { evals: evalFormId } }, { new: true });
-			console.log({user})
 		}
-		console.log({savedEvalForm, course})
+		console.log({savedEvalForm})
 		try{
 			await updateCourseAverages(course, savedEvalForm);
 		}catch(err){
