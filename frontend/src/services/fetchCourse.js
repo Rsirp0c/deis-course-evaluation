@@ -1,5 +1,8 @@
+const process = import.meta.env;
+
+
 export default function fetchCourse(course, storeData, storeError) {
-    fetch(`http://localhost:3000/api/courses?course=${course}`)
+    fetch(`${process.VITE_BASE_URL}api/courses?course=${course}`)
         .then((res) => res.json())
         .then((res) => {
             if (!res.error) {

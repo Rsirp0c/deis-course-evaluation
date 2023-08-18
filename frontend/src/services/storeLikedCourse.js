@@ -1,6 +1,8 @@
+const process = import.meta.env;
+
 export default function storeLikedCourses(id) {
     const likedCoursesIds = JSON.parse(localStorage.getItem('likedCourses'));
-    fetch('http://localhost:3000/api/liked-courses/add', {
+    fetch(`${process.VITE_BASE_URL}api/liked-courses/add`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
