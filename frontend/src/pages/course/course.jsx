@@ -120,7 +120,7 @@ export default function Course() {
 				<p>{reviews.length} Student Ratings</p>}
 			</div>
 			{reviews.map((review) => (
-				<ReviewCard key={review._id} review={review} course={course}/>
+				<ReviewCard key={review._id} review={review}/>
 			))}
 	
     	</div>

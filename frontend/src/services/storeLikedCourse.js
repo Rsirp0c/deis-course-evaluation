@@ -1,6 +1,19 @@
+const process = import.meta.env;
+
 export default function storeLikedCourses(id) {
-    const likedCoursesIds = JSON.parse(localStorage.getItem('likedCourses'));
-    fetch('http://localhost:3000/api/liked-courses/add', {
+
+	// TO DO: sometimes null is stored into user's likedcourses why?
+	let likedCoursesIds
+	try{
+		likedCoursesIds = JSON.parse(localStorage.getItem('likedCourses'));
+		if(likedCoursesIds === null){
+			throw new Error("wtf")
+		}
+	}catch{
+		console.log("why is it null")
+	}
+	
+    fetch(`${process.VITE_BASE_URL}api/liked-courses/add`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

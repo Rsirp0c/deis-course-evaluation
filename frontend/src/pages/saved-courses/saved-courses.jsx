@@ -2,41 +2,29 @@
 import { useEffect, useState } from 'react';
 import styles from './saved-courses.module.css';
 import CourseCard from '../../components/CourseReviewCard/CourseCard.jsx';	
+import fetchLikeCoursesWithIds from '../../services/fetchLikeCoursesWithIds';
 
 export default function SavedCourses() {
- // fetch data from backend when page is loaded
-const [data, setData] = useState([]);
-const [reloadPage , setReloadPage] = useState(false);
- let likedCoursesIds = []
+	// fetch data from backend when page is loaded
+	const [data, setData] = useState([]);
+	const [reloadPage , setReloadPage] = useState(false);
 
- function reload(){
-	setReloadPage(!reloadPage);
- }
- 
- useEffect(() => {
-	likedCoursesIds = JSON.parse(localStorage.getItem('likedCourses')) || [];
-	fetch('http://localhost:3000/api/liked-courses/ids', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({likedCoursesIds})
-	}).then((res) => res.json()).then((res) => {
-		if(!res.error){
-			setData(res);
-		}else{
-			console.log(res.error);
-		}
-		
-	}).catch((err) => {
-		console.log(err);
-	});
+	// Reload the page when user clickes the like button so the course gets deleted in real time when unliked
+	function reload(){
+		setReloadPage(!reloadPage);
+	}
 
-  }, [reloadPage]);
+	function storeLikedCourses(courses){
+		setData(courses)
+	}
  
-  const empty = () => {
-	if (data.length === 0) return <p>No saved courses</p>
-	return null
+	useEffect(() => {
+		fetchLikeCoursesWithIds(storeLikedCourses)
+	}, [reloadPage]);
+	
+	const empty = () => {
+		if (data.length === 0) return <p>No saved courses</p>
+		return null
 	;}
 
 	return (

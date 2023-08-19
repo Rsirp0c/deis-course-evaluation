@@ -36,7 +36,7 @@ export default function RatingBox({ ratingAverage, isCourse, numRatings}) {
 			   </span>
 			   / 5
 		   </p>
-		   {isCourse ?   <p className={styles.ratingCount}>{numRatings} ratings</p> : null}
+		   {isCourse ?   <p className={styles.ratingCount}>{numRatings} reviews</p> : null}
 	   </div>
    );
 }

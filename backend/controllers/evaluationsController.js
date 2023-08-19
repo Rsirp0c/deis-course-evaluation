@@ -13,7 +13,7 @@ import { updateCourseAverages, getEvalFormParams } from '../utils/evaluationUtil
  * Example request body:
  * 
  * {
- *    "course": "COSI-103",
+ *    "courseIdName": {ObjectId(asdfagqerfas124), "COSI-10A"}
  *    "semester": "SPRING",
  *    "professor": "Timothy Hickey",
  *    "difficulty": "4",
@@ -33,13 +33,13 @@ import { updateCourseAverages, getEvalFormParams } from '../utils/evaluationUtil
  */
 async function create(req, res) {
 	try {
-		const {courseId, userId} = req.body;
+		const {courseIdName, userId} = req.body;
 		// save evalform with the req aruguments 
 		const newEvalForm = new EvalForm(getEvalFormParams(req.body));
 		const savedEvalForm = await newEvalForm.save();
 		// add evalform id to course comments with the matching course id 
 		const evalFormId = savedEvalForm._id;
-		const course = await Course.findByIdAndUpdate(courseId, { $push: { comments: evalFormId } }, { new: true });
+		const course = await Course.findByIdAndUpdate(courseIdName.id, { $push: { comments: evalFormId } }, { new: true });
 		// add evalform id to user evals with the matching user id
 		if (userId !== 'anonymous'){
 			const user = await User.findByIdAndUpdate(userId, { $push: { evals: evalFormId } }, { new: true });

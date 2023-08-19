@@ -1,5 +1,7 @@
+const process = import.meta.env;
+
 export default function fetchLikedCourses(id) {
-    fetch('http://localhost:3000/api/liked-courses', {
+    fetch(`${process.VITE_BASE_URL}api/liked-courses`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

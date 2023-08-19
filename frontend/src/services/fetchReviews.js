@@ -1,5 +1,7 @@
+const process = import.meta.env;
+
 export default function fetchReviews(setReviews, _id){
-	fetch('http://localhost:3000/api/courses/reviews', {
+	fetch(`${process.VITE_BASE_URL}api/courses/reviews`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',

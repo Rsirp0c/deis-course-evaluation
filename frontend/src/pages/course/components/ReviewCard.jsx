@@ -6,7 +6,7 @@ import RatingBox from '../../../components/CourseReviewCard/RatingBox.jsx'
 
 
 
-export default function ReviewCard({review, course}){
+export default function ReviewCard({review}){
 	
 	const formattedDate = format(new Date(review.createdAt), 'MMMM do, yyyy');
 	let attendance = ''
@@ -23,7 +23,7 @@ export default function ReviewCard({review, course}){
 				<div className={styles.contents}>
 					<p className={styles.date}>{formattedDate}</p>
 					<p className={styles.course}>
-						<span className={`${styles.courseFont} ${styles.bold}`}>{course}</span> with professor <span className={styles.bold}>{review.professor}</span>
+						<span className={`${styles.courseFont} ${styles.bold}`}>{review.course.name}</span> with professor <span className={styles.bold}>{review.professor}</span>
 					</p>
 					<div className={styles.infoContainer}>
 						<p className={styles.info}>

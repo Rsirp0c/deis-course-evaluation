@@ -1,3 +1,5 @@
+const process = import.meta.env;
+
 /**
  * this function will get the JWT from the backend and store it in local storage
  */
@@ -6,7 +8,7 @@ export async function setJWT() {
     const code = urlParams.get('code');
     if (code) {
         // Parse authorization code from the URL
-        fetch('http://localhost:3000/auth/oauth/google', {
+        fetch(`${process.BASE_URL}auth/oauth/google`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -37,7 +39,7 @@ export async function validateJWT() {
     if (jwt) {
         // using await here instead of .then() because we want to pause the execution of the function until we get a response from the server
         // To Do: add a try catch block here
-        const response = await fetch('http://localhost:3000/auth/validate', {
+        const response = await fetch(`${process.BASE_URL}auth/validate`, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${jwt}`,

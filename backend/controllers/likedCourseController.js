@@ -25,22 +25,7 @@ export const add = async (req, res) => {
 	}
 };
 
-/**
- * This controller removes a course from the likedCourses array of a user when the user clicks the like button
- * @param {*} req
- * @param {*} res
- */
-export const remove = async (req, res) => {
-	const { courseId } = req.body;
-	const { userId } = req.body;
-	try {
-		const result = await User.findByIdAndUpdate(userId, { $pull: { likedCourses: courseId } }, { new: true })
-		res.status(200).json(result);
-	} catch (err) {
-		console.error(err);
-		res.status(500).json({ error: err.message });
-	}
-};
+
 
 /**
  * 
