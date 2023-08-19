@@ -8,10 +8,18 @@ import router from './routes/index.js';
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+
+const corsOptions = {
+	origin: 'https://deis-evaluation.onrender.com/',
+	optionsSuccessStatus: 200 
+  }
 /**
  * Middlewares
  */
-app.use(cors());
+app.use(cors(corsOptions));  // production
+// app.use(cors()) // development
+
 app.use(morgan('dev'));
 // app.use(express.static('public'));
 app.use(express.json());
