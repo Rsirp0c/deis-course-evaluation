@@ -10,22 +10,25 @@ export default function LikeButton({courseId, isCourse, reload}){
     const [clicked, setClicked] = useState(false);
     const [added, setAdded] = useState(false);
 
-    const { loggingInState, idState } = useContext(UserContext);
-    const [id, setId] = idState;
+    const { loggingInState, authState} = useContext(UserContext);
     const [loggingIn, setLoggingIn] = loggingInState;
-
+	const [authenticated, setAuthenticated] = authState;
 
     // check if course is in liked courses when page is loaded
     useEffect(() => {
         const likedCourses =
             JSON.parse(localStorage.getItem('likedCourses')) || [];
-        if (id) {
+		
+        if (authenticated) {
             if (likedCourses.includes(courseId)) {
                 setClicked(true);
                 setAdded(true);
             }
-        }
-    }, []);
+        }else{
+			setClicked(false);
+			setAdded(false);
+		}
+    }, [authenticated, localStorage.getItem('likedCourses')]);
 
 	// fetch liked courses from local storage and update when liked/unliked
     useEffect(() => {
@@ -48,7 +51,7 @@ export default function LikeButton({courseId, isCourse, reload}){
     }, [clicked]);
 
 	function handleLikedCourse() {
-        if (!id) {
+        if (!authenticated) {
             setLoggingIn(true);
         } else {
             setClicked(!clicked);

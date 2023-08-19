@@ -74,7 +74,10 @@ export default function Review() {
 		event.preventDefault();
 		console.log('submitting form')
 		const commentString = comment.comment
-
+		const courseIdName = {
+			id: courseId,
+			name: courseFormatted
+		}
 		fetch('http://localhost:3000/api/evaluations/forms', {
 			method: 'POST',
 			headers: {
@@ -82,7 +85,7 @@ export default function Review() {
 			},
 			body: JSON.stringify({
 				userId: id || 'anonymous',
-				courseId,
+				courseIdName,
 				difficulty,
 				rate,
 				usefulness,

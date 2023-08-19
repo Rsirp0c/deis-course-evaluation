@@ -30,7 +30,7 @@ export default function Search() {
   // fetch data from backend when page is loaded
   useEffect(() => {
 	fetchCourse(searchParams.get('course'), storeData, storeError);
-  }, [searchParams, authenticated]);
+  }, [searchParams]);
 
   if (error) return <Error />;
 

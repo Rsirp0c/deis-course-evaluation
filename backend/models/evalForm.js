@@ -37,10 +37,26 @@ const evalFormSchema = Schema(
 			ref: 'User'
 		},
 		// change to course id so we can link to course model
+		// why does the course field automatically includes the evalform _id again like this 
+		//  course: {
+		// 	id: new ObjectId("64dee5847d7bf2ac18f32a29"),
+		// 	name: 'COSI 10A ',
+		// 	_id: new ObjectId("64e0771f3e9e76b63b23aeda")
+		//   },
+		
 		course: {
-			type: Schema.Types.ObjectId,
-			ref: 'Course',
-			required: true
+			type:{
+				id:{
+					type: Schema.Types.ObjectId,
+					ref: 'Course',
+					required: true
+				},
+				name:{
+					type: String,
+					requried: true
+				}
+			}
+			
 		},
 		semester: {
 			type: String,

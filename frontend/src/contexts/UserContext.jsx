@@ -16,6 +16,8 @@ export default function UserProvider({ children }) {
     const [id, setId] = useState(null);
     const [name, setName] = useState(null);
     const [email, setEmail] = useState(null);
+	// should i store liked courses ids in local storage or in userContext
+	// const [likedCoursesIds, setLikedCoursesIds] = useState([])
     const [loggingIn, setLoggingIn] = useState(false); // state for login popup, use this when user clicks on login button or functionalities that require login
     const [loading, setLoading] = useState(true);
 
@@ -23,9 +25,10 @@ export default function UserProvider({ children }) {
 	useEffect(() => {
 		if (authenticated) {
 			fetchLikedCourses(id)
+			console.log('fetching liked courses')
 		}
 	}, [authenticated])
-	
+
     useEffect(() => {
         setJWT().then((success) => {
             if (success === false) {
@@ -52,12 +55,6 @@ export default function UserProvider({ children }) {
                 }
                 setLoading(false);
             })
-			.then(() => {
-				if (authenticated) {
-					
-					console.log('fetching liked courses')
-				}
-			})
             .catch((err) => {
                 console.log(err);
                 setError(true);
@@ -65,6 +62,8 @@ export default function UserProvider({ children }) {
             });
     }, []);
 
+
+	
     if (loading) {
         return;
     }
