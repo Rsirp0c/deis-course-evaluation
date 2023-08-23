@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from 'react';
 import { setJWT, validateJWT } from '../services/auth.js';
 import fetchLikedCourses from '../services/fetchLikedCourses.js';
 
+
 export const UserContext = createContext(null);
 /**
  * This sets thhe global state for user info
