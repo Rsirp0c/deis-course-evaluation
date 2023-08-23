@@ -9,6 +9,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+console.log(process.env.MONGODB_URL)
 
 const corsOptions = {
 	origin: 'https://deis-evaluation.onrender.com/',
@@ -17,8 +18,8 @@ const corsOptions = {
 /**
  * Middlewares
  */
-app.use(cors(corsOptions));  // production
-// app.use(cors()) // development
+// app.use(cors(corsOptions));  // production
+app.use(cors()) // development
 
 app.use(morgan('dev'));
 // app.use(express.static('public'));
@@ -28,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
  * Set up mongodb connection and start the server
  */
 mongoose.
-	connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/course-eval', {
+	connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/course-eval', {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})
