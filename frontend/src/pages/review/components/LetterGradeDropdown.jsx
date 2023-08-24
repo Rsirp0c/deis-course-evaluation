@@ -20,7 +20,7 @@ export default function ComboBox({options, label, handleGradeChange}) {
       		disablePortal
       		id="combo-box-demo"
       		options={options}
-			freeSolo
+			
       		sx={{
 			width: 615,
 			'& .MuiInputBase-root': {

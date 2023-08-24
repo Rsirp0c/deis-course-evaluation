@@ -20,7 +20,6 @@ export default function ComboBox({options, label, handleChange}) {
 			onInputChange={(event, value) => handleChange(event, value)}
       		disablePortal
       		id="combo-box-demo"
-			freeSolo
 			forcePopupIcon
       		options={options}
       		sx={{
