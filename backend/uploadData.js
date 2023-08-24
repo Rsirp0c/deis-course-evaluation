@@ -1,11 +1,13 @@
 
 import mongoose from 'mongoose';
-
+import dotenv from 'dotenv'
+dotenv.config();
+console.log(process.env.MONGODB_URL)
 /**
  * Set up mongodb connection and start the server
  */
 mongoose.
-	connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/course-eval', {
+	connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/course-eval', {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})

@@ -29,6 +29,7 @@ export default function Review() {
 	const [professor, setProfessor] = useState('');
 	const [semester, setSemester] = useState('');
 	const [comment, setComment] = useState('');
+	const [error, setError] = useState(false);
 	const { courseFormatted, courseTitleFormatted} = format(course)
 	
 
@@ -101,6 +102,7 @@ export default function Review() {
 				if(!data.error){
 					setSubmit(true)
 				}else{
+					setError(true)
 					console.log(data.error)
 				}
 			})
@@ -181,6 +183,7 @@ export default function Review() {
 							<TextBox comment={comment} handleCommentChange={handleCommentChange} />
 						</div>
 					</div>
+					{error && <div className={styles.error}>Please answer all questions*</div>}
 					<div className={styles.submit}>
 						<button className={styles.submitButton} type="submit" onClick={handleSubmit} >Submit</button>
 					</div>

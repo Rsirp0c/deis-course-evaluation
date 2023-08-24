@@ -38,6 +38,8 @@
 	cursor: pointer;
 	height: 40px;
 	font-weight: 600;
+	font-family: Montserrat;
+
 }
 
 .registerButton {
@@ -45,6 +47,8 @@
 	background-color: #3A7BD5;
 	border: 3px solid #FFFFFF;
 	color: #FFFFFF;
+	margin-right: 30px;
+	text-align: center;
 }
 
 .registerButton:hover,
@@ -74,7 +78,8 @@
 
 .profileIcon {
 	composes: icon;
-	padding-right: 5px;
+	padding-left: 10px;
+	padding-right: 60px;
 }
 
 /* Search Bar */
@@ -115,7 +120,7 @@
 
 .divider {
 	width: 2px;
-	height: 25px;
+	height: 40px;
 	background-color: #FFFFFF;
 }
 
@@ -141,6 +146,7 @@ main page navBar
 	cursor: pointer;
 	height: 40px;
 	font-weight: 500;
+	font-family: Montserrat;
 }
 
 .registerButtonMain {
@@ -148,4 +154,6 @@ main page navBar
 	border: 3px solid #FFFFFF;
 	width: 140px;
 	margin: 10px;
+	margin-right: 40px;
+
 }
