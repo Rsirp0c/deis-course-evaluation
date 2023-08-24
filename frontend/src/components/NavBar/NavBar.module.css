@@ -45,6 +45,7 @@
 	background-color: #3A7BD5;
 	border: 3px solid #FFFFFF;
 	color: #FFFFFF;
+	margin-right: 30px;
 }
 
 .registerButton:hover,
@@ -74,7 +75,8 @@
 
 .profileIcon {
 	composes: icon;
-	padding-right: 5px;
+	padding-left: 10px;
+	padding-right: 60px;
 }
 
 /* Search Bar */
@@ -115,7 +117,7 @@
 
 .divider {
 	width: 2px;
-	height: 25px;
+	height: 40px;
 	background-color: #FFFFFF;
 }
 

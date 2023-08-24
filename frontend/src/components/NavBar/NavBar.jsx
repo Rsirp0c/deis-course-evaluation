@@ -49,8 +49,8 @@ function LoggedOutLinks({
 function LoggedInLinks({ handleOnClick }) {
   return (
     <>
-      <button type="button" className={styles.navButton} onClick={handleOnClick}><AiOutlineUser className={styles.profileIcon} /></button>
       <div className={styles.divider} />
+      <button type="button" className={styles.navButton} onClick={handleOnClick}><AiOutlineUser className={styles.profileIcon} /></button>
     </>
   );
 }
@@ -127,7 +127,7 @@ export default function NavBar() {
               registerButtonStyle={registerButtonStyle}
             />
           )}
-        <Link to="/" className={styles.link}><HiLanguage className={styles.languageIcon} /></Link>
+        {/* <Link to="/" className={styles.link}><HiLanguage className={styles.languageIcon} /></Link> */}
       </nav>
     </>
   );
