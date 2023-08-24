@@ -38,6 +38,8 @@
 	cursor: pointer;
 	height: 40px;
 	font-weight: 600;
+	font-family: Montserrat;
+
 }
 
 .registerButton {
@@ -46,6 +48,7 @@
 	border: 3px solid #FFFFFF;
 	color: #FFFFFF;
 	margin-right: 30px;
+	text-align: center;
 }
 
 .registerButton:hover,
@@ -143,6 +146,7 @@ main page navBar
 	cursor: pointer;
 	height: 40px;
 	font-weight: 500;
+	font-family: Montserrat;
 }
 
 .registerButtonMain {
@@ -150,4 +154,6 @@ main page navBar
 	border: 3px solid #FFFFFF;
 	width: 140px;
 	margin: 10px;
+	margin-right: 40px;
+
 }

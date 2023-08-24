@@ -129,3 +129,10 @@
 .submittedText{
 	font-weight: 400;
 }
+
+.error{
+	text-align: center;
+	color: red;
+	font-size: 16px;
+	font-weight: 700;
+}
