@@ -6,6 +6,11 @@ This is a course evaluation website for Brandeis students. The website allows st
 
 Checkout what I have so far! [link](https://deis-evaluation.onrender.com/)
 
+Always welcome for any feedbacks and suggestions! email: mingshihwang@brandeis.edu
+
+## Quick Preview
+
+
 ## Built With
 - Node.js
 - Express.js
