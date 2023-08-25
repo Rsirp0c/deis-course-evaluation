@@ -23,7 +23,7 @@ export default function MyReviews(){
 
 	return (
 		<div>
-			<h1>my reviews</h1>
+			<h1>My Reviews</h1>
 			<div className={styles.dividerContainer}><div className={styles.divider} /></div>
 			{empty()}
 			{reviews.map((review) => (

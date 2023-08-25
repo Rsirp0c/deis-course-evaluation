@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { format } from 'date-fns';
 import styles from './ReviewCard.module.css'
+import styles1 from './MyReviewCard.module.css'
 import convertToLetterGrade from '../../utils/convertToLetterGrade'
 import RatingBox from '../CourseReviewCard/RatingBox.jsx'
 
@@ -16,8 +17,19 @@ export default function ReviewCard({review}){
 		attendance = 'Mandatory'
 	}
 
+	let {card} = styles
+	const deleteButton = () => {
+		if(window.location.pathname === '/my-reviews'){
+			return <button className={styles1.deleteButton}>Delete</button>
+		}
+		return null
+	}
+	if(window.location.pathname === '/my-reviews'){	
+		card = styles1.card
+	}
+
 	return (
-		<div className={styles.card}>
+		<div className={card}>
 			<RatingBox ratingAverage={review.rate} />
 			<div className={styles.body}>
 				<div className={styles.contents}>
@@ -48,7 +60,7 @@ export default function ReviewCard({review}){
 					</div>
 					<p className={styles.comment}>Comment on the course: </p>
 					<p className={styles.commentText}>{review.comment}</p>
-					
+					{/* {deleteButton()} */}
 				</div>
 			
 			</div>
