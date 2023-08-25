@@ -25,6 +25,7 @@ function calcAverage(prev, curr, numComments) {
 
 export const updateCourseAverages = async (course, savedEvalForm) => {
 	// Do the score calculations here. Note: calculate after the request is sent to the client
+	console.log(course)
 	console.log(course.ratingAverage)
 	console.log(course.difficultyAverage)
 	console.log(course.usefulnessAverage)

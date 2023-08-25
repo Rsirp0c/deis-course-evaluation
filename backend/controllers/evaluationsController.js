@@ -34,12 +34,14 @@ import { updateCourseAverages, getEvalFormParams } from '../utils/evaluationUtil
 async function create(req, res) {
 	try {
 		const {courseIdName, userId} = req.body;
+		console.log({courseIdName})
 		// save evalform with the req aruguments 
 		const newEvalForm = new EvalForm(getEvalFormParams(req.body));
 		const savedEvalForm = await newEvalForm.save();
 		// add evalform id to course comments with the matching course id 
 		const evalFormId = savedEvalForm._id;
 		const course = await Course.findByIdAndUpdate(courseIdName.id, { $push: { comments: evalFormId } }, { new: true });
+		console.log({course})
 		// add evalform id to user evals with the matching user id
 		if (userId !== 'anonymous'){
 			const user = await User.findByIdAndUpdate(userId, { $push: { evals: evalFormId } }, { new: true });
