@@ -10,7 +10,6 @@ import AttendanceButtons from './components/AttendanceButtons.jsx';
 import DeliveryButtons from './components/DeliveryButtons.jsx';
 import TextBox from './components/TextBox.jsx';
 import LetterGradeDropdown from './components/LetterGradeDropdown.jsx';
-import submitReview from '../../services/submiteReveiw.js';
 
 /**
  * TO DO: write api request to submit form data to backend
@@ -75,12 +74,39 @@ export default function Review() {
 	function handleSubmit(event) {
 		event.preventDefault();
 		console.log('submitting form')
+		const process = import.meta.env;
 		const commentString = comment.comment
 		const courseIdName = {
 			id: courseId,
 			name: courseFormatted
 		}
-		submitReview(id, courseIdName, professor, semester, difficulty, rate, usefulness, attendance, delivery, grade, commentString)
+		fetch(`${process.VITE_BASE_URL}api/evaluations/forms`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				userId: id || 'anonymous',
+				courseIdName,
+				difficulty,
+				rate,
+				usefulness,
+				attendance,
+				delivery,
+				grade,
+				professor,
+				semester,
+				commentString,
+			})
+		}).then((response) => response.json())
+			.then((data) => {
+				if(!data.error){
+					setSubmit(true)
+				}else{
+					setError(true)
+					console.log(data.error)
+				}
+			})
 	}
 
 	function handleProfessorChange(event, value) {
