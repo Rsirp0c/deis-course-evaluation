@@ -1,0 +1,11 @@
+.card {
+	background-color: #fff;
+	width: 1035px;
+	height: 250px;
+	margin: 30px auto;
+	box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.deleteButton{
+	
+}

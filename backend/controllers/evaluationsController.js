@@ -85,5 +85,18 @@ async function read(req, res) {
 	}
 }
 
+async function readWithIds(req, res) {
+	const { userId } = req.body;
+	const user = await User.find({ _id: userId });
+	console.log(user);
+	const ids = user[0].evals;
+	let evalForms = [];
+	try {
+		evalForms = await EvalForm.find({ _id: { $in: ids } });
+		res.status(200).json(evalForms);
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+}
 
-export { create, read};
+export { create, read, readWithIds };
