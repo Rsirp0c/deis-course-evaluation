@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { format } from 'date-fns';
 import styles from './ReviewCard.module.css'
-import convertToLetterGrade from '../../../utils/convertToLetterGrade'
-import RatingBox from '../../../components/CourseReviewCard/RatingBox.jsx'
+import convertToLetterGrade from '../../utils/convertToLetterGrade'
+import RatingBox from '../CourseReviewCard/RatingBox.jsx'
 
 
 

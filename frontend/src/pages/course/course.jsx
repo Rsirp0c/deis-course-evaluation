@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import format from '../../utils/formatSentence.js'
 import styles from './course.module.css'
-import ReviewCard from './components/ReviewCard.jsx';
+import ReviewCard from '../../components/ReviewCard/ReviewCard.jsx';
 import fetchReviews from '../../services/fetchReviews.js';
 import convertToLetterGrade from '../../utils/convertToLetterGrade.js';
 import LikeButton from '../../components/CourseReviewCard/LikeButton.jsx';

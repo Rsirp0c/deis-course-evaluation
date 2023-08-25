@@ -15,7 +15,11 @@
  * @property {string} _id - EvalForm ID generated automatically
  * @example
  * {
- *   "course": ObjectId("dsagfdfgdsfgdfsg"),
+ * 	 "userId": "ObjectId("60d7b1f5e6a7c2a4b8f3e8a1")",
+ *   "course": {
+ * 		ObjectId("dsagfdfgdsfgdfsg"),
+ * 		"COSI-10A"
+ * 	 },
  *   "semester": "FALL",
  *   "professor": "Iraklis",
  *   "difficulty": "easy", 
@@ -36,7 +40,6 @@ const evalFormSchema = Schema(
 			type: Schema.Types.ObjectId,
 			ref: 'User'
 		},
-		// change to course id so we can link to course model
 		// why does the course field automatically includes the evalform _id again like this 
 		//  course: {
 		// 	id: new ObjectId("64dee5847d7bf2ac18f32a29"),
