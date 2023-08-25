@@ -4,12 +4,19 @@
 
 This is a course evaluation website for Brandeis students. The website allows students to search for courses and view the course evaluations. Students can also add courses to their list and view the list of courses they have added. This website is created in hope that it will be a useful tool for students to gain authnetic insights about the courses they are interested in. 
 
-Checkout what I have so far! [link](https://deis-evaluation.onrender.com/)
+Checkout the website! [link](https://deis-evaluation.onrender.com/)
 
 Always welcome for any feedbacks and suggestions! email: mingshihwang@brandeis.edu
 
-## Quick Preview
 
+## Quick Preview
+<img width="1464" alt="demo1" src="https://github.com/MingCWang/deis-course-evaluation/assets/73949957/744e18ea-6a2f-471a-9810-abd82247d32f">
+<img width="1470" alt="demo" src="https://github.com/MingCWang/deis-course-evaluation/assets/73949957/1ae16bfe-eece-4101-a68d-6ef87a6eafd8">
+<img width="1470" alt="demo2" src="https://github.com/MingCWang/deis-course-evaluation/assets/73949957/9ff83dd3-f74c-4353-80cb-d4f71d7cb76a">
+
+## Highlights 
+- User authentication both username/password and OAuth2.0 google all implemented from scratch.
+- UI implemented with 95% pure CSS/CSS modules.
 
 ## Built With
 - Node.js
