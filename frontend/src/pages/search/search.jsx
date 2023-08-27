@@ -1,6 +1,5 @@
-import { useEffect, useState, useContext} from 'react';
+import { useEffect, useState } from 'react';
 import {useSearchParams} from 'react-router-dom';
-import {UserContext} from '../../contexts/UserContext.jsx';
 import styles from './search.module.css';
 import CourseCard from '../../components/CourseReviewCard/CourseCard.jsx';
 import fetchCourse from '../../services/fetchCourse.js';
@@ -14,11 +13,10 @@ function Error() {
 }
 
 export default function Search() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [error, setError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const {authState} = useContext(UserContext);
-  const [authenticated, setAuthenticated] = authState;
+ 
 
   	function storeData(retrievedData){
 		setData([...retrievedData])
@@ -37,7 +35,7 @@ export default function Search() {
   return (
     <div>
       {data ? data.map((course) =>  (<CourseCard key={course._id} course={course}  />)) 
-	: <p>Loading...</p>}
+	: <div className={styles.loading}>Loading...</div>}
     </div>
   );
 }
