@@ -13,6 +13,7 @@ Always welcome for any feedbacks and suggestions! email: mingshihwang@brandeis.e
 <img width="1464" alt="demo1" src="https://github.com/MingCWang/deis-course-evaluation/assets/73949957/744e18ea-6a2f-471a-9810-abd82247d32f">
 <img width="1470" alt="demo" src="https://github.com/MingCWang/deis-course-evaluation/assets/73949957/1ae16bfe-eece-4101-a68d-6ef87a6eafd8">
 <img width="1470" alt="demo2" src="https://github.com/MingCWang/deis-course-evaluation/assets/73949957/9ff83dd3-f74c-4353-80cb-d4f71d7cb76a">
+<img width="1444" alt="Screen Shot 2023-08-27 at 10 34 18 AM" src="https://github.com/MingCWang/deis-course-evaluation/assets/73949957/67c73307-8bec-4a64-9d18-3680ccc7df5b">
 
 ## Highlights 
 - User authentication both username/password and OAuth2.0 google all implemented from scratch.
