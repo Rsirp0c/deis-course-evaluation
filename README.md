@@ -17,6 +17,7 @@ Always welcome for any feedbacks and suggestions! email: mingshihwang@brandeis.e
 ## Highlights 
 - User authentication both username/password and OAuth2.0 google all implemented from scratch.
 - UI implemented with 95% pure CSS/CSS modules.
+- JSdoc documentation for the backend API endpoints.
 
 ## Built With
 - Node.js
