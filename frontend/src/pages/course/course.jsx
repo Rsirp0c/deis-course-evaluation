@@ -12,6 +12,8 @@ import RateCourseButton from '../../components/CourseReviewCard/RateCourseButton
 export default function Course() {
 
 	const [reviews, setReviews] = useState([]);
+	const [loading, setLoading] = useState(true);
+
 	const courseInfo = JSON.parse(localStorage.getItem('courseInfo'));
 	const { 
 		_id, 
@@ -27,7 +29,7 @@ export default function Course() {
 	const { courseFormatted, courseTitleFormatted} = format(`${course} ${courseTitle}`)
 	
 	useEffect(()=>{
-		fetchReviews(setReviews, _id);
+		fetchReviews(setReviews, setLoading, _id);
 	}, [])
 	
 	let color;
@@ -62,6 +64,17 @@ export default function Course() {
 	}else{
 		rating = ratingAverage	
 	}
+
+
+
+	if (loading) {
+		return (
+			<div className={styles.loadingContainer}>
+				Loading....
+			</div>
+		)
+	}
+
   	return (
     	<div>
 			<div className={styles.container}>
