@@ -63,9 +63,10 @@ export default function NavBar() {
   const [registering, setRegistering] = useState(false);
   const [clicked, setClicked] = useState(false);
 
-  const { authState, loggingInState, idState} = useContext(UserContext);
+  const { authState, loggingInState, idState, nameState } = useContext(UserContext);
   const [authenticated, setAuthenticated] = authState;
   const [loggingIn, setLoggingIn] = loggingInState;
+  const [name, setName] = nameState;
   const [id, setId] = idState;
 
   const renderLoginRegister = loggingIn || registering;
@@ -85,6 +86,7 @@ export default function NavBar() {
     localStorage.removeItem('jwt');
 	storeLikedCourses(id)
     setAuthenticated(false);
+	setName(null);
 	
   }
 

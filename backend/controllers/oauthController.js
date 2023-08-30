@@ -44,6 +44,9 @@ async function getAndSaveGoogleUser({ id_token, access_token }) {
 				Authorization: `Bearer ${id_token}`,
 			}
 		});
+		console.log('userData: ', userData);
+		console.log('given: ', userData.data.given_name);
+		console.log('family: ', userData.data.family_name);
 		const user = {
 			name: { first: userData.data.given_name, last: userData.data.family_name },
 			email: userData.data.email,
