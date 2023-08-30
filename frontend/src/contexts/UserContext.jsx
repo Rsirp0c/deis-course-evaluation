@@ -44,10 +44,10 @@ export default function UserProvider({ children }) {
                 // retrieve info from localstorage is user is already authenticated to persist login accross page refreshes
                 if (validated && userInfo) {
                     // TO DO: parse localstorage data correctly
-                    const { username } = userInfo;
+                    const { name } = userInfo;
                     const { id } = userInfo;
                     const { email } = userInfo;
-                    setName(username);
+                    setName(name);
                     setId(id);
                     setEmail(email);
                    	setAuthenticated(true);

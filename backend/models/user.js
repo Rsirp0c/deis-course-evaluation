@@ -72,7 +72,7 @@ userSchema.methods.generateJWT = function () {
 userSchema.methods.toAuthJSON = function () {
 	return {
 		email: this.email,
-		username: this.username,
+		name: this.name.first,
 		id: this._id,
 		token: this.generateJWT(),
 	};
@@ -85,7 +85,7 @@ userSchema.methods.toAuthJSON = function () {
 // Add a custom static method to the schema to save google account data
 userSchema.statics.createAndUpdateUser = async function (data) {
 	const filter = { email: data.email };
-	const update = { name: { first: data.given_name, last: data.family_name } };
+	const update = { name: { first: data.name.first, last: data.name.last } };
 	await this.findOneAndUpdate(filter, update, {new: true, upsert: true});
 	
 };

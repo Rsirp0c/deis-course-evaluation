@@ -28,15 +28,15 @@ export async function setJWT(setAuthenticated, setName, setId, setEmail) {
             .then((data) => {
                 window.location.href = window.location.pathname;
 				const {
-					username, id, email, token,
+					name, id, email, token,
 				  } = data.userJSON;
 				  // set context variable here for global access
-				  if (username) setName(username);
+				  if (name) setName(name);
 				  setId(id);
 				  setEmail(email);
 				  setAuthenticated(true);
 				  const userInfo = {
-					username,
+					name,
 					id,
 					email,
 				  };
