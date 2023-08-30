@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
-import qs from 'qs';
 import User from '../models/user.js';
+
 
 async function getGoogleOAuthTokens(code) {
 	const url = 'https://oauth2.googleapis.com/token';
@@ -12,25 +12,27 @@ async function getGoogleOAuthTokens(code) {
 		redirect_uri: process.env.GOOGLE_OAUTH_REDIRECT_URI,
 		grant_type: 'authorization_code'
 	};
+	const queryParams = new URLSearchParams(values).toString();
 
-
+	//  the token request parameters should be sent in the POST request body. 
 	try {
 		const options = {
+			method: 'POST',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
-			}
-		};
+			},
+			body: queryParams
+		}
+		const response = await fetch(url, options);
 
-		const response = await axios.post(url, qs.stringify(values), options);
-		const data = response.data;
+		const data = await response.json();
+
 		return data;
 	} catch (err) {
 		console.log(err);
-		throw new Error('Failed to fetch Google OAuth tokens');
 	}
-
-
 }
+
 
 async function getAndSaveGoogleUser({ id_token, access_token }) {
 	try {
@@ -42,16 +44,16 @@ async function getAndSaveGoogleUser({ id_token, access_token }) {
 				Authorization: `Bearer ${id_token}`,
 			}
 		});
-		const body = {
-			name: { first: userData.given_name, last: userData.family_name },
+		const user = {
+			name: { first: userData.data.given_name, last: userData.data.family_name },
 			email: userData.data.email,
 			provider: 'google',
 		}
-		await User.createAndUpdateUser(body);
+		await User.createAndUpdateUser(user);
 		return userData;
 
 	} catch (err) {
-		console.log(err);
+		console.log('error: ', { err });
 	}
 }
 
@@ -63,18 +65,14 @@ export async function googleOauthHandler(req, res) {
 		const code = req.body.code;
 
 		const { id_token, access_token } = await getGoogleOAuthTokens(code);
-
 		const googleUser = await getAndSaveGoogleUser({ id_token, access_token });
 		console.log({ googleUser });
-		if (!googleUser.verified_email) {
+		if (!googleUser.data.verified_email) {
 			return res.status(403).json({ message: 'Google account is not verified' });
 		}
-
-		const token = jwt.encode(body);
-		return res.status(200).json({
-			sucess: true,
-			token: token
-		})
+		const user = await User.findOne({ email: googleUser.data.email });
+		const userJSON = user.toAuthJSON();
+		res.status(200).send({ userJSON });
 	} catch (err) {
 		console.log(err);
 		res.status(500).json({

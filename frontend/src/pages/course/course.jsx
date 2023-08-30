@@ -70,7 +70,7 @@ export default function Course() {
 	if (loading) {
 		return (
 			<div className={styles.loadingContainer}>
-				Loading....
+				Loading.... 
 			</div>
 		)
 	}
