@@ -23,7 +23,7 @@ async function getGoogleOAuthTokens(code) {
 			},
 			body: queryParams
 		}
-		const response = await axios(url, options);
+		const response = await fetch(url, options);
 
 		const data = await response.json();
 
