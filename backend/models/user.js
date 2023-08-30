@@ -85,11 +85,9 @@ userSchema.methods.toAuthJSON = function () {
 // Add a custom static method to the schema to save google account data
 userSchema.statics.createAndUpdateUser = async function (data) {
 	const filter = { email: data.email };
-	if (User.exists(filter)) {
-		await User.findOneAndUpdate(filter, { name: { first: data.given_name, last: data.family_name } });
-	} else {
-		await User.create(date);
-	}
+	const update = { name: { first: data.given_name, last: data.family_name } };
+	await this.findOneAndUpdate(filter, update, {new: true, upsert: true});
+	
 };
 
 

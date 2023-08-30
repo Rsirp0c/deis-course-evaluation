@@ -4,12 +4,12 @@ const process = import.meta.env;
 /**
  * this function will get the JWT from the backend and store it in local storage
  */
-export async function setJWT() {
+export async function setJWT(setAuthenticated, setName, setId, setEmail) {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
     if (code) {
         // Parse authorization code from the URL
-        fetch(`${process.BASE_URL}auth/oauth/google`, {
+        fetch(`${process.VITE_BASE_URL}auth/oauth/google`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,10 +26,23 @@ export async function setJWT() {
                 }
             })
             .then((data) => {
-                const { token } = data;
                 window.location.href = window.location.pathname;
-                localStorage.setItem('jwt', token);
-                // TO DO: use useContext to set the user state
+				const {
+					username, id, email, token,
+				  } = data.userJSON;
+				  // set context variable here for global access
+				  if (username) setName(username);
+				  setId(id);
+				  setEmail(email);
+				  setAuthenticated(true);
+				  const userInfo = {
+					username,
+					id,
+					email,
+				  };
+				  // then store in localStorage to persist data accross page refresh
+				  localStorage.setItem('userInfo', JSON.stringify(userInfo));
+				  localStorage.setItem('jwt', token);
             })
             .catch(() => false);
     }

@@ -31,7 +31,7 @@ export default function UserProvider({ children }) {
 	}, [authenticated])
 
     useEffect(() => {
-        setJWT().then((success) => {
+        setJWT(setName, setId, setEmail, setAuthenticated).then((success) => {
             if (success === false) {
                 setError(true);
             }
