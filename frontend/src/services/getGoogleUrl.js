@@ -3,6 +3,8 @@ export default function getGoogleUrl() {
 
     const process = import.meta.env;
 
+	console.log(process.VITE_GOOGLE_OAUTH_REDIRECT_URI)
+	
     const options = {
         redirect_uri: process.VITE_GOOGLE_OAUTH_REDIRECT_URI,
         client_id: process.VITE_GOOGLE_CLIENT_ID,
