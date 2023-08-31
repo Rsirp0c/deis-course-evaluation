@@ -1,0 +1,13 @@
+.loadingText{
+	font-size: 20px;
+	font-weight: 400;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.loadingMessage{
+	margin-top: 20px;
+	text-align: center;
+	font-size: 15px;
+	font-weight: 300;
+}

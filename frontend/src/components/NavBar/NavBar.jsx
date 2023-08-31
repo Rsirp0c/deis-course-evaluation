@@ -72,6 +72,7 @@ export default function NavBar() {
   const renderLoginRegister = loggingIn || registering;
   // pathIsHome is true if the current path is the home page, this is for conditionally rendering the main search bar
   const pathIsHome = location.pathname === '/';
+  const loading = location.pathname === '/loading';
 
   function handleOnClick() {
     setClicked(!clicked);
@@ -98,7 +99,11 @@ export default function NavBar() {
   let loginButtonStyle;
   let registerButtonStyle;
 
-  if (pathIsHome) {
+  // If the current path is the home page, render the main navbar, else render the normal navbar
+  // If the page is loading, hide navbar
+  if (loading) {
+	navStyle = styles.none;
+  }else if (pathIsHome) {
     navStyle = styles.navBarMain;
     loginButtonStyle = styles.loginButtonMain;
     registerButtonStyle = styles.registerButtonMain;
