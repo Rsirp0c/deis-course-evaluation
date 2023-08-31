@@ -9,7 +9,7 @@ export const UserContext = createContext(null);
  * This sets thhe global state for user info
  * TO DO: split up api calls and context into separate files
  * @param {*} param0
- * @returns
+ * @returns UserContext.Provider component
  */
 export default function UserProvider({ children }) {
     const [error, setError] = useState(false);
@@ -31,11 +31,11 @@ export default function UserProvider({ children }) {
 	}, [authenticated])
 
     useEffect(() => {
-        setJWT(setName, setId, setEmail, setAuthenticated).then((success) => {
-            if (success === false) {
-                setError(true);
-            }
-        });
+        // setJWT(setName, setId, setEmail, setAuthenticated).then((success) => {
+        //     if (success === false) {
+        //         setError(true);
+        //     }
+        // });
         validateJWT()
             .then((validated) => {
 				const userInfo = JSON.parse(
@@ -65,9 +65,15 @@ export default function UserProvider({ children }) {
 
 
 	
-    if (loading) {
-        return;
-    }
+    // if (loading) {
+    //     return (
+	// 		<div style={{ width: '100%', height: '100vh' }}>
+	// 			<p style={{ marginTop: '100px', textAlign: 'center' }}>
+	// 				Loading...
+	// 			</p>
+	// 		</div>
+	// 	);
+    // }
 
     if (error) {
         return (

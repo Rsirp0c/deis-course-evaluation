@@ -19,6 +19,7 @@ import Review from './pages/review/review.jsx';
 import Search from './pages/search/search.jsx';
 import SavedCourse from './pages/saved-courses/saved-courses.jsx';
 import MyReviews from './pages/my-reviews/my-reviews.jsx';
+import Loading from './pages/loading/loading.jsx';
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
         path: 'search',
         element: <Search />,
       },
+	  {
+		path: 'loading',
+		element: <Loading />,
+	  },
 	  {
 		path: 'saved-courses',
 		element: 
