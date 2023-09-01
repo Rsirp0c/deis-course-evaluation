@@ -22,7 +22,6 @@ export default function storeLikedCourses(id) {
 			.then((res) => res.json())
 			.then((res) => {
 				if (!res.error) {
-					console.log(res);
 					localStorage.removeItem('likedCourses');
 				} else {
 					console.log(res.error);
