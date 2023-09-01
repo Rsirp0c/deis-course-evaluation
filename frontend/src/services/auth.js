@@ -42,6 +42,7 @@ export async function setJWT(setAuthenticated, setName, setId, setEmail) {
 				  };
 				  // then store in localStorage to persist data accross page refresh
 				  localStorage.setItem('userInfo', JSON.stringify(userInfo));
+				  localStorage.setItem('authenticated', true)
 				  localStorage.setItem('jwt', token);
             })
             .catch(() => false);

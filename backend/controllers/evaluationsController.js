@@ -91,6 +91,7 @@ async function readWithIds(req, res) {
 	const { userId } = req.body;
 	const user = await User.find({ _id: userId });
 	console.log(user);
+	console.log(user[0].evals);
 	const ids = user[0].evals;
 	let evalForms = [];
 	try {
