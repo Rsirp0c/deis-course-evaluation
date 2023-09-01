@@ -25,9 +25,6 @@ export default function Loading() {
 				navigate('/');
 			}, 2000);
         });
-		// if (!loading) {
-		// 	navigate('/');
-		// }
 
 	}, [loading]);
 
