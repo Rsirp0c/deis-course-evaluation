@@ -12,12 +12,13 @@ const PORT = process.env.PORT || 3000;
 console.log(process.env.MONGODB_URL)
 
 const corsOptions = {
-	origin: 'https://deis-evaluation.onrender.com/',
+	origin: 'https://deis-evaluation.onrender.com',
 	optionsSuccessStatus: 200 
   }
 /**
  * Middlewares
  */
+
 // app.use(cors(corsOptions));  // production
 app.use(cors()) // development
 
