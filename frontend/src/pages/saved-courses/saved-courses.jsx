@@ -26,7 +26,7 @@ export default function SavedCourses() {
 		if (data.length === 0) return <p>No saved courses</p>
 		return null
 	;}
-
+		
 	return (
 		<div>
 			<h1>My Saved Courses</h1>
