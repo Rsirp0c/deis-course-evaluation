@@ -24,12 +24,13 @@ export default function AuthForm(props) {
   const [id, setId] = idState;
   const [authenticated, setAuthenticated] = authState;
   const [email, setEmail] = emailState;
+  const process = import.meta.env;
 
   // form handlers
   function handleFormSubmit(event) {
     event.preventDefault();
-    let URL = 'http://localhost:3000/auth/';
-
+    let URL = `${process.VITE_BASE_URL}auth/`;
+	
     const options = {
       method: 'POST',
       headers: {
