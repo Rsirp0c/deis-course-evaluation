@@ -1,6 +1,6 @@
 const process = import.meta.env;
 
-export default function fetchReviews(setReviews, _id){
+export default function fetchReviews(setReviews, setLoading, _id){
 	fetch(`${process.VITE_BASE_URL}api/courses/reviews`, {
 		method: 'POST',
 		headers: {
@@ -14,6 +14,7 @@ export default function fetchReviews(setReviews, _id){
 		if(!data.error){
 			// console.log(data)
 			setReviews([...data])
+			setLoading(false)
 		}else{
 			// console.log(data.error)
 		}

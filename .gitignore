@@ -2,7 +2,7 @@ node_modules
 .env
 /docs
 .vscode
-
+brandeis-photo
 
 # msc
 .DS_Store
