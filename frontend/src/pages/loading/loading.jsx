@@ -22,12 +22,12 @@ export default function Loading() {
                 setError(true);
             }
 			setTimeout(() => {
-				setLoading(false);
+				navigate('/');
 			}, 2000);
         });
-		if (!loading) {
-			navigate('/');
-		}
+		// if (!loading) {
+		// 	navigate('/');
+		// }
 
 	}, [loading]);
 
