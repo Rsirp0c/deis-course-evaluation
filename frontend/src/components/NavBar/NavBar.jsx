@@ -65,6 +65,7 @@ export default function NavBar() {
 
   const { authState, loggingInState, idState, nameState } = useContext(UserContext);
   const [authenticated, setAuthenticated] = authState;
+  const auth = localStorage.getItem('authenticated');
   const [loggingIn, setLoggingIn] = loggingInState;
   const [name, setName] = nameState;
   const [id, setId] = idState;
@@ -85,6 +86,7 @@ export default function NavBar() {
   function handleLogout() {
     localStorage.removeItem('userInfo');
     localStorage.removeItem('jwt');
+	localStorage.removeItem('authenticated');
 	storeLikedCourses(id)
     setAuthenticated(false);
 	setName(null);
@@ -124,7 +126,7 @@ export default function NavBar() {
         <Link to="/" className={styles.linkLogo}>
           <Logo />
         </Link>
-        {authenticated
+        {auth
           ? <LoggedInLinks handleOnClick={handleOnClick} />
           : (
             <LoggedOutLinks

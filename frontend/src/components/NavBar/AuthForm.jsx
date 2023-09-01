@@ -73,6 +73,7 @@ export default function AuthForm(props) {
         // then store in localStorage to persist data accross page refresh
         localStorage.setItem('userInfo', JSON.stringify(userInfo));
         localStorage.setItem('jwt', token);
+		localStorage.setItem('authenticated', true);
         handleClosePopup();
       })
       .catch((er) => {

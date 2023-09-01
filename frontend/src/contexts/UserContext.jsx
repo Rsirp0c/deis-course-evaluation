@@ -26,16 +26,11 @@ export default function UserProvider({ children }) {
 	useEffect(() => {
 		if (authenticated) {
 			fetchLikedCourses(id)
-			console.log('fetching liked courses')
+			console.log('fetched liked courses')
 		}
 	}, [authenticated])
 
     useEffect(() => {
-        // setJWT(setName, setId, setEmail, setAuthenticated).then((success) => {
-        //     if (success === false) {
-        //         setError(true);
-        //     }
-        // });
         validateJWT()
             .then((validated) => {
 				const userInfo = JSON.parse(
@@ -53,6 +48,10 @@ export default function UserProvider({ children }) {
                    	setAuthenticated(true);
                 } else {
                     setAuthenticated(false);
+					localStorage.removeItem('userInfo');
+					localStorage.removeItem('jwt');
+					localStorage.removeItem('likedCourses');
+					localStorage.removeItem('authenticated');
                 }
                 setLoading(false);
             })

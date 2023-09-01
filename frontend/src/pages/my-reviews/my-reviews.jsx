@@ -13,8 +13,10 @@ export default function MyReviews(){
 	const [reviews, setReviews] = useState([]);
 
 	useEffect(() => {
-		fetchUserReviews(id, setReviews)
-	}, []);
+		if (id){
+			fetchUserReviews(id, setReviews)
+		}
+	}, [id]);
 
 	const empty = () => {
 		if (reviews.length === 0) return <p>No reviews yet</p>
