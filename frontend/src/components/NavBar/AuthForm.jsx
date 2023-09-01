@@ -30,7 +30,7 @@ export default function AuthForm(props) {
   function handleFormSubmit(event) {
     event.preventDefault();
     let URL = `${process.VITE_BASE_URL}auth/`;
-	
+
     const options = {
       method: 'POST',
       headers: {
@@ -42,7 +42,13 @@ export default function AuthForm(props) {
     loggingIn ? URL += 'login' : URL += 'register';
 
     // use userContext to store usename and id and email
-    fetch(URL, options)
+    fetch(URL, {
+      method: "POST",
+      headers: {
+		"Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email: formEmail, password: formPassword }),
+    })
       .then(async (res) => {
         const response = await res.json();
         if (res.ok) {
