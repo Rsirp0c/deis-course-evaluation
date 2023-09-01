@@ -23,7 +23,7 @@ export default function Loading() {
             }
 			setTimeout(() => {
 				navigate('/');
-			}, 2000);
+			}, 5000);
         });
 
 	}, [loading]);
