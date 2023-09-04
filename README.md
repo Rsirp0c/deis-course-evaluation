@@ -5,10 +5,10 @@
 This is a course evaluation website for Brandeis students. The website allows students to search for courses and view the course evaluations. Students can also add courses to their list and view the list of courses they have added. This website is created in hope that it will be a useful tool for students to gain authnetic insights about the courses they are interested in. 
 
 Checkout the website! [link](https://deis-evaluation.onrender.com/) 
-(
-	- Currently on the free tier of render, so it might take a couple minutes for the server to load
-	- Requesting data from adminstration, course data only contain mock data. Search for "COSI" to see the mock data
-	) 
+
+- Currently on the free tier of render, so it might take a couple minutes for the server to load
+- Requesting data from adminstration, course data only contain mock data. Search for "COSI" to see the mock data
+	
 
 Always welcome for any feedbacks and suggestions! email: mingshihwang@brandeis.edu
 
