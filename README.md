@@ -100,4 +100,4 @@ Nice to haves
 3. Running the project: 
 	- Run `npm start` in the /backend directory of the project
 	- Run `npm run dev` in the /frontend directory of the project
-4. Please email me for the .env files
+4. Please email mingshihwang@brandeis.edu for the .env files
