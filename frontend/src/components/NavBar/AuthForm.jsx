@@ -26,7 +26,7 @@ export default function AuthForm(props) {
   const [email, setEmail] = emailState;
   const process = import.meta.env;
 
-  // form handlers
+  // form handlers 
   function handleFormSubmit(event) {
     event.preventDefault();
     let URL = `${process.VITE_BASE_URL}auth/`;

@@ -9,29 +9,14 @@ import AuthForm from './AuthForm.jsx';
 
 // This is the login and register popup, which shows login or user depending on which button is clicked
 export default function AuthPopup({
-  loggingIn, setLoggingIn, registering, setRegistering,
+  loggingIn, setLoggingIn, registering, setRegistering, handleSwitch, error, setError, formEmail, setFormEmail, formPassword, setFormPassword,
 }) {
-  const [formEmail, setFormEmail] = useState('');
-  const [formPassword, setFormPassword] = useState('');
-  const [error, setError] = useState('');
 
   let containerStyle;
   let title;
   let bottomText;
   let setComponent;
 
-  function handleSwitch() {
-    if (loggingIn) {
-      setLoggingIn(false);
-      setRegistering(true);
-    } else {
-      setLoggingIn(true);
-      setRegistering(false);
-    }
-    setError('');
-    setFormEmail('');
-    setFormPassword('');
-  }
 
   function handleClosePopup(setComponent) {
     setComponent(false);
@@ -52,10 +37,10 @@ export default function AuthPopup({
   } else if (registering) {
     setComponent = setRegistering;
     containerStyle = styles.registerContainer;
-    title =			(
+    title =	(
       <>
         <p className={styles.loginTitle}>Create your account</p>
-        <p className={styles.description}>Access exclusive rating & review about your courses, and more.</p>
+        <p className={styles.description}>Save your liked courses, reviews, and more.</p>
       </>
     );
     bottomText = (

@@ -62,6 +62,10 @@ export default function NavBar() {
   const location = useLocation();
   const [registering, setRegistering] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const [formEmail, setFormEmail] = useState('');
+  const [formPassword, setFormPassword] = useState('');
+  const [error, setError] = useState('');
+
 
   const { authState, loggingInState, idState, nameState } = useContext(UserContext);
   const [authenticated, setAuthenticated] = authState;
@@ -79,10 +83,6 @@ export default function NavBar() {
     setClicked(!clicked);
   }
 
-  function handleLogin() {
-    setLoggingIn(true);
-  }
-
   function handleLogout() {
     localStorage.removeItem('userInfo');
     localStorage.removeItem('jwt');
@@ -93,8 +93,17 @@ export default function NavBar() {
 	
   }
 
-  function handleRegister() {
-    setRegistering(true);
+  function handleSwitch() {
+    if (loggingIn) {
+      setLoggingIn(false);
+      setRegistering(true);
+    } else {
+      setLoggingIn(true);
+      setRegistering(false);
+    }
+    setError('');
+    setFormEmail('');
+    setFormPassword('');
   }
 
   let navStyle;
@@ -118,7 +127,21 @@ export default function NavBar() {
   return (
     <>
       {/* conditionally render popup components login/register and profile dropdown */}
-      {renderLoginRegister && <AuthPopup setLoggingIn={setLoggingIn} loggingIn={loggingIn} setRegistering={setRegistering} registering={registering} />}
+      {renderLoginRegister && 
+	  	<AuthPopup 
+	  		setLoggingIn={setLoggingIn} 
+	  		loggingIn={loggingIn} 
+	  		setRegistering={setRegistering} 
+	  		registering={registering} 
+			handleSwitch={handleSwitch}
+			error={error}
+			setError={setError}
+			formEmail={formEmail}
+			setFormEmail={setFormEmail}
+			formPassword={formPassword}
+			setFormPassword={setFormPassword}
+
+	 />}
       {clicked && <ProfileDropdown handleLogout={handleLogout} handleOnClick={handleOnClick} />}
 
       <nav className={navStyle}>
@@ -130,8 +153,8 @@ export default function NavBar() {
           ? <LoggedInLinks handleOnClick={handleOnClick} />
           : (
             <LoggedOutLinks
-              handleLogin={handleLogin}
-              handleRegister={handleRegister}
+              handleLogin={handleSwitch}
+              handleRegister={handleSwitch}
               loginButtonStyle={loginButtonStyle}
               registerButtonStyle={registerButtonStyle}
             />
