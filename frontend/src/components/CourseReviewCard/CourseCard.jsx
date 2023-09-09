@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from './CourseCard.module.css';
 import RatingBox from "./RatingBox.jsx";
 import LikeButton from './LikeButton.jsx';
@@ -14,17 +13,14 @@ import RateCourseButton from './RateCourseButton';
  */
 export default function CourseCard({ course, reload }) {
 
-
-	function handleClickCourse(){
-		localStorage.setItem('courseInfo', JSON.stringify(course));
-	}
-
+	const path = `/course/${course._id}`;
+	
     return (
         <div className={styles.card}>
             <RatingBox ratingAverage={course.ratingAverage} isCourse numRatings={course.comments.length}/>
             <div className={styles.body}>
                 <div className={styles.contents}>
-                    <Link to='/course' className={styles.course} onClick={handleClickCourse}>{course.course}</Link>
+                    <Link to={path} className={styles.course}>{course.course}</Link>
                     <p className={styles.courseTitle}>{course.courseTitle}</p>
                     <p className={styles.prerequisites}>
                         Prerequisite:
