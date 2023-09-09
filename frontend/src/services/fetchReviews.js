@@ -14,9 +14,9 @@ export default function fetchReviews(setReviews, setLoading, _id){
 		if(!data.error){
 			// console.log(data)
 			setReviews([...data])
-			setLoading(false)
 		}else{
 			// console.log(data.error)
 		}
+		setLoading(false)
 	})	
 }

@@ -14,6 +14,7 @@ export default function Course() {
 	const [reviews, setReviews] = useState([]);
 	const [loading, setLoading] = useState(true);
 
+	// Convert this to fetching an API from backend instead of using localstorage
 	const courseInfo = JSON.parse(localStorage.getItem('courseInfo'));
 	const { 
 		_id, 
@@ -49,20 +50,22 @@ export default function Course() {
 	let difficulty;
 	let usefulness;
 	let rating;
-	if(difficultyAverage === 0 ){
+
+	
+	if(difficultyAverage === 0){
 		difficulty = 'N/A'
 	}else{
-		difficulty = difficultyAverage
+		difficulty = difficultyAverage.toFixed(1)
 	}
 	if(usefulnessAverage === 0 ){
 		usefulness = 'N/A'
 	}else{
-		usefulness = usefulnessAverage
+		usefulness = usefulnessAverage.toFixed(1)
 	}
 	if(ratingAverage === 0 ){
 		rating = '-'
 	}else{
-		rating = ratingAverage	
+		rating = ratingAverage.toFixed(1)
 	}
 
 
@@ -100,7 +103,7 @@ export default function Course() {
 								<div className={color} />
 							</div>
 							<div className={styles.ratingTextContainer}>
-								<span className={styles.ratingText}>{rating}</span> <span className={styles.ratingSubText}>/ 5</span>	
+								<span className={styles.ratingText}>{rating}</span> <span className={styles.ratingSubText}>/ 5.0</span>	
 							</div>
 						</div>
 						<div className={styles.subRatings}>

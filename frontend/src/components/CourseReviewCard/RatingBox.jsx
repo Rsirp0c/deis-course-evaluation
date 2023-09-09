@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styles from './RatingBox.module.css';
 
 /**
@@ -5,16 +6,23 @@ import styles from './RatingBox.module.css';
 * */
 export default function RatingBox({ ratingAverage, isCourse, numRatings}) {
    let color;
+   let rating;
+   
+   if (ratingAverage % 1 === 0) {
+	   rating = ratingAverage.toFixed(1);
+   }
 
-   if (ratingAverage === 5) {
+
+
+   if (rating === 5) {
 	   color = styles.green;
-   } else if (ratingAverage >= 4) {
+   } else if (rating >= 4) {
 	   color = styles.lightGreen;
-   } else if (ratingAverage >= 3) {
+   } else if (rating >= 3) {
 	   color = styles.yellow;
-   } else if (ratingAverage >= 2) {
+   } else if (rating >= 2) {
 	   color = styles.orange;
-   } else if (ratingAverage >= 1) {
+   } else if (rating >= 1) {
 	   color = styles.red;
    }
 
@@ -32,9 +40,10 @@ export default function RatingBox({ ratingAverage, isCourse, numRatings}) {
 	   <div className={`${ratingStyle} ${color}`}>
 		   <p className={ratingScoreStyle}>
 			   <span className={styles.ratingScore}>
-				   {ratingAverage === 0 ? '-' : ratingAverage}
+
+				   {rating == 0.0 ? '-' : rating}
 			   </span>
-			   / 5
+			   / 5.0
 		   </p>
 		   {isCourse ?   <p className={styles.ratingCount}>{numRatings} reviews</p> : null}
 	   </div>

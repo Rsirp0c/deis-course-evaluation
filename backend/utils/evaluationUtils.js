@@ -20,7 +20,9 @@ export const getEvalFormParams = ({ courseIdName, semester, professor, difficult
 };
 
 function calcAverage(prev, curr, numComments) {
-	return Math.round(((prev * (numComments - 1) + curr) / numComments)*10)/10;
+	// return (Math.round(((prev * (numComments - 1) + curr) / numComments)*10)/10).toFixed(1);
+	return (Math.round(((prev * (numComments - 1) + curr) / numComments))).toFixed(1);
+
 }
 
 export const updateCourseAverages = async (course, savedEvalForm) => {
