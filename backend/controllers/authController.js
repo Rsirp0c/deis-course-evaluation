@@ -46,7 +46,7 @@ export const validateToken = async (req, res) => {
 
 }
 /**
- * Quick recap on URL params vs Query params
+ * Quick recap on URL params ":" vs Query params "?"
  * 
  * Generally, URL parameters are used to identify a specific resource, 
  * while query parameters are used to sort/filter those resources or change the server's behavior in handling the request.

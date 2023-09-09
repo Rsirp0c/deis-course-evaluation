@@ -30,7 +30,7 @@ export default function Review() {
 	const [semester, setSemester] = useState('');
 	const [comment, setComment] = useState('');
 	const [error, setError] = useState(false);
-	const { courseFormatted, courseTitleFormatted} = format(course)
+	const { courseFormatted, courseTitleFormatted } = format(course)
 	
 
 	// set professor options from course info stored in session storage

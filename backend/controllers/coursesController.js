@@ -12,7 +12,7 @@ import Course from '../models/course.js';
  * @param {Object} req - request object
  * @param {Object} res - response object
  */
-async function index(req, res, next) {
+async function getCourses(req, res, next) {
 	const course = req.query.course;
 
 	console.log(course);
@@ -41,6 +41,25 @@ async function index(req, res, next) {
 }
 
 /**
+ * @todo Implement error handling for edge cases
+ * @summary GET api/courses/:id
+ * @description Get single course 
+ * @async
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
+async function getCourse(req, res) {
+	const { id } = req.params;
+	try {
+		const course = await Course.findById(id);
+		res.status(200).json(course);
+	} catch (err) {
+		res.status(500).json({ error: err.message });
+	}
+}
+
+
+/**
  * @description Get all evaluations with the given course id
  * @summary POST api/courses/reviews
  * @param {*} req 
@@ -63,4 +82,4 @@ async function getEvalWithIds(req, res) {
 	}
 }
 
-export { index, getEvalWithIds };
+export { getCourses, getCourse, getEvalWithIds };
