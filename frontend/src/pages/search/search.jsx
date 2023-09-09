@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import {useSearchParams} from 'react-router-dom';
 import styles from './search.module.css';
 import CourseCard from '../../components/CourseReviewCard/CourseCard.jsx';
-import fetchCourse from '../../services/fetchCourse.js';
+import fetchCourses from '../../services/fetchCourses.js';
 
 function Error() {
   return (
@@ -27,7 +27,7 @@ export default function Search() {
 
   // fetch data from backend when page is loaded
   useEffect(() => {
-	fetchCourse(searchParams.get('course'), storeData, storeError);
+	fetchCourses(searchParams.get('course'), storeData, storeError);
   }, [searchParams]);
 
   if (error) return <Error />;
