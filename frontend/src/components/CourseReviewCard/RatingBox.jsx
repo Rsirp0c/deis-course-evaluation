@@ -8,8 +8,11 @@ export default function RatingBox({ ratingAverage, isCourse, numRatings}) {
    let color;
    let rating;
    
+
    if (ratingAverage % 1 === 0) {
 	   rating = ratingAverage.toFixed(1);
+   }else{
+	   rating = ratingAverage;
    }
 
 
