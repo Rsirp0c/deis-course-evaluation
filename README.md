@@ -94,8 +94,8 @@ Nice to haves
 1. Check that you've installed jsdoc globally: `npm install -g jsdoc`
 2. Run `npm run doc` in the root directory of the project
 3. Open `docs/index.html` in your browser with live servere
-### To reformat the code with prettier
-1. npm run format
+### To reformat the code
+1. In /frontend `npm run format`
 ## Start contributing
 1. Clone the repo
 2. Run `npm install` inside the /backend and /frontend directory of the project

@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import styles from './search.module.css';
 import CourseCard from '../../components/CourseReviewCard/CourseCard.jsx';
 import fetchCourses from '../../services/fetchCourses.js';
+import Loading from '../loading/loading';
 
 function Error() {
     return (
@@ -27,13 +28,7 @@ function Content({ data }) {
         return <div className={styles.NotFoundContainer}>No Courses Found</div>;
     }
     return (
-        <>
-            <div className={styles.loading}>Loading... </div>
-            <div className={styles.loadingMessage}>
-                Currently on the free tier of render, so it might take a couple
-                minutes for the server to load
-            </div>
-        </>
+		<Loading />
     );
 }
 
@@ -57,14 +52,6 @@ export default function Search() {
     if (error) return <Error />;
 
     return (
-        // <div>
-        //   {data ? data.map((course) =>  (<CourseCard key={course._id} course={course}  />))
-        // : <>
-        // 	<div className={styles.loading}>Loading... </div>
-        // 	<div className={styles.loadingMessage}>Currently on the free tier of render, so it might take a couple minutes for the server to load</div>
-        //  </>
-        // }
-        // </div>
         <Content data={data} />
     );
 }
