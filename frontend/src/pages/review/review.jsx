@@ -56,6 +56,10 @@ export default function Review() {
     });
     // TO DO: should i use these default values or fetch them dynamically from the backend?
     const term = [
+		{ label: 'FALL 2023', value: 'FALL 2023' },
+		{ label: 'SPRING 2023', value: 'SPRING 2023' },
+		{ label: 'FALL 2022', value: 'FALL 2022' },
+		{ label: 'SPRING 2022', value: 'SPRING 2022' },
         { label: 'FALL 2021', value: 'FALL 2021' },
         { label: 'SPRING 2021', value: 'SPRING 2021' },
         { label: 'FALL 2020', value: 'FALL 2020' },
