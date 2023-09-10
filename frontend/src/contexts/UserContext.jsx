@@ -3,7 +3,6 @@ import { createContext, useEffect, useState } from 'react';
 import { setJWT, validateJWT } from '../services/auth.js';
 import fetchLikedCourses from '../services/fetchLikedCourses.js';
 
-
 export const UserContext = createContext(null);
 /**
  * This sets thhe global state for user info
@@ -17,25 +16,22 @@ export default function UserProvider({ children }) {
     const [id, setId] = useState(null);
     const [name, setName] = useState(null);
     const [email, setEmail] = useState(null);
-	// should i store liked courses ids in local storage or in userContext
-	// const [likedCoursesIds, setLikedCoursesIds] = useState([])
+    // should i store liked courses ids in local storage or in userContext
+    // const [likedCoursesIds, setLikedCoursesIds] = useState([])
     const [loggingIn, setLoggingIn] = useState(false); // state for login popup, use this when user clicks on login button or functionalities that require login
     const [loading, setLoading] = useState(true);
 
-
-	useEffect(() => {
-		if (authenticated) {
-			fetchLikedCourses(id)
-			console.log('fetched liked courses')
-		}
-	}, [authenticated])
+    useEffect(() => {
+        if (authenticated) {
+            fetchLikedCourses(id);
+            console.log('fetched liked courses');
+        }
+    }, [authenticated]);
 
     useEffect(() => {
         validateJWT()
             .then((validated) => {
-				const userInfo = JSON.parse(
-					localStorage.getItem('userInfo'),
-				);
+                const userInfo = JSON.parse(localStorage.getItem('userInfo'));
                 // retrieve info from localstorage is user is already authenticated to persist login accross page refreshes
                 if (validated && userInfo) {
                     // TO DO: parse localstorage data correctly
@@ -45,13 +41,13 @@ export default function UserProvider({ children }) {
                     setName(name);
                     setId(id);
                     setEmail(email);
-                   	setAuthenticated(true);
+                    setAuthenticated(true);
                 } else {
                     setAuthenticated(false);
-					localStorage.removeItem('userInfo');
-					localStorage.removeItem('jwt');
-					localStorage.removeItem('likedCourses');
-					localStorage.removeItem('authenticated');
+                    localStorage.removeItem('userInfo');
+                    localStorage.removeItem('jwt');
+                    localStorage.removeItem('likedCourses');
+                    localStorage.removeItem('authenticated');
                 }
                 setLoading(false);
             })
@@ -62,16 +58,14 @@ export default function UserProvider({ children }) {
             });
     }, []);
 
-
-	
     // if (loading) {
     //     return (
-	// 		<div style={{ width: '100%', height: '100vh' }}>
-	// 			<p style={{ marginTop: '100px', textAlign: 'center' }}>
-	// 				Loading...
-	// 			</p>
-	// 		</div>
-	// 	);
+    // 		<div style={{ width: '100%', height: '100vh' }}>
+    // 			<p style={{ marginTop: '100px', textAlign: 'center' }}>
+    // 				Loading...
+    // 			</p>
+    // 		</div>
+    // 	);
     // }
 
     if (error) {

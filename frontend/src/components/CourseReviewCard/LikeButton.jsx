@@ -6,31 +6,31 @@ import { useState, useContext, useEffect } from 'react';
 import styles from './LikeButton.module.css';
 import { UserContext } from '../../contexts/UserContext.jsx';
 
-export default function LikeButton({courseId, isCourse, reload}){
+export default function LikeButton({ courseId, isCourse, reload }) {
     const [clicked, setClicked] = useState(false);
     const [added, setAdded] = useState(false);
 
-    const { loggingInState, authState} = useContext(UserContext);
+    const { loggingInState, authState } = useContext(UserContext);
     const [loggingIn, setLoggingIn] = loggingInState;
-	const [authenticated, setAuthenticated] = authState;
+    const [authenticated, setAuthenticated] = authState;
 
     // check if course is in liked courses when page is loaded
     useEffect(() => {
         const likedCourses =
             JSON.parse(localStorage.getItem('likedCourses')) || [];
-		
+
         if (authenticated) {
             if (likedCourses.includes(courseId)) {
                 setClicked(true);
                 setAdded(true);
             }
-        }else{
-			setClicked(false);
-			setAdded(false);
-		}
+        } else {
+            setClicked(false);
+            setAdded(false);
+        }
     }, [authenticated, localStorage.getItem('likedCourses')]);
 
-	// fetch liked courses from local storage and update when liked/unliked
+    // fetch liked courses from local storage and update when liked/unliked
     useEffect(() => {
         const likedCourses =
             JSON.parse(localStorage.getItem('likedCourses')) || [];
@@ -50,59 +50,50 @@ export default function LikeButton({courseId, isCourse, reload}){
         }
     }, [clicked]);
 
-	function handleLikedCourse() {
+    function handleLikedCourse() {
         if (!authenticated) {
             setLoggingIn(true);
         } else {
             setClicked(!clicked);
-			if (reload) reload();
+            if (reload) reload();
         }
     }
 
+    /**
+     * These are for custom rating hearts from MUI
+     * */
+    const StyledRating = styled(Rating)({
+        '& .MuiRating-iconFilled': {
+            color: '#3A7BD5',
+        },
+        '& .MuiRating-iconHover': {
+            color: '#3A7BD5',
+        },
+    });
 
-	/**
-	 * These are for custom rating hearts from MUI
-	 * */
-	const StyledRating = styled(Rating)({
-		'& .MuiRating-iconFilled': {
-			color: '#3A7BD5',
-		},
-		'& .MuiRating-iconHover': {
-			color: '#3A7BD5',
-		},
-	});
+    let buttonStyle;
+    if (isCourse) {
+        buttonStyle = styles.listButtonCourse;
+    } else {
+        buttonStyle = styles.listButton;
+    }
 
-	let buttonStyle 
-	if (isCourse){
-		buttonStyle = styles.listButtonCourse
-	}else{
-		buttonStyle = styles.listButton
-	}
-
-	return (
-		<button
-		type='button'
-		className={buttonStyle}
-		onClick={handleLikedCourse}
-	>
-		<StyledRating
-			name='rating-heart'
-			max={1}
-			icon={
-				<FavoriteIcon
-					fontSize='inherit'
-				/>
-			}
-			emptyIcon={
-				<FavoriteBorderIcon
-					fontSize='inherit'
-				/>
-			}
-			className={styles.ratingHeart}
-			value={clicked ? 1 : 0}
-			readOnly
-		/>
-		<p>Add to list</p>
-	</button>
-	)
+    return (
+        <button
+            type='button'
+            className={buttonStyle}
+            onClick={handleLikedCourse}
+        >
+            <StyledRating
+                name='rating-heart'
+                max={1}
+                icon={<FavoriteIcon fontSize='inherit' />}
+                emptyIcon={<FavoriteBorderIcon fontSize='inherit' />}
+                className={styles.ratingHeart}
+                value={clicked ? 1 : 0}
+                readOnly
+            />
+            <p>Add to list</p>
+        </button>
+    );
 }

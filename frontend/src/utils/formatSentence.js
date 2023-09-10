@@ -28,10 +28,10 @@ export default function format(str) {
 
     const words = str.split(' ');
 
-	let courseFormatted = '';
+    let courseFormatted = '';
     let courseTitleFormatted = '';
 
-    for (let i = 0; i < words.length; i+=1) {
+    for (let i = 0; i < words.length; i += 1) {
         if (i === 0 || i === 1) {
             courseFormatted += `${words[i].toUpperCase()} `;
         } else {
@@ -39,9 +39,11 @@ export default function format(str) {
             if (smallWordsSet.has(word) && i !== 2) {
                 courseTitleFormatted += `${word.toLowerCase()} `;
             } else {
-                courseTitleFormatted += `${word.charAt(0).toUpperCase() + word.slice(1)} `;
+                courseTitleFormatted += `${
+                    word.charAt(0).toUpperCase() + word.slice(1)
+                } `;
             }
         }
     }
-    return {courseFormatted, courseTitleFormatted};
+    return { courseFormatted, courseTitleFormatted };
 }

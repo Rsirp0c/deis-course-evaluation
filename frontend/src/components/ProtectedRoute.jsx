@@ -7,8 +7,8 @@ export default function ProtectedRoute({ children }) {
     const [loggingIn, setLoggingIn] = loggingInState;
     const navigate = useNavigate();
 
-	const authenticated = localStorage.getItem('authenticated');
-	
+    const authenticated = localStorage.getItem('authenticated');
+
     useEffect(() => {
         if (!authenticated) {
             setLoggingIn(true);

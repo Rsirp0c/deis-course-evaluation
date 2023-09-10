@@ -13,14 +13,12 @@ import Course from '../models/course.js';
  * @param {Object} res - response object
  */
 async function getCourses(req, res, next) {
-	const course = req.query.course;
+	let course = req.query.course;
 
-	console.log(course);
 	let courses = [];
 	try {
 		if(!course){
 			courses = await Course.find({});
-			res.locals.courses = courses;
 			res.status(200).json(courses);
 			next();
 		}else{
@@ -30,7 +28,6 @@ async function getCourses(req, res, next) {
 					{ "courseTitle": { $regex: course, $options: "i" }},
 				]},
 			);
-			console.log(courses);
 			res.status(200).json(courses);
 
 		}
