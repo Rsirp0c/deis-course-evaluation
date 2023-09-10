@@ -11,7 +11,7 @@ import DeliveryButtons from './components/DeliveryButtons.jsx';
 import TextBox from './components/TextBox.jsx';
 import LetterGradeDropdown from './components/LetterGradeDropdown.jsx';
 import fetchCourse from '../../services/fetchCourse.js';
-
+import Loading from '../loading/loading.jsx';
 /**
  * TO DO: write api request to submit form data to backend
  * @returns {JSX.Element} Review page
@@ -39,7 +39,7 @@ export default function Review() {
     }, []);
 
     if (loadingCourse) {
-        return <div className={styles.loadingContainer}>Loading....</div>;
+        return <Loading/>;
     }
 
     const { course, courseTitle, professors } = courseInfo;
@@ -137,7 +137,6 @@ export default function Review() {
             }
         });
 
-        // setSemester(value)
     }
     function handleCommentChange(event) {
         setComment({ ...comment, comment: event.target.value });

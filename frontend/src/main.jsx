@@ -16,7 +16,7 @@ import Review from './pages/review/review.jsx';
 import Search from './pages/search/search.jsx';
 import SavedCourse from './pages/saved-courses/saved-courses.jsx';
 import MyReviews from './pages/my-reviews/my-reviews.jsx';
-import Loading from './pages/loading/loading.jsx';
+import Loading from './pages/oauth-loading/oauth-loading.jsx';
 
 const router = createBrowserRouter([
     {
