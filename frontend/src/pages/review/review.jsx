@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useParams} from 'react-router-dom';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../../contexts/UserContext.jsx';
 import format  from '../../utils/formatSentence.js';
 import styles from './review.module.css';
@@ -10,13 +10,14 @@ import AttendanceButtons from './components/AttendanceButtons.jsx';
 import DeliveryButtons from './components/DeliveryButtons.jsx';
 import TextBox from './components/TextBox.jsx';
 import LetterGradeDropdown from './components/LetterGradeDropdown.jsx';
+import fetchCourse from '../../services/fetchCourse.js';
 
 /**
  * TO DO: write api request to submit form data to backend
  * @returns {JSX.Element} Review page
  */
 export default function Review() {
-	const { course } = useParams();
+	const { id: courseId } = useParams();
 	const { idState } = useContext(UserContext);
 	const [id, setId] = idState;
 	const [submit, setSubmit] = useState(false);
@@ -30,17 +31,28 @@ export default function Review() {
 	const [semester, setSemester] = useState('');
 	const [comment, setComment] = useState('');
 	const [error, setError] = useState(false);
-	const { courseFormatted, courseTitleFormatted } = format(course)
+	const [courseInfo, setCourseInfo] = useState({});
+	const [loadingCourse, setLoadingCourse] = useState(true);
+
+	useEffect(() => {	
+		fetchCourse(setCourseInfo, setLoadingCourse, courseId);
+	}, [])
 	
+	if (loadingCourse) {
+		return (
+			<div className={styles.loadingContainer}>
+				Loading.... 
+			</div>
+		)
+	}
 
-	// set professor options from course info stored in session storage
-	const courseInfo = JSON.parse(sessionStorage.getItem('courseInfo'));
-	const courseId = courseInfo._id;
-	const {professors} = courseInfo;
+	const { course, courseTitle, professors } = courseInfo;
+	const { courseFormatted, courseTitleFormatted} = format(`${course} ${courseTitle}`)
+	const professorsArray = [];
+
 	Object.keys(professors).forEach((key) => {
-		professors[key] = { label: professors[key].name, value: professors[key].name };
+		professorsArray[key] = { label: professors[key].name, value: professors[key].name };
 	});
-
 	// TO DO: should i use these default values or fetch them dynamically from the backend?
 	const term = [
 		{ label: 'FALL 2021', value: 'FALL 2021' },
@@ -149,7 +161,7 @@ export default function Review() {
 				<form className={styles.form}>
 					<div className={styles.dropdownWrapper}>
 						<DropdownSelection options={term} label="Select Term" handleChange={handleSemesterChange} />
-						<DropdownSelection options={professors} label="Select Professor" handleChange={handleProfessorChange}/>
+						<DropdownSelection options={professorsArray} label="Select Professor" handleChange={handleProfessorChange}/>
 					</div>
 					<div className={styles.ratingWrapper}>
 						<h2 className={styles.ratingDesc}>Rate the difficulty of this course</h2>
