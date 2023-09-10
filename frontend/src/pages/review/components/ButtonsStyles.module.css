@@ -40,6 +40,10 @@
 	background-color: #3A7BD5;
 }
 
+.ratingButtonSelected:hover {
+	background-color: #3A7BD5;
+}
+
 /* Attendance buttons*/
 
 .attendanceButton {

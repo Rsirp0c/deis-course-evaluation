@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { HiOutlineXMark } from 'react-icons/hi2';
 import getGoogleUrl from '../../services/getGoogleUrl';
@@ -31,7 +30,7 @@ export default function AuthPopup({
       <p className={styles.loginText}>
         Don't have an account?
         {' '}
-        <button className={styles.switchButton} onClick={handleSwitch}>Sign up</button>
+        <button type="button" className={styles.switchButton} onClick={handleSwitch}>Sign up</button>
       </p>
     );
   } else if (registering) {
@@ -47,7 +46,7 @@ export default function AuthPopup({
       <p className={styles.loginText}>
         Already have an account?
         {' '}
-        <button className={styles.switchButton} onClick={handleSwitch}>Login</button>
+        <button type="button" className={styles.switchButton} onClick={handleSwitch}>Login</button>
       </p>
     );
   }
