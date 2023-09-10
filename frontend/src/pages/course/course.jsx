@@ -1,10 +1,11 @@
 
-
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import format from '../../utils/formatSentence.js'
 import styles from './course.module.css'
 import ReviewCard from '../../components/ReviewCard/ReviewCard.jsx';
 import fetchReviews from '../../services/fetchReviews.js';
+import fetchCourse from '../../services/fetchCourse.js';
 import convertToLetterGrade from '../../utils/convertToLetterGrade.js';
 import LikeButton from '../../components/CourseReviewCard/LikeButton.jsx';
 import RateCourseButton from '../../components/CourseReviewCard/RateCourseButton.jsx';
@@ -12,10 +13,25 @@ import RateCourseButton from '../../components/CourseReviewCard/RateCourseButton
 export default function Course() {
 
 	const [reviews, setReviews] = useState([]);
-	const [loading, setLoading] = useState(true);
+	const [courseInfo, setCourseInfo] = useState({});
+	const [loadingReviews, setLoadingReviews] = useState(true);
+	const [loadingCourse, setLoadingCourse] = useState(true);
+	const { id } = useParams();
 
-	// Convert this to fetching an API from backend instead of using localstorage
-	const courseInfo = JSON.parse(localStorage.getItem('courseInfo'));
+	useEffect(()=>{
+		fetchReviews(setReviews, setLoadingReviews, id);
+		fetchCourse(setCourseInfo, setLoadingCourse, id);
+	}, [])
+
+	if (loadingReviews || loadingCourse) {
+		return (
+			<div className={styles.loadingContainer}>
+				Loading.... 
+			</div>
+		)
+	}
+
+	// Everything below will not be parsed if loading reveiw or course is true
 	const { 
 		_id, 
 		course, 
@@ -26,12 +42,9 @@ export default function Course() {
 		gradeAverage, 
 		usefulnessAverage, 
 		prerequisites, 
-		professors } = courseInfo;
+		professors } = courseInfo || {};
+
 	const { courseFormatted, courseTitleFormatted} = format(`${course} ${courseTitle}`)
-	
-	useEffect(()=>{
-		fetchReviews(setReviews, setLoading, _id);
-	}, [])
 	
 	let color;
 
@@ -66,16 +79,6 @@ export default function Course() {
 		rating = '-'
 	}else{
 		rating = ratingAverage.toFixed(1)
-	}
-
-
-
-	if (loading) {
-		return (
-			<div className={styles.loadingContainer}>
-				Loading.... 
-			</div>
-		)
 	}
 
   	return (

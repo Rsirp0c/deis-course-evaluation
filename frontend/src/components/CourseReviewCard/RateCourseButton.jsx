@@ -7,7 +7,8 @@ export default function RateCourseButton({course, isCourse}) {
 	function handleRateCourse() {
         const courseInfo= `${course.course} ${course.courseTitle}`;
 		sessionStorage.setItem('courseInfo', JSON.stringify(course));
-        navigate(`/review/${courseInfo}`);
+		
+        navigate(`/review/${course._id}`);
     }
 
 	let rateButtonStyle 
