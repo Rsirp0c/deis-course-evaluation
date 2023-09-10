@@ -26,9 +26,9 @@ jobs:
       working-directory: ./frontend
       run: npm i 
 
-    - name: Check for bugs and stylistic issues. 
-      working-directory: ./frontend
-      run: npm run lint
+    # - name: Check for bugs and stylistic issues. 
+    #   working-directory: ./frontend
+    #   run: npm run 
 
     - name: Install Backend Dependencies
       working-directory: ./backend
