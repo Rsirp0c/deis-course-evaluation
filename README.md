@@ -20,10 +20,10 @@ Always welcome for any feedbacks and suggestions! email: mingshihwang@brandeis.e
 <img width="1470" alt="demo2" src="https://github.com/MingCWang/deis-course-evaluation/assets/73949957/9ff83dd3-f74c-4353-80cb-d4f71d7cb76a">
 <img width="1444" alt="Screen Shot 2023-08-27 at 10 34 18 AM" src="https://github.com/MingCWang/deis-course-evaluation/assets/73949957/67c73307-8bec-4a64-9d18-3680ccc7df5b">
 
-## Highlights 
+<!-- ## Highlights 
 - User authentication both username/password and OAuth2.0 google all implemented from scratch.
-- UI implemented with 95% pure CSS/CSS modules.
-- JSdoc documentation for the backend API endpoints.
+- UI implemented with 95% pure CSS/CSS modules. -->
+
 
 ## Built With
 - Node.js
@@ -31,11 +31,6 @@ Always welcome for any feedbacks and suggestions! email: mingshihwang@brandeis.e
 - MongoDB
 - Mongoose
 - React.js
-<img align="left" alt="React" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
-<img align="left" alt="NodeJS" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
-<img align="left" alt="MongoDB" width="30px" style="padding-right:10px;" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" />
-<img align="left" alt="Express" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" />
-<details>
 <summary>Roadmap</summary>
 
 Frontend/Backend
