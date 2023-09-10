@@ -106,6 +106,16 @@ export default function NavBar() {
     setFormPassword('');
   }
 
+  function handleLogin() {
+	setLoggingIn(true);
+	setRegistering(false);
+  }
+
+  function handleRegister() {
+	setRegistering(true);
+	setLoggingIn(false);
+  }
+
   let navStyle;
   let loginButtonStyle;
   let registerButtonStyle;
@@ -153,8 +163,8 @@ export default function NavBar() {
           ? <LoggedInLinks handleOnClick={handleOnClick} />
           : (
             <LoggedOutLinks
-              handleLogin={handleSwitch}
-              handleRegister={handleSwitch}
+              handleLogin={handleLogin}
+              handleRegister={handleRegister}
               loginButtonStyle={loginButtonStyle}
               registerButtonStyle={registerButtonStyle}
             />
