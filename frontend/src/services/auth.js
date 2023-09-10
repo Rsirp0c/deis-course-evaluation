@@ -1,4 +1,3 @@
-
 const process = import.meta.env;
 
 /**
@@ -27,23 +26,21 @@ export async function setJWT(setAuthenticated, setName, setId, setEmail) {
             })
             .then((data) => {
                 window.location.href = window.location.pathname;
-				const {
-					name, id, email, token,
-				  } = data.userJSON;
-				  // set context variable here for global access
-				  if (name) setName(name);
-				  setId(id);
-				  setEmail(email);
-				  setAuthenticated(true);
-				  const userInfo = {
-					name,
-					id,
-					email,
-				  };
-				  // then store in localStorage to persist data accross page refresh
-				  localStorage.setItem('userInfo', JSON.stringify(userInfo));
-				  localStorage.setItem('authenticated', true)
-				  localStorage.setItem('jwt', token);
+                const { name, id, email, token } = data.userJSON;
+                // set context variable here for global access
+                if (name) setName(name);
+                setId(id);
+                setEmail(email);
+                setAuthenticated(true);
+                const userInfo = {
+                    name,
+                    id,
+                    email,
+                };
+                // then store in localStorage to persist data accross page refresh
+                localStorage.setItem('userInfo', JSON.stringify(userInfo));
+                localStorage.setItem('authenticated', true);
+                localStorage.setItem('jwt', token);
             })
             .catch(() => false);
     }

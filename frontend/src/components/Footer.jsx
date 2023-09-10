@@ -27,7 +27,10 @@ export default function Footer() {
                 </span>
             </div>
             <div className={styles.footerLinks}>
-                <a href='https://github.com/MingCWang/deis-course-evaluation' className={styles.footerLink}>
+                <a
+                    href='https://github.com/MingCWang/deis-course-evaluation'
+                    className={styles.footerLink}
+                >
                     <BiLogoGithub className={iconStyles} />
                 </a>
                 {/* <a href='' className={styles.footerLink}>
