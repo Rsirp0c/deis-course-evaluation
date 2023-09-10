@@ -65,6 +65,10 @@
 	background-color: #3A7BD5;
 }
 
+.attendanceButtonSelected:hover {
+	background-color: #3A7BD5;
+}
+
 .firstAttendanceButton {
 	composes: attendanceButton;
 	composes: firstRatingButton;
@@ -84,6 +88,10 @@
 
 .deliveryButtonSelected {
 	composes: deliveryButton;
+	background-color: #3A7BD5;
+}
+
+.deliveryButtonSelected:hover {
 	background-color: #3A7BD5;
 }
 

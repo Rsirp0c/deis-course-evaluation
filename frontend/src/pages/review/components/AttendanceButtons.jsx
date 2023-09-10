@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styles from './ButtonsStyles.module.css';
 
 function AttendanceButton({ value, state, setState }) {
@@ -12,6 +13,7 @@ function AttendanceButton({ value, state, setState }) {
     if (value) {
         return (
             <button
+				type='button'
                 className={
                     (buttonStyle = `${buttonStyle} ${styles.firstAttendanceButton}`)
                 }
@@ -24,6 +26,7 @@ function AttendanceButton({ value, state, setState }) {
     if (!value) {
         return (
             <button
+				type='button'
                 className={`${buttonStyle} ${styles.lastAttendanceButton}`}
                 onClick={handleOnClick}
             >
