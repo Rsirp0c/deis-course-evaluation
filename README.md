@@ -95,7 +95,7 @@ Nice to haves
 2. Run `npm run doc` in the root directory of the project
 3. Open `docs/index.html` in your browser with live servere
 ### To reformat the code
-1. In /frontend `npm run format`
+1. /frontend `npm run format`
 ## Start contributing
 1. Clone the repo
 2. Run `npm install` inside the /backend and /frontend directory of the project
