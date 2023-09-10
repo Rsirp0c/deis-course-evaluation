@@ -102,7 +102,7 @@ export default function Course() {
                                     className={styles.prof}
                                     key={index.toString()}
                                 >
-                                    {professor.name},
+                                {professor.name}
                                 </p>
                             ))}
                         </div>
