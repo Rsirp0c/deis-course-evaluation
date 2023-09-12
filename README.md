@@ -20,73 +20,45 @@ Always welcome for any feedbacks and suggestions! email: mingshihwang@brandeis.e
 <img width="1470" alt="demo2" src="https://github.com/MingCWang/deis-course-evaluation/assets/73949957/9ff83dd3-f74c-4353-80cb-d4f71d7cb76a">
 <img width="1444" alt="Screen Shot 2023-08-27 at 10 34 18 AM" src="https://github.com/MingCWang/deis-course-evaluation/assets/73949957/67c73307-8bec-4a64-9d18-3680ccc7df5b">
 
-<!-- ## Highlights 
-- User authentication both username/password and OAuth2.0 google all implemented from scratch.
-- UI implemented with 95% pure CSS/CSS modules. -->
+## Features
+**General**
+- Advanced Search Bar : search by course name, course ID, department.
+- Course Evaluation : view course evaluations from other users and submit your own evaluations
+- Ratings: view analyzed data of the course such as: average rating, average grade, average difficulty, etc.
+
+**Sign In Features**
+- User Authentication : sign in with username/password or google OAuth2.0
+- Liked Courses : view the list of courses that you have liked
+- Evaluations: view the evaluations that you have submitted
+
+More features coming soon!
 
 
+## REST API Routes
+### Course
+- GET /api/courses - Get all courses
+- GET /api/courses/:id - Get course by id
+- POST /api/courses/reviews - Get all evaluations with the given course id
+### Auth
+ - POST auth/oauth/google - generate jwt token after login with google oauth2.0
+ - POST auth/login - generate jwt token after login with username/password
+ - POST auth/register - register a new user
+ - DELETE auth/:id - delete the user from the database
+ ### Evaluations
+- POST api/evaluations/forms - Create a new evaluation submission
+- GET api/evaluations - Get all evaluations
+- POST api/evaluations/user - Get user evaluations with the given user id
+### Liked Courses
+- POST api/liked-courses - Get all liked courses with the given user id
+- POST api/liked-courses/add - Add a new liked course
+- POST api/liked-courses/remove - Remove a liked course
 ## Built With
 - Node.js
 - Express.js
 - MongoDB
 - Mongoose
 - React.js
-<summary>Roadmap</summary>
 
-Frontend/Backend
-- [ ] Implement user auth with oauth2.0 
-	- [x] Generate google oauth url 
-	- [ ] Handle google oauth callback
-	- [ ] Store user model in database
-
-Frontend
-
-- [x] Implement routing for each page with react-router-dom
-<details>
-<summary> Implement Navbar UI :heavy_check_mark:</summary>
-
-- [x] Implement search bar
-- [x] Hide search bar in main page navbar, transform into advanced search bar 
-- [x] Implement css modules for better styling
-- [x] Import react-icons packages for navbar icons
-- [ ] Reposition mainsearchbar to main page instead of inside the navbar 
-
-</details>
-
-<details>
-<summary>Main Page</summary>
-
-- [ ] Create components that display course data 
-	- [x] Request course data from backend
-	- [x] Extract important data
-	- [x] Display data in a card
-	- [ ] implement color change with respect to the rating values
-	- [ ] use add to list function
-
-</details>
-
-<details>
-<summary>Search Page</summary>
-
-- [x] generate search page UI by fetching data from our backend with the mock data
-	- [x] Fetch data from backend on page render 
-	- [x] Display data in a card
-
-</details>
-
-Backend
-- [x] Create moc data for testing in JSON
-- [ ] Test API endpoints
-- [ ] Input calculations for rating and grade whenever a new form is added 
-JWT validation flow 
-- the user logs in either with oauth2.0 or with a username and password, server responds with jwt
-- jwt stores in local storage, and stores user data within userContext 
-- the user sends the jwt with auth header with every request, server validates the jwt and responds with the requested data
-
-
-Nice to haves
-- [ ] Implement main page search bar dropdown custom UI?
-</details>
 
 ## Dev Setup 
 ### To generate the jsdoc documentation website

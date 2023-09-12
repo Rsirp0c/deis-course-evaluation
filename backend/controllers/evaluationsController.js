@@ -87,6 +87,14 @@ async function read(req, res) {
 	}
 }
 
+/**
+ * @summary POST api/v1/evaluations/user
+ * @description Get user evaluations with the given user id
+ * @MingCWang
+ * @async
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ */
 async function readWithIds(req, res) {
 	const { userId } = req.body;
 	const user = await User.find({ _id: userId });

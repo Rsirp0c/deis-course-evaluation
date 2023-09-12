@@ -10,7 +10,6 @@ import { login, register, remove, validateToken } from '../controllers/authContr
  * POST auth/oauth/google
  * POST auth/login
  * POST auth/register
- * GET auth/:id
  * DELETE auth/:id
  */
 

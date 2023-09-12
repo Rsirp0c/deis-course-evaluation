@@ -5,8 +5,8 @@ import { create, read, readWithIds} from '../controllers/evaluationsController.j
 
 /**
  * Evaluations API routes
- * GET api/evaluations/forms
- * POST api/evaluations?course=course&semester=semester&professor=professor
+ * POST api/evaluations/forms
+ * GET api/evaluations?course=course&semester=semester&professor=professor
  * POST api/evaluations/user
  */
 router.post('/forms', create);
