@@ -6,7 +6,7 @@ This is a course evaluation website for Brandeis students. The website allows st
 
 Checkout the website! [link](https://deis-evaluation.onrender.com/) 
 
-checkout the design! [link](https://drive.google.com/file/d/1aa-pElrgwzEeUl-vCUKM2C0K1YQ6g49p/view?usp=share_link) 
+Checkout the design! [link](https://drive.google.com/file/d/1aa-pElrgwzEeUl-vCUKM2C0K1YQ6g49p/view?usp=share_link) 
 
 - Currently on the free tier of render, so it might take a couple minutes for the server to load
 - Requesting data from adminstration, course data only contain mock data. Search for "COSI" to see the mock data
